@@ -27,8 +27,8 @@ export default function DaraxonrasibCasePage() {
             This page traces a pancreatic cancer drug story backward through the
             scientific lineage that made it possible. It is designed to be read
             in layers: a plain-language summary for any reader, a visual map of
-            the discovery chain, and a deeper explainer for those who want the
-            fuller scientific history.
+            the discovery chain, a timeline of milestones and detours, and a
+            deeper explainer for those who want the fuller scientific history.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -42,7 +42,13 @@ export default function DaraxonrasibCasePage() {
               href="#lineage-map"
               className="rounded-full border border-stone-300 px-5 py-2.5 text-sm font-medium text-stone-800 transition hover:border-stone-900"
             >
-              See the lineage map
+              Lineage map
+            </a>
+            <a
+              href="#timeline"
+              className="rounded-full border border-stone-300 px-5 py-2.5 text-sm font-medium text-stone-800 transition hover:border-stone-900"
+            >
+              Discovery timeline
             </a>
             <a
               href="#deep-dive"
@@ -380,6 +386,178 @@ export default function DaraxonrasibCasePage() {
         </div>
       </section>
 
+      {/* ━━━━━━━━━━ LAYER 2.5: DISCOVERY TIMELINE ━━━━━━━━━━ */}
+
+      <section id="timeline" className="border-b border-stone-200 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10 lg:py-20">
+          <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
+            Discovery timeline
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight">
+            Key moments in the path to daraxonrasib
+          </h2>
+          <p className="mt-4 max-w-3xl text-base leading-8 text-stone-700">
+            This timeline traces milestones, branch points, detours, and
+            convergence events across the scientific fields that eventually
+            produced a KRAS-directed drug in pancreatic cancer trials.
+            Not every entry is a success — several represent failures or
+            unresolved debates that still shaped what came next.
+          </p>
+
+          <div className="mt-12 space-y-0">
+            {[
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "1970s – early 1980s",
+                title: "Retroviral oncogenes are identified",
+                text: "Researchers studying cancer-causing retroviruses in animals — particularly in the laboratories of the NCI and university virology departments — discovered that these viruses carried genes capable of transforming normal cells into cancerous ones. This was the first evidence that cancer could be traced to specific genes.",
+              },
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "Early 1980s",
+                title: "Human cellular oncogenes are confirmed",
+                text: "Work by multiple groups showed that the cancer-causing genes found in retroviruses were not truly viral — they were altered copies of normal human genes. The cell\u2019s own genome contained the seeds of cancer. This finding reframed the entire field around cellular and molecular genetics rather than virology.",
+              },
+              {
+                type: "Branch point",
+                color: "bg-stone-500",
+                era: "Early 1980s",
+                title: "The viral vs. cellular origin debate resolves",
+                text: "A major fork in thinking: was cancer fundamentally a viral disease or a genetic one? The evidence that oncogenes were cellular in origin settled this question and redirected enormous research effort toward understanding how the cell\u2019s own genes could become drivers of disease.",
+              },
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "1982 – 1983",
+                title: "KRAS is identified as a human oncogene",
+                text: "Several research groups — working across institutions in the United States, Europe, and Japan — identified mutated RAS genes in human tumor cells. KRAS, HRAS, and NRAS were among the first oncogenes shown to be directly activated by point mutations in human cancers, establishing the RAS family as central to molecular oncology.",
+              },
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "Late 1980s – 1990s",
+                title: "The RAS-MAPK signaling pathway is mapped",
+                text: "Cell biologists and biochemists — many working in signal transduction laboratories at major research universities — charted the cascade of protein interactions downstream of RAS. This work showed exactly how a mutant KRAS protein, stuck in its active state, relays a continuous growth signal through RAF, MEK, and ERK to the cell\u2019s growth machinery.",
+              },
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "1990s",
+                title: "KRAS mutations found in most pancreatic cancers",
+                text: "Pathologists and pancreatic cancer researchers demonstrated that KRAS mutations appear in the vast majority of pancreatic ductal adenocarcinomas and are detectable even in early precursor lesions called PanINs. This made KRAS the most biologically central target in the disease — but also one of the hardest to reach.",
+              },
+              {
+                type: "Branch point",
+                color: "bg-stone-500",
+                era: "1990s – 2000s",
+                title: "KRAS is labeled \u201Cundruggable\u201D",
+                text: "The RAS protein\u2019s small size, smooth surface, and extremely tight binding to its natural substrate (GTP) made it resist conventional drug-design approaches. The scientific community debated whether direct KRAS inhibition was feasible at all, and many researchers redirected effort toward downstream or indirect strategies.",
+              },
+              {
+                type: "Detour",
+                color: "bg-stone-400",
+                era: "Late 1990s – 2000s",
+                title: "Farnesyltransferase inhibitors fail in clinical trials",
+                text: "One of the first serious attempts to target RAS aimed to block the enzyme that attaches RAS to the cell membrane. The drugs were based on sound biological logic, but KRAS could use alternative enzymes to reach the membrane. Clinical trials failed. The experience taught the field that RAS biology was more redundant than expected.",
+              },
+              {
+                type: "Detour",
+                color: "bg-stone-400",
+                era: "2000s – 2010s",
+                title: "Downstream-only strategies show limited benefit in KRAS-mutant tumors",
+                text: "Because KRAS itself seemed untouchable, researchers targeted downstream kinases — RAF, MEK, ERK. These drugs helped in cancers driven by downstream mutations (particularly BRAF), but in KRAS-mutant tumors, blocking one downstream branch often triggered compensatory signaling through parallel pathways. The network was more resilient than expected.",
+              },
+              {
+                type: "Detour",
+                color: "bg-stone-400",
+                era: "2000s",
+                title: "EGFR-targeted drugs fail in KRAS-mutant patients",
+                text: "Drugs designed to block EGFR, the receptor upstream of KRAS, were tested broadly across cancers. In KRAS-mutant tumors, they were ineffective — the growth signal originated from the stuck switch inside the cell, not from the receptor above it. This clarified that interventions upstream of the broken node could not fix the problem.",
+              },
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "2010s",
+                title: "Structural biology reveals hidden vulnerabilities on KRAS",
+                text: "Advances in X-ray crystallography and cryo-electron microscopy — driven by structural biology groups at academic centers and drug-discovery institutes — revealed previously unseen pockets on the KRAS protein surface. One pocket, accessible only in the GDP-bound (inactive) state of KRAS G12C, became the first credible direct-targeting site.",
+              },
+              {
+                type: "Branch point",
+                color: "bg-stone-500",
+                era: "2010s – present",
+                title: "Direct inhibition vs. synthetic lethality — two paths diverge",
+                text: "With new structural insight, some researchers pursued direct KRAS inhibition through covalent compounds that lock onto the protein. Others explored synthetic lethality — killing KRAS-mutant cells by targeting something else they uniquely depend on. Both branches remain active in clinical research, and neither has fully displaced the other.",
+              },
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "Mid-2010s onward",
+                title: "Covalent inhibitors demonstrate proof of concept against KRAS",
+                text: "Medicinal chemistry teams — in both academic and industry laboratories — designed small molecules that form irreversible bonds with specific KRAS mutant forms. These compounds demonstrated for the first time that KRAS could be directly and selectively inhibited. The \u201Cundruggable\u201D label began to lose its authority.",
+              },
+              {
+                type: "Convergence",
+                color: "bg-stone-700",
+                era: "Recent years",
+                title: "Translational oncology connects lab evidence to trial design",
+                text: "Translational research groups bridged the gap between laboratory findings and clinical feasibility. They established biomarker-selection strategies, defined patient populations by mutation subtype, and designed dose-escalation protocols that reflected the specific pharmacology of KRAS-directed compounds.",
+              },
+              {
+                type: "Convergence",
+                color: "bg-stone-700",
+                era: "Current",
+                title: "Daraxonrasib enters clinical trials in pancreatic cancer",
+                text: "The full chain converges: oncogene discovery identified the gene, signaling biology explained the mechanism, disease research showed centrality in pancreatic cancer, structural and chemical biology found a way to reach the target, and translational teams designed a trial to test the drug in the patients most likely to benefit.",
+              },
+            ].map((entry, i) => (
+              <div key={entry.title} className="relative flex gap-6">
+                {/* Vertical line and dot */}
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`relative z-10 mt-1 h-3.5 w-3.5 shrink-0 rounded-full ${entry.color} ${
+                      entry.type === "Convergence"
+                        ? "ring-4 ring-stone-200"
+                        : ""
+                    }`}
+                  />
+                  {i < 14 && <div className="w-px grow bg-stone-200" />}
+                </div>
+
+                {/* Card */}
+                <div className="mb-6 flex-1 rounded-[1.5rem] border border-stone-200 bg-stone-50 p-6 shadow-sm">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span
+                      className={`inline-block rounded-full px-3 py-0.5 text-xs font-medium ${
+                        entry.type === "Milestone"
+                          ? "bg-stone-900 text-white"
+                          : entry.type === "Branch point"
+                            ? "bg-stone-200 text-stone-700"
+                            : entry.type === "Detour"
+                              ? "bg-stone-100 text-stone-500"
+                              : "bg-stone-700 text-white"
+                      }`}
+                    >
+                      {entry.type}
+                    </span>
+                    <span className="text-xs tracking-wide text-stone-400">
+                      {entry.era}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 text-lg font-semibold text-stone-900">
+                    {entry.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-stone-700">
+                    {entry.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ━━━━━━━━━━ LAYER 3: DEEPER EXPLAINER ━━━━━━━━━━ */}
 
       {/* Summary why-it-matters */}
@@ -567,11 +745,13 @@ export default function DaraxonrasibCasePage() {
             <p className="mt-4 max-w-3xl leading-8 text-stone-700">
               This is a TrialLineage case page. It traces a human-disease trial
               backward through the scientific lineage that made it possible,
-              presented in three layers: a plain-language summary for any reader,
+              presented in four layers: a plain-language summary for any reader,
               a visual reverse-lineage map showing main paths and side branches,
-              and a deeper explainer for those who want the fuller scientific
-              history. The format is designed to make the discovery process
-              behind phase 1&ndash;3 trials visible and understandable.
+              a discovery timeline of milestones, branch points, detours, and
+              convergence events, and a deeper explainer for those who want the
+              fuller scientific history. The format is designed to make the
+              discovery process behind phase 1&ndash;3 trials visible and
+              understandable.
             </p>
           </div>
         </div>
