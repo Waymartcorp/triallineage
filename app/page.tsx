@@ -6,9 +6,9 @@ export default function HomePage() {
     { label: "Protein signaling biology", href: "/concept/protein-signaling-biology" },
     { label: "Pancreatic precursor lesion biology" },
     { label: "Chemical biology" },
-    { label: "Medicinal chemistry" },
+    { label: "Medicinal chemistry", href: "/concept/medicinal-chemistry" },
     { label: "Structural biology" },
-    { label: "Translational oncology" },
+    { label: "Translational oncology", href: "/concept/translational-oncology" },
     { label: "Clinical trial design", href: "/concept/clinical-trial-design" },
   ];
 
@@ -29,9 +29,9 @@ export default function HomePage() {
               <a href="#how-it-works" className="transition hover:text-stone-900">
                 How It Works
               </a>
-              <a href="#concepts" className="transition hover:text-stone-900">
+              <Link href="/concepts" className="transition hover:text-stone-900">
                 Concepts
-              </a>
+              </Link>
             </nav>
           </div>
         </div>
@@ -55,12 +55,12 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#featured-case"
+              <Link
+                href="/case/daraxonrasib-pancreatic-cancer"
                 className="inline-flex items-center justify-center rounded-full bg-stone-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-stone-700"
               >
                 Explore the first case
-              </a>
+              </Link>
               <a
                 href="#how-it-works"
                 className="inline-flex items-center justify-center rounded-full border border-stone-300 px-6 py-3 text-sm font-medium text-stone-800 transition hover:border-stone-900 hover:text-stone-900"

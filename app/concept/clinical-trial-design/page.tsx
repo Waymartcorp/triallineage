@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ClinicalTrialDesignPage() {
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -581,6 +583,22 @@ export default function ClinicalTrialDesignPage() {
               >
                 View the full case
               </a>
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-[2rem] border border-stone-200 bg-white p-8">
+            <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
+              Related concepts
+            </p>
+            <p className="mt-3 text-sm leading-7 text-stone-600">
+              Other scientific fields in the TrialLineage discovery chain.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link href="/concept/oncogene-discovery" className="rounded-full border border-stone-200 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900">Oncogene discovery</Link>
+              <Link href="/concept/protein-signaling-biology" className="rounded-full border border-stone-200 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900">Protein signaling biology</Link>
+              <Link href="/concept/medicinal-chemistry" className="rounded-full border border-stone-200 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900">Medicinal chemistry</Link>
+              <Link href="/concept/translational-oncology" className="rounded-full border border-stone-200 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900">Translational oncology</Link>
+              <Link href="/concepts" className="rounded-full border border-stone-200 px-4 py-2 text-sm font-medium text-stone-500 transition hover:border-stone-400 hover:text-stone-700">All concepts →</Link>
             </div>
           </div>
 
