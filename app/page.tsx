@@ -1,13 +1,15 @@
+import Link from "next/link";
+
 export default function HomePage() {
-  const conceptLinks = [
-    "Oncogene discovery",
-    "Protein signaling biology",
-    "Pancreatic precursor lesion biology",
-    "Chemical biology",
-    "Medicinal chemistry",
-    "Structural biology",
-    "Translational oncology",
-    "Clinical trial design",
+  const conceptLinks: { label: string; href?: string }[] = [
+    { label: "Oncogene discovery", href: "/concept/oncogene-discovery" },
+    { label: "Protein signaling biology", href: "/concept/protein-signaling-biology" },
+    { label: "Pancreatic precursor lesion biology" },
+    { label: "Chemical biology" },
+    { label: "Medicinal chemistry" },
+    { label: "Structural biology" },
+    { label: "Translational oncology" },
+    { label: "Clinical trial design", href: "/concept/clinical-trial-design" },
   ];
 
   return (
@@ -239,14 +241,30 @@ export default function HomePage() {
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {conceptLinks.map((concept) => (
-              <div
-                key={concept}
-                className="rounded-[1.25rem] border border-stone-200 bg-white px-5 py-4 text-sm font-medium text-stone-800 shadow-sm"
-              >
-                {concept}
-              </div>
-            ))}
+            {conceptLinks.map((concept) =>
+              concept.href ? (
+                <Link
+                  key={concept.label}
+                  href={concept.href}
+                  className="rounded-[1.25rem] border border-stone-200 bg-white px-5 py-4 text-sm font-medium text-stone-800 shadow-sm transition hover:border-stone-400 hover:bg-stone-50 hover:text-stone-900"
+                >
+                  {concept.label}
+                  <span className="mt-1.5 block text-xs font-normal text-stone-500">
+                    Read explainer →
+                  </span>
+                </Link>
+              ) : (
+                <div
+                  key={concept.label}
+                  className="rounded-[1.25rem] border border-stone-200 bg-white px-5 py-4 text-sm font-medium text-stone-800 shadow-sm"
+                >
+                  {concept.label}
+                  <span className="mt-1.5 block text-xs font-normal text-stone-400">
+                    Coming soon
+                  </span>
+                </div>
+              )
+            )}
           </div>
         </div>
       </section>
