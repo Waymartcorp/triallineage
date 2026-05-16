@@ -4,10 +4,10 @@ export default function DaraxonrasibCasePage() {
   const conceptLinks: { label: string; href?: string }[] = [
     { label: "Oncogene discovery", href: "/concept/oncogene-discovery" },
     { label: "Protein signaling biology", href: "/concept/protein-signaling-biology" },
-    { label: "Pancreatic precursor lesion biology" },
-    { label: "Chemical biology" },
+    { label: "Pancreatic precursor lesion biology", href: "/concept/pancreatic-precursor-lesion-biology" },
+    { label: "Chemical biology", href: "/concept/chemical-biology" },
     { label: "Medicinal chemistry", href: "/concept/medicinal-chemistry" },
-    { label: "Structural biology" },
+    { label: "Structural biology", href: "/concept/structural-biology" },
     { label: "Translational oncology", href: "/concept/translational-oncology" },
     { label: "Clinical trial design", href: "/concept/clinical-trial-design" },
   ];

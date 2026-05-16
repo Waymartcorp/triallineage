@@ -35,11 +35,19 @@ const concepts: { label: string; description: string; href?: string }[] = [
     label: "Structural biology",
     description:
       "The study of the three-dimensional shapes of proteins and other biological molecules, and why those shapes determine what drugs can do.",
+    href: "/concept/structural-biology",
+  },
+  {
+    label: "Chemical biology",
+    description:
+      "Using small molecules as tools to probe biological questions — testing whether a protein can be chemically engaged and what happens when it is.",
+    href: "/concept/chemical-biology",
   },
   {
     label: "Pancreatic precursor lesion biology",
     description:
       "The science of how pancreatic cancer develops from earlier, pre-cancerous changes — and why understanding those stages matters for early detection and treatment.",
+    href: "/concept/pancreatic-precursor-lesion-biology",
   },
 ];
 
