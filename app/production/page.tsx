@@ -409,109 +409,12 @@ export default function ProductionRoomPage() {
                     {selected.date_detected}
                   </p>
 
-                  <div className="mt-4 space-y-3.5">
-                    {selected.brief_summary && (
-                      <div>
-                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
-                          Summary
-                        </p>
-                        <p className="mt-1 text-sm leading-6 text-stone-700">
-                          {selected.brief_summary}
-                        </p>
-                      </div>
-                    )}
-
-                    <div>
-                      <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
-                        Editorial note
-                      </p>
-                      <p className="mt-1 text-sm leading-6 text-stone-600 italic">
-                        {selected.editorial_note}
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
-                          Related case
-                        </p>
-                        <p className="mt-1 text-sm text-stone-700">
-                          {selected.related_case || "—"}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
-                          Handling
-                        </p>
-                        <p className={`mt-1 text-sm font-medium ${candidateTypeStyle[selected.candidate_type]}`}>
-                          {selected.candidate_type}
-                        </p>
-                      </div>
-                    </div>
-
-                    {selected.related_concepts && selected.related_concepts.length > 0 && (
-                      <div>
-                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
-                          Related concepts
-                        </p>
-                        <div className="mt-1.5 flex flex-wrap gap-1.5">
-                          {selected.related_concepts.map((c) => (
-                            <span
-                              key={c}
-                              className="rounded-full border border-stone-200 px-2 py-0.5 text-xs text-stone-600"
-                            >
-                              {c}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {selected.trial_identifier && (
-                      <div>
-                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
-                          Trial identifier
-                        </p>
-                        <p className="mt-1 text-sm text-stone-700 font-mono">
-                          {selected.trial_identifier}
-                        </p>
-                      </div>
-                    )}
-
-                    {selected.external_link && (
-                      <div>
-                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
-                          Source link
-                        </p>
-                        <a
-                          href={selected.external_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-1 block text-sm text-blue-700 underline decoration-blue-200 hover:decoration-blue-500"
-                        >
-                          {selected.external_link}
-                        </a>
-                      </div>
-                    )}
-
-                    {selected.confidence_flag && (
-                      <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2">
-                        <p className="text-xs font-medium text-amber-700">
-                          Caution
-                        </p>
-                        <p className="mt-0.5 text-xs leading-5 text-amber-600">
-                          {selected.confidence_flag}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Actions */}
-                  <div className="mt-6 border-t border-stone-100 pt-5">
+                  {/* Actions — always visible */}
+                  <div className="mt-4 border-t border-stone-100 pt-4">
                     <p className="text-xs font-medium uppercase tracking-[0.14em] text-stone-400">
                       Actions
                     </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <div className="mt-3 flex flex-wrap gap-2">
                       <button className="rounded-full bg-stone-900 px-4 py-2 text-xs font-medium text-white transition hover:bg-stone-700">
                         Open public case
                       </button>
@@ -570,6 +473,104 @@ export default function ProductionRoomPage() {
                         Summary
                       </button>
                     </div>
+                  </div>
+
+                  {/* Detail fields */}
+                  <div className="mt-4 space-y-3.5 border-t border-stone-100 pt-4">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                          Related case
+                        </p>
+                        <p className="mt-1 text-sm text-stone-700">
+                          {selected.related_case || "—"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                          Handling
+                        </p>
+                        <p className={`mt-1 text-sm font-medium ${candidateTypeStyle[selected.candidate_type]}`}>
+                          {selected.candidate_type}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                        Editorial note
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-stone-600 italic">
+                        {selected.editorial_note}
+                      </p>
+                    </div>
+
+                    {selected.brief_summary && (
+                      <div>
+                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                          Summary
+                        </p>
+                        <p className="mt-1 text-sm leading-6 text-stone-700">
+                          {selected.brief_summary}
+                        </p>
+                      </div>
+                    )}
+
+                    {selected.related_concepts && selected.related_concepts.length > 0 && (
+                      <div>
+                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                          Related concepts
+                        </p>
+                        <div className="mt-1.5 flex flex-wrap gap-1.5">
+                          {selected.related_concepts.map((c) => (
+                            <span
+                              key={c}
+                              className="rounded-full border border-stone-200 px-2 py-0.5 text-xs text-stone-600"
+                            >
+                              {c}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {selected.trial_identifier && (
+                      <div>
+                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                          Trial identifier
+                        </p>
+                        <p className="mt-1 text-sm text-stone-700 font-mono">
+                          {selected.trial_identifier}
+                        </p>
+                      </div>
+                    )}
+
+                    {selected.external_link && (
+                      <div>
+                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                          Source link
+                        </p>
+                        <a
+                          href={selected.external_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 block text-sm text-blue-700 underline decoration-blue-200 hover:decoration-blue-500"
+                        >
+                          {selected.external_link}
+                        </a>
+                      </div>
+                    )}
+
+                    {selected.confidence_flag && (
+                      <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2">
+                        <p className="text-xs font-medium text-amber-700">
+                          Caution
+                        </p>
+                        <p className="mt-0.5 text-xs leading-5 text-amber-600">
+                          {selected.confidence_flag}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               ) : (
