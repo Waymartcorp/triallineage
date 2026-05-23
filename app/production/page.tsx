@@ -76,6 +76,7 @@ export default function ProductionRoomPage() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterTab>("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [totalCount, setTotalCount] = useState<number>(0);
 
   const PAGE_SIZE = 500;
@@ -144,7 +145,18 @@ export default function ProductionRoomPage() {
     }
   }
 
-  const filtered = signals.filter((s) => matchesFilter(s, activeFilter));
+  const filtered = signals.filter((s) => {
+    if (!matchesFilter(s, activeFilter)) return false;
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      s.title.toLowerCase().includes(q) ||
+      s.disease_area.toLowerCase().includes(q) ||
+      (s.trial_identifier ?? "").toLowerCase().includes(q) ||
+      s.source.toLowerCase().includes(q) ||
+      s.editorial_note.toLowerCase().includes(q)
+    );
+  });
   const selected = signals.find((s) => s.id === selectedId) ?? null;
 
   const counts = {
@@ -252,6 +264,17 @@ export default function ProductionRoomPage() {
               {tab.label}
             </button>
           ))}
+        </div>
+
+        {/* Search */}
+        <div className="mt-4">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by title, disease, identifier, source…"
+            className="w-full rounded-xl border border-stone-200 bg-white px-4 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:border-stone-400 focus:outline-none focus:ring-1 focus:ring-stone-300"
+          />
         </div>
 
         {/* Empty state */}
