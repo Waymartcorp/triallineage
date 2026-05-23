@@ -113,6 +113,34 @@ export default function ProductionRoomPage() {
     setLoadingMore(false);
   }
 
+  async function classifySignal(id: string, candidateType: CandidateType) {
+    const { error } = await supabase
+      .from("production_signals")
+      .update({ candidate_type: candidateType, status: "Reviewed" as Status })
+      .eq("id", id);
+
+    if (!error) {
+      setSignals((prev) =>
+        prev.map((s) =>
+          s.id === id ? { ...s, candidate_type: candidateType, status: "Reviewed" as Status } : s
+        )
+      );
+    }
+  }
+
+  async function updateStatus(id: string, status: Status) {
+    const { error } = await supabase
+      .from("production_signals")
+      .update({ status })
+      .eq("id", id);
+
+    if (!error) {
+      setSignals((prev) =>
+        prev.map((s) => (s.id === id ? { ...s, status } : s))
+      );
+    }
+  }
+
   const filtered = signals.filter((s) => matchesFilter(s, activeFilter));
   const selected = signals.find((s) => s.id === selectedId) ?? null;
 
@@ -301,6 +329,47 @@ export default function ProductionRoomPage() {
                         {item.editorial_note}
                       </span>
                     </div>
+
+                    {/* Inline actions */}
+                    <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-stone-100 pt-3" onClick={(e) => e.stopPropagation()}>
+                      <span
+                        className="cursor-pointer rounded-full border border-stone-200 px-2.5 py-1 text-[11px] font-medium text-stone-500 transition hover:border-blue-400 hover:text-blue-700"
+                        onClick={(e) => { e.stopPropagation(); classifySignal(item.id, "New case candidate"); }}
+                      >
+                        New case
+                      </span>
+                      <span
+                        className="cursor-pointer rounded-full border border-stone-200 px-2.5 py-1 text-[11px] font-medium text-stone-500 transition hover:border-amber-400 hover:text-amber-700"
+                        onClick={(e) => { e.stopPropagation(); classifySignal(item.id, "Update existing case"); }}
+                      >
+                        Update
+                      </span>
+                      <span
+                        className="cursor-pointer rounded-full border border-stone-200 px-2.5 py-1 text-[11px] font-medium text-stone-500 transition hover:border-stone-400 hover:text-stone-700"
+                        onClick={(e) => { e.stopPropagation(); classifySignal(item.id, "Background / supporting"); }}
+                      >
+                        Background
+                      </span>
+                      <span
+                        className="cursor-pointer rounded-full border border-stone-200 px-2.5 py-1 text-[11px] font-medium text-stone-500 transition hover:border-stone-400 hover:text-stone-400"
+                        onClick={(e) => { e.stopPropagation(); classifySignal(item.id, "Ignore"); }}
+                      >
+                        Ignore
+                      </span>
+                      <span className="mx-1 text-stone-200">|</span>
+                      <span
+                        className="cursor-pointer rounded-full border border-stone-200 px-2.5 py-1 text-[11px] font-medium text-stone-500 transition hover:border-stone-900 hover:bg-stone-900 hover:text-white"
+                        onClick={(e) => { e.stopPropagation(); updateStatus(item.id, "In progress"); }}
+                      >
+                        Send to draft
+                      </span>
+                      <span
+                        className="cursor-pointer rounded-full border border-emerald-200 px-2.5 py-1 text-[11px] font-medium text-emerald-600 transition hover:border-emerald-600 hover:bg-emerald-600 hover:text-white"
+                        onClick={(e) => { e.stopPropagation(); updateStatus(item.id, "Published"); }}
+                      >
+                        Send to public
+                      </span>
+                    </div>
                   </button>
                 ))}
 
@@ -455,35 +524,85 @@ export default function ProductionRoomPage() {
                   {/* Actions */}
                   <div className="mt-5 border-t border-stone-100 pt-4">
                     <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
-                      Actions
+                      Classify
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
-                      <button className="rounded-full bg-stone-900 px-3.5 py-1.5 text-xs font-medium text-white transition hover:bg-stone-700">
-                        Open public case
+                      <button
+                        onClick={() => classifySignal(selected.id, "New case candidate")}
+                        className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
+                          selected.candidate_type === "New case candidate"
+                            ? "border-blue-600 bg-blue-50 text-blue-700"
+                            : "border-stone-300 text-stone-700 hover:border-stone-900"
+                        }`}
+                      >
+                        New case
                       </button>
-                      <button className="rounded-full border border-stone-300 px-3.5 py-1.5 text-xs font-medium text-stone-700 transition hover:border-stone-900">
-                        Classify: new case
+                      <button
+                        onClick={() => classifySignal(selected.id, "Update existing case")}
+                        className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
+                          selected.candidate_type === "Update existing case"
+                            ? "border-amber-600 bg-amber-50 text-amber-700"
+                            : "border-stone-300 text-stone-700 hover:border-stone-900"
+                        }`}
+                      >
+                        Update existing
                       </button>
-                      <button className="rounded-full border border-stone-300 px-3.5 py-1.5 text-xs font-medium text-stone-700 transition hover:border-stone-900">
-                        Classify: update existing
+                      <button
+                        onClick={() => classifySignal(selected.id, "Background / supporting")}
+                        className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
+                          selected.candidate_type === "Background / supporting"
+                            ? "border-stone-500 bg-stone-100 text-stone-600"
+                            : "border-stone-300 text-stone-700 hover:border-stone-900"
+                        }`}
+                      >
+                        Background
                       </button>
-                      <button className="rounded-full border border-stone-300 px-3.5 py-1.5 text-xs font-medium text-stone-700 transition hover:border-stone-900">
-                        Classify: background
-                      </button>
-                      <button className="rounded-full border border-stone-300 px-3.5 py-1.5 text-xs font-medium text-stone-700 transition hover:border-stone-900">
-                        Classify: ignore
+                      <button
+                        onClick={() => classifySignal(selected.id, "Ignore")}
+                        className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
+                          selected.candidate_type === "Ignore"
+                            ? "border-stone-400 bg-stone-50 text-stone-400"
+                            : "border-stone-300 text-stone-700 hover:border-stone-900"
+                        }`}
+                      >
+                        Ignore
                       </button>
                     </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      <button className="rounded-full border border-stone-200 px-3.5 py-1.5 text-xs text-stone-500 transition hover:border-stone-400 hover:text-stone-700">
-                        Add note
-                      </button>
-                      <button className="rounded-full border border-stone-200 px-3.5 py-1.5 text-xs text-stone-500 transition hover:border-stone-400 hover:text-stone-700">
-                        Change priority
-                      </button>
-                      <button className="rounded-full border border-stone-200 px-3.5 py-1.5 text-xs text-stone-500 transition hover:border-stone-400 hover:text-stone-700">
-                        Change status
-                      </button>
+
+                    <p className="mt-4 text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                      Status
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {(["New", "Reviewed", "In progress", "Published", "Ignored"] as Status[]).map((s) => (
+                        <button
+                          key={s}
+                          onClick={() => updateStatus(selected.id, s)}
+                          className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${
+                            selected.status === s
+                              ? statusStyle[s]
+                              : "border-stone-200 text-stone-500 hover:border-stone-400"
+                          }`}
+                        >
+                          {s}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="mt-4 border-t border-stone-100 pt-4">
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => updateStatus(selected.id, "In progress")}
+                          className="flex-1 rounded-full bg-stone-900 px-3.5 py-2 text-xs font-medium text-white transition hover:bg-stone-700"
+                        >
+                          Send to draft
+                        </button>
+                        <button
+                          onClick={() => updateStatus(selected.id, "Published")}
+                          className="flex-1 rounded-full border border-emerald-600 px-3.5 py-2 text-xs font-medium text-emerald-700 transition hover:bg-emerald-600 hover:text-white"
+                        >
+                          Send to public
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
