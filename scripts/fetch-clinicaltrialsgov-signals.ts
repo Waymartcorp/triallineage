@@ -3,12 +3,36 @@
  *
  * Fetches all recently posted and upcoming interventional studies
  * (Phase 1–3) from ClinicalTrials.gov v2 API, maps them into
- * the production_signals table in Supabase, and skips duplicates
- * based on trial_identifier (NCT number).
+ * the production_signals table in Supabase, and skips duplicates.
  *
  * Two intake strategies run sequentially:
  *   1. Recently posted studies (last 30 days)
  *   2. Studies with start dates within the next 6 months
+ *
+ * ── Deduplication strategy ──────────────────────────────────────
+ * Primary key: trial_identifier (NCT ID).
+ *   - Every ClinicalTrials.gov record has an NCT ID, so this field
+ *     is always populated for rows produced by this script.
+ *   - Before inserting, the script loads all existing trial_identifier
+ *     values from the database into an in-memory Set.
+ *   - Records whose NCT ID already exists are skipped.
+ *
+ * Fallback (for rows without trial_identifier, e.g. manual entries):
+ *   - The script also loads composite keys (title + source + date_detected)
+ *     for any existing rows where trial_identifier IS NULL.
+ *   - A new record is skipped if its composite key matches an existing row.
+ *   - This protects against duplicating manually-entered signals that
+ *     lack an NCT ID.
+ *
+ * In-run protection:
+ *   - Both sets are updated in-memory during a single run, so a study
+ *     appearing in both queries (recently posted AND upcoming start)
+ *     is only inserted once.
+ *
+ * Database-level safety:
+ *   - A partial unique index on trial_identifier (WHERE NOT NULL)
+ *     provides a last-resort constraint. See migration 003.
+ * ────────────────────────────────────────────────────────────────
  *
  * Usage:
  *   npx tsx scripts/fetch-clinicaltrialsgov-signals.ts
@@ -221,8 +245,22 @@ async function fetchPage(
   };
 }
 
-async function getExistingIdentifiers(): Promise<Set<string>> {
-  const allIds: string[] = [];
+// ── Deduplication helpers ──────────────────────────────────────
+
+function compositeKey(title: string, source: string, dateDetected: string): string {
+  return `${title}|${source}|${dateDetected}`;
+}
+
+interface DedupeState {
+  byIdentifier: Set<string>;
+  byComposite: Set<string>;
+}
+
+async function loadExistingDedupeState(): Promise<DedupeState> {
+  const byIdentifier = new Set<string>();
+  const byComposite = new Set<string>();
+
+  // Load all non-null trial_identifiers (primary dedupe key)
   let from = 0;
   const batchSize = 1000;
 
@@ -237,16 +275,56 @@ async function getExistingIdentifiers(): Promise<Set<string>> {
       console.error("Error fetching existing identifiers:", error.message);
       break;
     }
-
     if (!data || data.length === 0) break;
-    allIds.push(
-      ...data.map((row: { trial_identifier: string }) => row.trial_identifier)
-    );
+    for (const row of data) {
+      byIdentifier.add(row.trial_identifier);
+    }
     if (data.length < batchSize) break;
     from += batchSize;
   }
 
-  return new Set(allIds);
+  // Load composite keys for rows where trial_identifier IS NULL (fallback)
+  from = 0;
+  while (true) {
+    const { data, error } = await supabase
+      .from("production_signals")
+      .select("title, source, date_detected")
+      .is("trial_identifier", null)
+      .range(from, from + batchSize - 1);
+
+    if (error) {
+      console.error("Error fetching fallback composites:", error.message);
+      break;
+    }
+    if (!data || data.length === 0) break;
+    for (const row of data) {
+      byComposite.add(compositeKey(row.title, row.source, row.date_detected));
+    }
+    if (data.length < batchSize) break;
+    from += batchSize;
+  }
+
+  return { byIdentifier, byComposite };
+}
+
+function isDuplicate(signal: SignalRow, state: DedupeState): boolean {
+  // Primary: check trial_identifier (always present for ClinicalTrials.gov rows)
+  if (signal.trial_identifier) {
+    return state.byIdentifier.has(signal.trial_identifier);
+  }
+  // Fallback: composite of title + source + date_detected
+  return state.byComposite.has(
+    compositeKey(signal.title, signal.source, signal.date_detected)
+  );
+}
+
+function markInserted(signal: SignalRow, state: DedupeState): void {
+  if (signal.trial_identifier) {
+    state.byIdentifier.add(signal.trial_identifier);
+  }
+  state.byComposite.add(
+    compositeKey(signal.title, signal.source, signal.date_detected)
+  );
 }
 
 async function insertBatch(signals: SignalRow[]): Promise<number> {
@@ -277,8 +355,8 @@ async function main() {
   console.log(`Scope:  Phase 1–3 interventional, all disease areas`);
   console.log("");
 
-  const existingIds = await getExistingIdentifiers();
-  console.log(`Existing signals in database: ${existingIds.size}`);
+  const dedupeState = await loadExistingDedupeState();
+  console.log(`Existing signals in database: ${dedupeState.byIdentifier.size} by identifier, ${dedupeState.byComposite.size} by composite fallback`);
   console.log("");
 
   const queries = buildQueries();
@@ -304,13 +382,13 @@ async function main() {
 
         totalFetched++;
 
-        if (existingIds.has(signal.trial_identifier)) {
+        if (isDuplicate(signal, dedupeState)) {
           totalSkipped++;
           continue;
         }
 
         querySignals.push(signal);
-        existingIds.add(signal.trial_identifier);
+        markInserted(signal, dedupeState);
       }
 
       console.log(

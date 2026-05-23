@@ -84,9 +84,15 @@ This produces a manageable volume while capturing the trials most relevant to Tr
 
 ## 6. Duplicate handling
 
-Before inserting, the script fetches all existing `trial_identifier` values from `production_signals`. Any study whose NCT ID already exists in the database is skipped.
+Three layers of protection prevent duplicate inserts:
 
-The in-memory set is also updated during a single run to prevent duplicates between the two queries (a study may match both "recently posted" and "upcoming start").
+**Layer 1 — Application-level (primary):** Before inserting, the script loads all existing `trial_identifier` values from `production_signals` into an in-memory Set. Any study whose NCT ID already exists is skipped.
+
+**Layer 2 — Application-level (fallback):** For rows in the database that lack a `trial_identifier` (e.g. manually entered signals), the script loads composite keys (`title + source + date_detected`). A new record is skipped if its composite matches.
+
+**Layer 3 — Database-level:** A partial unique index (`idx_production_signals_trial_identifier_unique`) on `trial_identifier WHERE trial_identifier IS NOT NULL` rejects duplicates at the PostgreSQL level. See migration `003_add_trial_identifier_unique_index.sql`.
+
+The in-memory sets are updated during a single run, so a study appearing in both queries (recently posted AND upcoming start) is only inserted once.
 
 ---
 

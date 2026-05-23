@@ -79,10 +79,15 @@ Human reviewers in the Production Room verify and classify each signal.
 
 ## 6. Duplicate handling
 
-Same approach as ClinicalTrials.gov intake:
-- Fetch all existing `trial_identifier` values from `production_signals` before inserting.
-- Skip any application whose `application_number` already exists.
-- Idempotent: running the script multiple times produces no duplicates.
+Three layers of protection prevent duplicate inserts:
+
+**Layer 1 — Application-level (primary):** Before inserting, the script loads all existing `trial_identifier` values from `production_signals` into an in-memory Set. Any application whose number already exists is skipped.
+
+**Layer 2 — Application-level (fallback):** For rows in the database that lack a `trial_identifier` (e.g. manually entered signals), the script loads composite keys (`title + source + date_detected`). A new record is skipped if its composite matches.
+
+**Layer 3 — Database-level:** A partial unique index (`idx_production_signals_trial_identifier_unique`) on `trial_identifier WHERE trial_identifier IS NOT NULL` rejects duplicates at the PostgreSQL level. See migration `003_add_trial_identifier_unique_index.sql`.
+
+Idempotent: running the script multiple times produces no duplicates.
 
 ---
 
