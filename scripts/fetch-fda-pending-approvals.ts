@@ -37,24 +37,30 @@
  * Usage:
  *   npx tsx scripts/fetch-fda-pending-approvals.ts
  *
- * Requires env vars:
+ * Requires env vars (loaded automatically from .env.local):
  *   NEXT_PUBLIC_SUPABASE_URL
- *   NEXT_PUBLIC_SUPABASE_ANON_KEY
+ *   SUPABASE_SERVICE_ROLE_KEY
  */
 
+import { config } from "dotenv";
 import { createClient } from "@supabase/supabase-js";
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+config({ path: ".env.local" });
 
-if (!SUPABASE_URL || !SUPABASE_KEY) {
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
   console.error(
-    "Missing env vars: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are required."
+    "Missing env vars.\n" +
+    `  NEXT_PUBLIC_SUPABASE_URL: ${SUPABASE_URL ? "present" : "MISSING"}\n` +
+    `  SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_KEY ? "present" : "MISSING"}\n` +
+    "Ensure .env.local contains both values."
   );
   process.exit(1);
 }
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 const OPENFDA_BASE = "https://api.fda.gov/drug/drugsfda.json";
 const PAGE_SIZE = 100;

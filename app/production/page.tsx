@@ -73,24 +73,45 @@ function matchesFilter(signal: Signal, filter: FilterTab): boolean {
 export default function ProductionRoomPage() {
   const [signals, setSignals] = useState<Signal[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterTab>("All");
+  const [totalCount, setTotalCount] = useState<number>(0);
+
+  const PAGE_SIZE = 500;
 
   useEffect(() => {
     async function load() {
-      const { data, error } = await supabase
+      const { data, error, count } = await supabase
         .from("production_signals")
-        .select("*")
+        .select("*", { count: "exact" })
         .order("date_detected", { ascending: false })
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false })
+        .limit(PAGE_SIZE);
 
       if (!error && data) {
         setSignals(data as Signal[]);
+        setTotalCount(count ?? data.length);
       }
       setLoading(false);
     }
     load();
   }, []);
+
+  async function loadMore() {
+    setLoadingMore(true);
+    const { data, error } = await supabase
+      .from("production_signals")
+      .select("*")
+      .order("date_detected", { ascending: false })
+      .order("created_at", { ascending: false })
+      .range(signals.length, signals.length + PAGE_SIZE - 1);
+
+    if (!error && data) {
+      setSignals((prev) => [...prev, ...(data as Signal[])]);
+    }
+    setLoadingMore(false);
+  }
 
   const filtered = signals.filter((s) => matchesFilter(s, activeFilter));
   const selected = signals.find((s) => s.id === selectedId) ?? null;
@@ -150,8 +171,9 @@ export default function ProductionRoomPage() {
 
       <div className="mx-auto max-w-[88rem] px-6 py-6 lg:px-10">
         {/* Summary row */}
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {[
+            { label: "Total in database", count: totalCount },
             { label: "New signals", count: counts.newSignals },
             { label: "New case candidates", count: counts.candidates },
             { label: "Updates pending", count: counts.pending },
@@ -218,10 +240,18 @@ export default function ProductionRoomPage() {
           <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_0.48fr]">
             {/* Signal log */}
             <div>
-              <p className="mb-3 text-xs uppercase tracking-[0.14em] text-stone-400">
-                Signal log &middot; {filtered.length} item
-                {filtered.length !== 1 ? "s" : ""}
-              </p>
+              <div className="mb-3 flex items-baseline justify-between">
+                <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
+                  Signal log &middot; {filtered.length} item
+                  {filtered.length !== 1 ? "s" : ""}
+                </p>
+                {totalCount > signals.length && (
+                  <p className="text-xs text-stone-400">
+                    Showing latest {signals.length.toLocaleString()} of{" "}
+                    {totalCount.toLocaleString()} total
+                  </p>
+                )}
+              </div>
 
               <div className="space-y-2">
                 {filtered.map((item) => (
@@ -280,6 +310,18 @@ export default function ProductionRoomPage() {
                       No signals match this filter.
                     </p>
                   </div>
+                )}
+
+                {totalCount > signals.length && (
+                  <button
+                    onClick={loadMore}
+                    disabled={loadingMore}
+                    className="mt-3 w-full rounded-xl border border-stone-200 bg-white px-5 py-3.5 text-xs font-medium text-stone-600 transition hover:border-stone-400 hover:text-stone-900 disabled:opacity-50"
+                  >
+                    {loadingMore
+                      ? "Loading…"
+                      : `Load more (${(totalCount - signals.length).toLocaleString()} remaining)`}
+                  </button>
                 )}
               </div>
             </div>
