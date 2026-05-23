@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 
 type Priority = "High" | "Medium" | "Low";
@@ -77,7 +77,10 @@ export default function ProductionRoomPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterTab>("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Signal[] | null>(null);
+  const [searching, setSearching] = useState(false);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const PAGE_SIZE = 500;
 
@@ -101,6 +104,62 @@ export default function ProductionRoomPage() {
     }
     load();
   }, []);
+
+  const performSearch = useCallback(async (query: string, filter: FilterTab) => {
+    if (!query.trim()) {
+      setSearchResults(null);
+      setSearching(false);
+      return;
+    }
+
+    setSearching(true);
+    const q = query.trim();
+    const pattern = `%${q}%`;
+
+    let request = supabase
+      .from("production_signals")
+      .select("*")
+      .or(
+        `title.ilike.${pattern},disease_area.ilike.${pattern},trial_identifier.ilike.${pattern},source.ilike.${pattern},editorial_note.ilike.${pattern},brief_summary.ilike.${pattern}`
+      )
+      .order("date_detected", { ascending: false })
+      .order("created_at", { ascending: false })
+      .limit(200);
+
+    if (filter === "New trial signals") {
+      request = request.eq("status", "New");
+    } else if (filter === "Potential new cases") {
+      request = request.eq("candidate_type", "New case candidate");
+    } else if (filter === "Updates") {
+      request = request.eq("candidate_type", "Update existing case");
+    } else if (filter === "Needs review") {
+      request = request.in("status", ["Reviewed", "In progress"]);
+    }
+
+    const { data, error } = await request;
+
+    if (!error && data) {
+      setSearchResults(data as Signal[]);
+      if (data.length > 0 && !data.find((s) => s.id === selectedId)) {
+        setSelectedId((data as Signal[])[0].id);
+      }
+    }
+    setSearching(false);
+  }, [selectedId]);
+
+  useEffect(() => {
+    if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
+    if (!searchQuery.trim()) {
+      setSearchResults(null);
+      return;
+    }
+    searchTimerRef.current = setTimeout(() => {
+      performSearch(searchQuery, activeFilter);
+    }, 300);
+    return () => {
+      if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
+    };
+  }, [searchQuery, activeFilter, performSearch]);
 
   async function loadMore() {
     setLoadingMore(true);
@@ -145,19 +204,13 @@ export default function ProductionRoomPage() {
     }
   }
 
-  const filtered = signals.filter((s) => {
-    if (!matchesFilter(s, activeFilter)) return false;
-    if (!searchQuery.trim()) return true;
-    const q = searchQuery.toLowerCase();
-    return (
-      s.title.toLowerCase().includes(q) ||
-      s.disease_area.toLowerCase().includes(q) ||
-      (s.trial_identifier ?? "").toLowerCase().includes(q) ||
-      s.source.toLowerCase().includes(q) ||
-      s.editorial_note.toLowerCase().includes(q)
-    );
-  });
-  const selected = signals.find((s) => s.id === selectedId) ?? null;
+  const filtered = searchResults !== null
+    ? searchResults
+    : signals.filter((s) => matchesFilter(s, activeFilter));
+
+  const selected = (searchResults ?? signals).find((s) => s.id === selectedId)
+    ?? signals.find((s) => s.id === selectedId)
+    ?? null;
 
   const counts = {
     newSignals: signals.filter((s) => s.status === "New").length,
@@ -296,10 +349,15 @@ export default function ProductionRoomPage() {
             <div>
               <div className="mb-3 flex items-baseline justify-between">
                 <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
-                  Signal log &middot; {filtered.length} item
-                  {filtered.length !== 1 ? "s" : ""}
+                  {searching ? "Searching…" : (
+                    <>
+                      Signal log &middot; {filtered.length} item
+                      {filtered.length !== 1 ? "s" : ""}
+                      {searchResults !== null && " (search results)"}
+                    </>
+                  )}
                 </p>
-                {totalCount > signals.length && (
+                {searchResults === null && totalCount > signals.length && (
                   <p className="text-xs text-stone-400">
                     Showing latest {signals.length.toLocaleString()} of{" "}
                     {totalCount.toLocaleString()} total
@@ -366,7 +424,7 @@ export default function ProductionRoomPage() {
                   </div>
                 )}
 
-                {totalCount > signals.length && (
+                {searchResults === null && totalCount > signals.length && (
                   <button
                     onClick={loadMore}
                     disabled={loadingMore}
