@@ -92,6 +92,9 @@ export default function ProductionRoomPage() {
       if (!error && data) {
         setSignals(data as Signal[]);
         setTotalCount(count ?? data.length);
+        if (data.length > 0) {
+          setSelectedId(data[0].id);
+        }
       }
       setLoading(false);
     }
