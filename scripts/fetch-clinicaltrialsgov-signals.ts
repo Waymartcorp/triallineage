@@ -128,6 +128,7 @@ interface StudyRecord {
     };
     conditionsModule?: {
       conditions?: string[];
+      keywords?: string[];
     };
     designModule?: {
       studyType?: string;
@@ -138,6 +139,7 @@ interface StudyRecord {
     };
     sponsorCollaboratorsModule?: {
       leadSponsor?: { name?: string; class?: string };
+      collaborators?: Array<{ name?: string; class?: string }>;
     };
     armsInterventionsModule?: {
       interventions?: Array<{ name?: string; type?: string }>;
@@ -158,6 +160,9 @@ interface SignalRow {
   external_link: string;
   brief_summary: string | null;
   trial_identifier: string;
+  sponsor_name: string | null;
+  intervention_names: string | null;
+  collaborator_names: string | null;
 }
 
 function parseDate(dateStr: string | undefined): string | null {
@@ -178,7 +183,11 @@ function mapStudyToSignal(study: StudyRecord): SignalRow | null {
   if (!nctId || !title) return null;
 
   const conditions = proto.conditionsModule?.conditions ?? [];
-  const diseaseArea = conditions.slice(0, 3).join("; ") || "Unknown";
+  const keywords = proto.conditionsModule?.keywords ?? [];
+  const diseaseArea =
+    conditions.slice(0, 5).join("; ") ||
+    keywords.slice(0, 3).join("; ") ||
+    "Unknown";
 
   const lastUpdate = parseDate(proto.statusModule?.lastUpdatePostDateStruct?.date);
   const firstPosted = parseDate(proto.statusModule?.studyFirstPostDateStruct?.date);
@@ -188,23 +197,40 @@ function mapStudyToSignal(study: StudyRecord): SignalRow | null {
   const phaseStr = phases.join(", ");
 
   const sponsor = proto.sponsorCollaboratorsModule?.leadSponsor?.name ?? "";
+  const collaborators = (proto.sponsorCollaboratorsModule?.collaborators ?? [])
+    .map((c) => c.name)
+    .filter(Boolean) as string[];
+
   const interventions = proto.armsInterventionsModule?.interventions ?? [];
   const interventionNames = interventions
     .map((i) => i.name)
     .filter(Boolean)
-    .slice(0, 3)
+    .slice(0, 5)
     .join("; ");
 
-  const briefSummary = proto.descriptionModule?.briefSummary ?? null;
-  const truncatedSummary = briefSummary
-    ? briefSummary.length > 800
-      ? briefSummary.slice(0, 797) + "..."
-      : briefSummary
+  const officialTitle = proto.identificationModule?.officialTitle ?? "";
+  const briefSummaryRaw = proto.descriptionModule?.briefSummary ?? null;
+
+  // Build brief_summary: include official title if distinct from briefTitle, then description
+  const summaryParts: string[] = [];
+  if (officialTitle && officialTitle !== title) {
+    summaryParts.push(officialTitle);
+  }
+  if (briefSummaryRaw) {
+    summaryParts.push(briefSummaryRaw);
+  }
+  const combinedSummary = summaryParts.join("\n\n") || null;
+  const truncatedSummary = combinedSummary
+    ? combinedSummary.length > 1200
+      ? combinedSummary.slice(0, 1197) + "..."
+      : combinedSummary
     : null;
 
   const noteparts: string[] = ["Auto-imported from ClinicalTrials.gov."];
   if (phaseStr) noteparts.push(`Phase: ${phaseStr}.`);
   if (sponsor) noteparts.push(`Sponsor: ${sponsor}.`);
+  if (collaborators.length > 0)
+    noteparts.push(`Collaborators: ${collaborators.slice(0, 3).join("; ")}.`);
   if (interventionNames) noteparts.push(`Interventions: ${interventionNames}.`);
 
   return {
@@ -220,6 +246,9 @@ function mapStudyToSignal(study: StudyRecord): SignalRow | null {
     external_link: `https://clinicaltrials.gov/study/${nctId}`,
     brief_summary: truncatedSummary,
     trial_identifier: nctId,
+    sponsor_name: sponsor || null,
+    intervention_names: interventionNames || null,
+    collaborator_names: collaborators.length > 0 ? collaborators.join("; ") : null,
   };
 }
 

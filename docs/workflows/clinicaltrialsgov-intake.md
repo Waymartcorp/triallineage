@@ -51,7 +51,9 @@ This produces a manageable volume while capturing the trials most relevant to Tr
 |---|---|
 | NCT ID | `protocolSection.identificationModule.nctId` |
 | Brief title | `protocolSection.identificationModule.briefTitle` |
+| Official title | `protocolSection.identificationModule.officialTitle` |
 | Conditions | `protocolSection.conditionsModule.conditions` |
+| Keywords | `protocolSection.conditionsModule.keywords` |
 | Overall status | `protocolSection.statusModule.overallStatus` |
 | Phases | `protocolSection.designModule.phases` |
 | Brief summary | `protocolSection.descriptionModule.briefSummary` |
@@ -59,6 +61,7 @@ This produces a manageable volume while capturing the trials most relevant to Tr
 | First posted date | `protocolSection.statusModule.studyFirstPostDateStruct.date` |
 | Start date | `protocolSection.statusModule.startDateStruct.date` |
 | Lead sponsor | `protocolSection.sponsorCollaboratorsModule.leadSponsor.name` |
+| Collaborators | `protocolSection.sponsorCollaboratorsModule.collaborators[].name` |
 | Interventions | `protocolSection.armsInterventionsModule.interventions` |
 
 ---
@@ -68,17 +71,20 @@ This produces a manageable volume while capturing the trials most relevant to Tr
 | production_signals field | Source |
 |---|---|
 | `title` | `briefTitle` from the study record |
-| `disease_area` | First 3 entries in `conditions` array, joined with "; " |
+| `disease_area` | First 5 entries in `conditions` array (or keywords fallback), joined with "; " |
 | `source` | Always `'ClinicalTrials.gov'` |
 | `source_type` | Always `'Trial registration'` |
 | `date_detected` | `lastUpdatePostDate` or `studyFirstPostDate`, whichever is available |
 | `priority` | Always `'Medium'` (human reviewer can escalate) |
 | `candidate_type` | Always `'Background / supporting'` (human reviewer classifies) |
 | `status` | Always `'New'` |
-| `editorial_note` | Auto-generated: source attribution + phase + sponsor + interventions |
+| `editorial_note` | Auto-generated: source attribution + phase + sponsor + collaborators + interventions |
 | `external_link` | `https://clinicaltrials.gov/study/{nctId}` |
-| `brief_summary` | `briefSummary` from the study (truncated to 800 chars) |
+| `brief_summary` | Official title (if distinct) + `briefSummary` from the study (truncated to 1200 chars) |
 | `trial_identifier` | `nctId` |
+| `sponsor_name` | Lead sponsor name |
+| `intervention_names` | Up to 5 intervention names, joined with "; " |
+| `collaborator_names` | Collaborator institution names, joined with "; " |
 
 ---
 
@@ -115,5 +121,21 @@ npx tsx scripts/fetch-clinicaltrialsgov-signals.ts
 Requires `.env.local` (or shell environment) with:
 ```
 NEXT_PUBLIC_SUPABASE_URL=...
-NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
 ```
+
+---
+
+## 9. Schema additions (migration 004)
+
+Three nullable text columns were added to `production_signals` to support direct searchability:
+
+| Column | Content |
+|---|---|
+| `sponsor_name` | Lead sponsor name (e.g. "Pfizer", "National Cancer Institute") |
+| `intervention_names` | Drug/program names from the trial, semicolon-separated |
+| `collaborator_names` | Collaborating institution names, semicolon-separated |
+
+These are queried by the Production Room search alongside `title`, `disease_area`, `editorial_note`, etc.
+
+Existing rows (inserted before this change) will have NULL in these columns. Re-running the intake script will not backfill them — only new inserts populate the new fields. A one-time backfill script can be written if needed.
