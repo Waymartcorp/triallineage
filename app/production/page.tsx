@@ -545,7 +545,6 @@ export default function ProductionRoomPage() {
                       </button>
                     </div>
                   </div>
-                  </div>
                 </div>
               ) : (
                 <div className="rounded-xl border border-dashed border-stone-300 bg-white/50 px-6 py-10 text-center">
