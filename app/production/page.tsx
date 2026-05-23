@@ -123,7 +123,7 @@ export default function ProductionRoomPage() {
       .from("production_signals")
       .select("*")
       .or(
-        `title.ilike.${pattern},disease_area.ilike.${pattern},trial_identifier.ilike.${pattern},source.ilike.${pattern},editorial_note.ilike.${pattern},brief_summary.ilike.${pattern},sponsor_name.ilike.${pattern},intervention_names.ilike.${pattern},collaborator_names.ilike.${pattern}`
+        `title.ilike.${pattern},disease_area.ilike.${pattern},trial_identifier.ilike.${pattern},source.ilike.${pattern},editorial_note.ilike.${pattern},brief_summary.ilike.${pattern}`
       )
       .order("date_detected", { ascending: false })
       .order("created_at", { ascending: false })
