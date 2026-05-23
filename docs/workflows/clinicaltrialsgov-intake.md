@@ -1,6 +1,6 @@
 # ClinicalTrials.gov Intake Path
 
-Version: 0.1  
+Version: 1.0  
 Status: Active  
 Last updated: 2026-05-22
 
@@ -8,30 +8,46 @@ Last updated: 2026-05-22
 
 ## 1. Purpose
 
-This document describes the first real automated intake path for the TrialLineage Production Room. It fetches trial records from ClinicalTrials.gov, maps them into the `production_signals` table in Supabase, and makes them available for human classification in the Production Room.
+This document describes the automated ClinicalTrials.gov intake path for the TrialLineage Production Room. It fetches all recently posted and upcoming interventional clinical trials (Phase 1–3) from the ClinicalTrials.gov v2 API, maps them into the `production_signals` table in Supabase, and makes them available for human classification.
 
-This is version 1. It is intentionally narrow: fetch, map, dedupe, store. No AI, no summarization, no scoring, no automatic case generation.
+This is a broad scan. It is intentionally not filtered by disease area or therapeutic focus. The Production Room's job is to classify what comes in — the intake path's job is to capture everything relevant.
 
----
-
-## 2. ClinicalTrials.gov as the first real automated source
-
-ClinicalTrials.gov is the most structured, regulated, and publicly accessible registry of human clinical trials. It is the natural first source for TrialLineage because:
-
-- Registration is legally required for most trials in the US.
-- Records are structured with standardized fields (NCT ID, phase, status, conditions, interventions, sponsors).
-- The v2 API returns JSON, supports pagination, and requires no authentication.
-- Updates to trial status (recruiting → active → completed) are posted in the registry.
-
-The intake script queries the v2 API for recently posted or updated studies matching TrialLineage's focus areas, then stores them as Production Room signals.
+No AI, no summarization, no scoring, no automatic case generation.
 
 ---
 
-## 3. Fields fetched from ClinicalTrials.gov
+## 2. Scope of the scan
 
-The script requests these fields from each study record:
+The script runs two queries on each execution:
 
-| ClinicalTrials.gov field | Path in API response |
+| Query | Filter logic | Purpose |
+|---|---|---|
+| Recently posted | Studies first posted in the last 30 days | Catch newly registered trials |
+| Upcoming start | Studies with start dates within the next 6 months | Catch trials about to begin enrollment |
+
+Both queries are additionally filtered to:
+- **Interventional studies only** (excludes observational, expanded access, etc.)
+- **Phase 1, Phase 2, Phase 3, or Early Phase 1** (excludes Phase 4 and non-phased studies)
+- **Status:** Recruiting, Not Yet Recruiting, Active Not Recruiting, or Enrolling by Invitation
+
+This produces a manageable volume while capturing the trials most relevant to TrialLineage's editorial mission.
+
+---
+
+## 3. ClinicalTrials.gov v2 API
+
+- **Endpoint:** `https://clinicaltrials.gov/api/v2/studies`
+- **Authentication:** None required (public API)
+- **Rate limit:** ~50 requests per minute
+- **Max page size:** 1000 records
+- **Pagination:** Token-based (`nextPageToken` / `pageToken`)
+- **Safety cap:** The script fetches a maximum of 10 pages per query (10,000 records)
+
+---
+
+## 4. Fields fetched
+
+| ClinicalTrials.gov field | API path |
 |---|---|
 | NCT ID | `protocolSection.identificationModule.nctId` |
 | Brief title | `protocolSection.identificationModule.briefTitle` |
@@ -39,51 +55,59 @@ The script requests these fields from each study record:
 | Overall status | `protocolSection.statusModule.overallStatus` |
 | Phases | `protocolSection.designModule.phases` |
 | Brief summary | `protocolSection.descriptionModule.briefSummary` |
-| Last update posted date | `protocolSection.statusModule.lastUpdatePostDate` |
-| First posted date | `protocolSection.statusModule.studyFirstPostDate` |
+| Last update posted date | `protocolSection.statusModule.lastUpdatePostDateStruct.date` |
+| First posted date | `protocolSection.statusModule.studyFirstPostDateStruct.date` |
+| Start date | `protocolSection.statusModule.startDateStruct.date` |
 | Lead sponsor | `protocolSection.sponsorCollaboratorsModule.leadSponsor.name` |
 | Interventions | `protocolSection.armsInterventionsModule.interventions` |
 
 ---
 
-## 4. Mapping into production_signals
+## 5. Mapping into production_signals
 
 | production_signals field | Source |
 |---|---|
 | `title` | `briefTitle` from the study record |
-| `disease_area` | First entry in `conditions` array |
+| `disease_area` | First 3 entries in `conditions` array, joined with "; " |
 | `source` | Always `'ClinicalTrials.gov'` |
 | `source_type` | Always `'Trial registration'` |
-| `date_detected` | `lastUpdatePostDate` or `studyFirstPostDate`, whichever is more recent |
+| `date_detected` | `lastUpdatePostDate` or `studyFirstPostDate`, whichever is available |
 | `priority` | Always `'Medium'` (human reviewer can escalate) |
 | `candidate_type` | Always `'Background / supporting'` (human reviewer classifies) |
 | `status` | Always `'New'` |
-| `editorial_note` | Always `'Imported automatically from ClinicalTrials.gov'` |
+| `editorial_note` | Auto-generated: source attribution + phase + sponsor + interventions |
 | `external_link` | `https://clinicaltrials.gov/study/{nctId}` |
-| `brief_summary` | `briefSummary` from the study (truncated if very long) |
+| `brief_summary` | `briefSummary` from the study (truncated to 800 chars) |
 | `trial_identifier` | `nctId` |
 
 ---
 
-## 5. Duplicate handling
+## 6. Duplicate handling
 
-Version 1 uses a simple deduplication strategy:
+Before inserting, the script fetches all existing `trial_identifier` values from `production_signals`. Any study whose NCT ID already exists in the database is skipped.
 
-1. **Primary key: `trial_identifier`** — Before inserting a row, check if a row with the same `trial_identifier` (NCT number) already exists in `production_signals`. If it does, skip the insert.
-
-2. **Fallback: title + date_detected** — If for any reason `trial_identifier` is missing (should not happen for ClinicalTrials.gov records, but as a safety check), check for an existing row with the same `title` and `date_detected`.
-
-This prevents the same trial from being logged twice on repeated runs of the script.
+The in-memory set is also updated during a single run to prevent duplicates between the two queries (a study may match both "recently posted" and "upcoming start").
 
 ---
 
-## 6. Version 1 scope
+## 7. Operational notes
 
-This intake path is intentionally narrow:
+- **Batch inserts:** Records are inserted in batches of 200 to avoid Supabase payload limits.
+- **Rate limiting:** 1.2 seconds between API pages to stay well under ClinicalTrials.gov's rate limit.
+- **Idempotent:** Running the script multiple times is safe — duplicates are always skipped.
+- **No scheduling yet:** Run manually with `npx tsx scripts/fetch-clinicaltrialsgov-signals.ts`. Cron or scheduled execution can be added later.
+- **No filtering by editorial interest:** All matching records are stored. Human reviewers classify them in the Production Room.
 
-- **No AI.** No summarization, scoring, or classification is performed. Signals are stored as-is with default handling values.
-- **No scheduling.** The script is run manually. Cron or scheduled execution can be added later.
-- **No filtering by editorial interest.** All matching records are stored. Human reviewers classify them.
-- **Review-first.** Every imported signal enters the Production Room with status `'New'` and candidate_type `'Background / supporting'`. A human must review and reclassify before any editorial action occurs.
+---
 
-The script is a fetch-and-store tool. It builds the Production Room's memory. Classification and editorial decisions happen afterward, by humans, in the Production Room.
+## 8. Running the script
+
+```bash
+npx tsx scripts/fetch-clinicaltrialsgov-signals.ts
+```
+
+Requires `.env.local` (or shell environment) with:
+```
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+```
