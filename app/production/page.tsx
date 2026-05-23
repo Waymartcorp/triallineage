@@ -75,35 +75,14 @@ export default function ProductionRoomPage() {
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterTab>("All");
-  const [debug, setDebug] = useState<{
-    queryRan: boolean;
-    rowCount: number | null;
-    error: string | null;
-    envUrl: boolean;
-    envKey: boolean;
-  }>({ queryRan: false, rowCount: null, error: null, envUrl: false, envKey: false });
 
   useEffect(() => {
-    const envUrl = !!process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const envKey = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
     async function load() {
-      if (!envUrl || !envKey) {
-        setDebug({ queryRan: false, rowCount: null, error: "Supabase env vars missing at runtime", envUrl, envKey });
-        setLoading(false);
-        return;
-      }
-
       const { data, error } = await supabase
         .from("production_signals")
         .select("*")
         .order("date_detected", { ascending: false })
         .order("created_at", { ascending: false });
-
-      const queryError = error ? error.message : null;
-      const rowCount = data ? data.length : 0;
-
-      setDebug({ queryRan: true, rowCount, error: queryError, envUrl, envKey });
 
       if (!error && data) {
         setSignals(data as Signal[]);
@@ -170,28 +149,6 @@ export default function ProductionRoomPage() {
       </header>
 
       <div className="mx-auto max-w-[88rem] px-6 py-6 lg:px-10">
-        {/* Debug panel — remove after confirming data loads */}
-        <div className="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-xs font-mono text-amber-900">
-          <p className="font-semibold text-amber-800 mb-1">Data-loading debug</p>
-          <ul className="space-y-0.5">
-            <li>ENV SUPABASE_URL present: <span className="font-bold">{String(debug.envUrl)}</span></li>
-            <li>ENV SUPABASE_ANON_KEY present: <span className="font-bold">{String(debug.envKey)}</span></li>
-            <li>Query executed: <span className="font-bold">{String(debug.queryRan)}</span></li>
-            <li>Rows returned: <span className="font-bold">{debug.rowCount ?? "—"}</span></li>
-            <li>Error: <span className="font-bold">{debug.error ?? "none"}</span></li>
-          </ul>
-          {debug.queryRan && debug.rowCount === 0 && !debug.error && (
-            <p className="mt-2 text-amber-700 font-sans font-medium text-xs">
-              Query succeeded but returned 0 rows. Most likely cause: Row Level Security is enabled
-              on the table but no SELECT policy exists for the anon role. Run this in your Supabase
-              SQL editor:
-              <code className="block mt-1 bg-amber-100 px-2 py-1 rounded text-[11px]">
-                create policy &quot;Allow public read&quot; on production_signals for select to anon using (true);
-              </code>
-            </p>
-          )}
-        </div>
-
         {/* Summary row */}
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {[
