@@ -6,12 +6,14 @@ export default function HomePage() {
       {
         title: "Daraxonrasib in pancreatic cancer",
         subtitle: "KRAS-directed therapy traced through oncogene discovery, structural biology, and medicinal chemistry",
+        phase: "Phase 2",
         status: "Live" as const,
         href: "/case/daraxonrasib-pancreatic-cancer",
       },
       {
         title: "Cancer immunotherapy / checkpoint inhibitors",
         subtitle: "Immune checkpoint blockade traced through T-cell biology, immune tolerance, and tumor evasion",
+        phase: null,
         status: "Planned" as const,
         href: null,
       },
@@ -20,6 +22,7 @@ export default function HomePage() {
       {
         title: "Gene therapy for inherited retinal disease",
         subtitle: "Gene therapy for inherited blindness traced through retinal biology, AAV vectors, and surgical delivery",
+        phase: "Approved (Luxturna)",
         status: "Draft" as const,
         href: "/case/gene-therapy-inherited-retinal-disease",
       },
@@ -28,6 +31,7 @@ export default function HomePage() {
       {
         title: "RNA-targeted therapy for Angelman syndrome",
         subtitle: "Antisense oligonucleotide therapy traced through UBE3A biology, genomic imprinting, and CNS delivery",
+        phase: "Phase 3",
         status: "Draft" as const,
         href: "/case/rna-targeted-therapy-angelman-syndrome",
       },
@@ -36,6 +40,7 @@ export default function HomePage() {
       {
         title: "GLP-1 therapies and metabolic disease",
         subtitle: "GLP-1 medicines traced through gut hormone biology, incretin signaling, and peptide pharmacology",
+        phase: null,
         status: "Planned" as const,
         href: null,
       },
@@ -135,7 +140,14 @@ export default function HomePage() {
                     const inner = (
                       <div className="flex items-start justify-between gap-4">
                         <div className="min-w-0 flex-1">
-                          <p className="text-base font-semibold text-stone-900">{item.title}</p>
+                          <div className="flex items-center gap-2.5">
+                            <p className="text-base font-semibold text-stone-900">{item.title}</p>
+                            {item.phase && (
+                              <span className="shrink-0 rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
+                                {item.phase}
+                              </span>
+                            )}
+                          </div>
                           <p className="mt-1 text-sm leading-7 text-stone-600">{item.subtitle}</p>
                         </div>
                         <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${statusStyle[item.status]}`}>

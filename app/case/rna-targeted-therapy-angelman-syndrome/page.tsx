@@ -18,9 +18,14 @@ export default function AngelmanRnaCasePage() {
       {/* ── Hero ── */}
       <section className="border-b border-stone-200 bg-white">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10 lg:py-24">
-          <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-            TrialLineage Case · In development
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
+              TrialLineage Lineage
+            </p>
+            <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+              Phase 3 · Active
+            </span>
+          </div>
 
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
             RNA-targeted therapy for Angelman syndrome
@@ -31,7 +36,7 @@ export default function AngelmanRnaCasePage() {
           </p>
 
           <p className="mt-6 max-w-3xl text-base leading-8 text-stone-700">
-            This case starts with an investigational antisense oligonucleotide
+            This lineage starts with an investigational antisense oligonucleotide
             in a Phase 3 clinical trial for Angelman syndrome, then traces
             backward through the scientific lineage that made it possible:
             UBE3A biology, maternal imprinting, antisense transcript regulation,

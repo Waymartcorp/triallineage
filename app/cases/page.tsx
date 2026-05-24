@@ -5,6 +5,7 @@ const publishedCases = [
     slug: "daraxonrasib-pancreatic-cancer",
     title: "Daraxonrasib in pancreatic cancer",
     subtitle: "KRAS-directed therapy traced through oncogene discovery, structural biology, medicinal chemistry, and translational oncology",
+    phase: "Phase 2",
     status: "published" as const,
     note: null,
   },
@@ -12,6 +13,7 @@ const publishedCases = [
     slug: "gene-therapy-inherited-retinal-disease",
     title: "Gene therapy for inherited retinal disease",
     subtitle: "Gene therapy for inherited blindness traced through retinal biology, disease genetics, AAV vector engineering, and surgical delivery",
+    phase: "Approved (Luxturna)",
     status: "draft" as const,
     note: null,
   },
@@ -19,6 +21,7 @@ const publishedCases = [
     slug: "rna-targeted-therapy-angelman-syndrome",
     title: "RNA-targeted therapy for Angelman syndrome",
     subtitle: "How UBE3A biology and antisense oligonucleotides led to a Phase 3 rare-disease trial (REVEAL / NCT06914609)",
+    phase: "Phase 3",
     status: "draft" as const,
     note: "Part of the broader RNA medicine for rare genetic disease platform lineage.",
   },
@@ -94,7 +97,12 @@ export default function CasesPage() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-base font-semibold text-stone-900">{c.title}</p>
+                    <div className="flex items-center gap-2.5">
+                      <p className="text-base font-semibold text-stone-900">{c.title}</p>
+                      <span className="shrink-0 rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
+                        {c.phase}
+                      </span>
+                    </div>
                     <p className="mt-1.5 text-sm leading-7 text-stone-600">{c.subtitle}</p>
                     {c.note && (
                       <p className="mt-1.5 text-xs leading-6 text-stone-500 italic">{c.note}</p>
