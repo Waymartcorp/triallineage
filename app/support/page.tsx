@@ -31,7 +31,7 @@ export default function SupportPage() {
             TrialLineage is an independent public science platform. We trace the full scientific history behind human disease breakthroughs — and we do it without industry funding, promotional language, or editorial compromise.
           </p>
           <p className="mt-4 text-base leading-8 text-stone-700">
-            Your support funds case research, concept explainers, clinical trial signal review, and the preservation of discovery history for a public audience.
+            Your support funds case research, concept explainers, clinical trial review, and the preservation of discovery history for a public audience.
           </p>
         </div>
       </section>
@@ -61,7 +61,7 @@ export default function SupportPage() {
               {
                 amount: "$250+/month",
                 title: "Research Desk",
-                desc: "Support a disease-area research desk. Help sustain ongoing signal monitoring and case development for an entire therapeutic area.",
+                desc: "Support a disease-area research desk. Help sustain ongoing research monitoring and case development for an entire therapeutic area.",
               },
             ].map((tier) => (
               <div
@@ -91,7 +91,7 @@ export default function SupportPage() {
           <ul className="mt-6 space-y-3 text-base leading-8 text-stone-700">
             <li>Research and writing of public case pages tracing scientific lineages</li>
             <li>Concept explainer pages that make complex fields accessible</li>
-            <li>Clinical trial signal review and monitoring infrastructure</li>
+            <li>Clinical trial review and monitoring infrastructure</li>
             <li>Source verification and citation management</li>
             <li>Platform development and public accessibility</li>
             <li>Preservation of the history of scientific discovery</li>

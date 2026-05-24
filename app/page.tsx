@@ -161,7 +161,7 @@ export default function HomePage() {
             A growing public library of scientific lineages
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-8 text-stone-700">
-            TrialLineage is building a public library of source-linked case histories showing where medical breakthroughs come from.
+            TrialLineage is building a public library of case histories showing where medical breakthroughs come from.
           </p>
 
           <div className="mt-10 space-y-4">
@@ -235,18 +235,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Production Room credibility */}
+      {/* 6. How each case works */}
       <section className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-7xl px-6 py-18 lg:px-10 lg:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-              How cases are built
+              How each case works
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-              Built through a careful Production Room workflow
+              From a trial back through the science
             </h2>
             <p className="mt-6 text-base leading-8 text-stone-700">
-              Behind each public case is a protected Production Room process where trial signals are reviewed, sources are organized, lineage maps are built, and publication decisions are recorded. This helps TrialLineage stay careful, source-linked, and transparent about what is known, what is emerging, and what still needs review.
+              Each TrialLineage case starts with a drug trial, treatment, or medical advance, then traces backward through the discoveries, model systems, methods, failed paths, and research communities that made it possible.
+            </p>
+            <p className="mt-4 text-base leading-8 text-stone-700">
+              The goal is to show how medical progress actually develops over time — not as a single breakthrough moment, but as a chain of scientific work.
             </p>
           </div>
         </div>
@@ -263,7 +266,7 @@ export default function HomePage() {
               Help make the hidden history of medical progress visible.
             </p>
             <p className="mt-6 text-base leading-8 text-stone-700">
-              TrialLineage is building a public science library that traces medical breakthroughs back to the discoveries, tools, model systems, failed paths, and research communities behind them. Your support helps fund new case histories, source review, public explainers, educational materials, site maintenance, and the Production Room workflow that keeps the project careful and useful.
+              TrialLineage is building a public science library that traces medical breakthroughs back to the discoveries, tools, model systems, failed paths, and research communities behind them. Your support helps fund new case histories, source review, public explainers, educational materials, and site maintenance.
             </p>
             <div className="mt-8">
               <Link

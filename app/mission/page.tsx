@@ -82,7 +82,7 @@ export default function MissionPage() {
           </h2>
           <div className="mt-8 space-y-6 text-base leading-8 text-stone-700">
             <p>
-              TrialLineage is in early build. The first case page is live, concept explainers are growing, and the internal production system is reviewing clinical signals to identify the next lineage investigations.
+              TrialLineage is in early build. The first case page is live, concept explainers are growing, and new lineage investigations are being identified through ongoing research review.
             </p>
             <p>
               We are building this as a public resource funded by individual supporters, not industry sponsors.

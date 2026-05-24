@@ -32,7 +32,7 @@ export default function AboutPage() {
               TrialLineage is a public science platform that traces the scientific lineage behind human disease breakthroughs.
             </p>
             <p>
-              It connects clinical trial signals to the deeper discoveries, tools, models, concepts, and decisions that made them possible.
+              It connects current clinical developments to the deeper discoveries, tools, models, concepts, and decisions that made them possible.
             </p>
             <p>
               Each case page starts with a current clinical development — a drug entering trials, a therapy receiving approval, a new treatment reaching patients — and traces backward through the scientific history that led to that moment.
@@ -51,7 +51,7 @@ export default function AboutPage() {
               ["Traces reverse lineage", "Starting from a breakthrough, we map the chain of prior discoveries, enabling technologies, and translational decisions that made it possible."],
               ["Explains in plain language", "Scientific lineages are written for a general audience, not specialists. Technical detail is available but never required."],
               ["Covers multiple domains", "A single case may connect oncology, structural biology, medicinal chemistry, clinical trial design, and regulatory science."],
-              ["Monitors active signals", "An internal production system reviews clinical trial registrations, regulatory filings, and research milestones to identify candidates for new lineage investigations."],
+              ["Monitors active research", "A research review process tracks clinical trial registrations, regulatory filings, and research milestones to identify candidates for new lineage investigations."],
               ["Builds a public library", "Over time, TrialLineage becomes a growing collection of case pages, concept explainers, and cross-linked scientific histories."],
             ].map(([title, desc]) => (
               <div key={title} className="rounded-2xl border border-stone-200 bg-white px-6 py-5">

@@ -26,11 +26,11 @@ export default function DaraxonrasibCasePage() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-stone-700">
-            This page traces a pancreatic cancer drug story backward through the
-            scientific lineage that made it possible. It unfolds in layers: a
-            plain-language summary, a visual map of the discovery chain, a
-            timeline of milestones and detours, and a deeper explainer of the
-            scientific history.
+            This page starts with a pancreatic cancer drug story, then traces
+            backward through the scientific lineage that made it possible. It
+            unfolds in layers: a plain-language summary, a visual map of the
+            discovery chain, a timeline of milestones and detours, and a deeper
+            account of the scientific history.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
