@@ -8,9 +8,10 @@ type CandidateType =
   | "New case candidate"
   | "Update existing case"
   | "Background / supporting"
-  | "Ignore";
+  | "Ignore"
+  | "Topic pull";
 type Status = "New" | "Reviewed" | "In progress" | "Published" | "Ignored";
-type FilterTab = "All" | "New trial signals" | "Potential new cases" | "Updates" | "Needs review";
+type FilterTab = "All" | "New trial signals" | "Potential new cases" | "Updates" | "Needs review" | "Topic pulls";
 
 interface Signal {
   id: string;
@@ -54,6 +55,7 @@ const candidateTypeStyle: Record<CandidateType, string> = {
   "Update existing case": "text-amber-700",
   "Background / supporting": "text-stone-500",
   Ignore: "text-stone-400",
+  "Topic pull": "text-violet-600",
 };
 
 const filterTabs: { label: string; value: FilterTab }[] = [
@@ -62,6 +64,7 @@ const filterTabs: { label: string; value: FilterTab }[] = [
   { label: "Potential new cases", value: "Potential new cases" },
   { label: "Updates", value: "Updates" },
   { label: "Needs review", value: "Needs review" },
+  { label: "Topic pulls", value: "Topic pulls" },
 ];
 
 function matchesFilter(signal: Signal, filter: FilterTab): boolean {
@@ -70,6 +73,7 @@ function matchesFilter(signal: Signal, filter: FilterTab): boolean {
   if (filter === "Potential new cases") return signal.candidate_type === "New case candidate";
   if (filter === "Updates") return signal.candidate_type === "Update existing case";
   if (filter === "Needs review") return signal.status === "Reviewed" || signal.status === "In progress";
+  if (filter === "Topic pulls") return signal.candidate_type === "Topic pull";
   return true;
 }
 
@@ -137,6 +141,8 @@ export default function ProductionRoomPage() {
       request = request.eq("candidate_type", "Update existing case");
     } else if (filter === "Needs review") {
       request = request.in("status", ["Reviewed", "In progress"]);
+    } else if (filter === "Topic pulls") {
+      request = request.eq("candidate_type", "Topic pull");
     }
 
     const { data, error } = await request;
@@ -684,6 +690,7 @@ export default function ProductionRoomPage() {
                     ["New case candidate", "Signal may justify a new TrialLineage case page"],
                     ["Update existing case", "Relevant to a case or concept page already published"],
                     ["Background / supporting", "Worth retaining in the log, no editorial action now"],
+                    ["Topic pull", "Imported via manual topic investigation"],
                     ["Ignore", "Not relevant to TrialLineage at this time"],
                   ] as [CandidateType, string][]
                 ).map(([ct, desc]) => (

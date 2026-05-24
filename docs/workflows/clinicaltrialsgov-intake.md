@@ -139,3 +139,52 @@ Three nullable text columns were added to `production_signals` to support direct
 These are queried by the Production Room search alongside `title`, `disease_area`, `editorial_note`, etc.
 
 Existing rows (inserted before this change) will have NULL in these columns. Running the intake script will automatically backfill existing ClinicalTrials.gov rows by parsing sponsor, intervention, and collaborator names from the `editorial_note` field. Only rows with `source = 'ClinicalTrials.gov'` and `sponsor_name IS NULL` are backfilled.
+
+---
+
+## 10. Topic Pull Mode
+
+Topic Pull is a separate manual investigation pathway that uses ClinicalTrials.gov without the fresh-signal date constraints.
+
+### Distinction from fresh-signal feed
+
+| Mode | Purpose | Date constraint | Trigger |
+|---|---|---|---|
+| Fresh-signal feed | What is newly happening? | Last 30 days posted / next 6 months starting | Automated, periodic |
+| Topic pull | What is the full public trial footprint for this topic? | None | Manual, on-demand |
+| Lineage treatment | What deserves public explanation? | N/A (editorial decision) | Human judgment |
+
+### How it works
+
+Run from the command line:
+
+```bash
+npm run topic-pull -- "OCU400"
+npm run topic-pull -- "Wilmer Eye Institute"
+npm run topic-pull -- "retinitis pigmentosa gene therapy"
+```
+
+The script queries ClinicalTrials.gov for the supplied term across all statuses and time periods, then imports matching records into `production_signals`.
+
+### Labeling
+
+Topic-pull records are marked distinctly:
+
+| Field | Value |
+|---|---|
+| `source_type` | `Topic pull` |
+| `candidate_type` | `Topic pull` |
+| `status` | `New` |
+| `editorial_note` | Includes "Topic pull query: {term}" |
+
+### Deduplication
+
+Uses the same `trial_identifier` (NCT ID) dedupe pattern as the fresh-signal intake. If a trial already exists in the database (from either pathway), it is skipped.
+
+### Production Room filter
+
+A "Topic pulls" filter tab is available in the Production Room UI to isolate topic-pull records for review.
+
+### Migration required
+
+Migration `005_add_topic_pull_candidate_type.sql` adds "Topic pull" to the `candidate_type` check constraint. Run this before using the topic-pull script.
