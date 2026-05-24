@@ -15,36 +15,41 @@ export default function HomePage() {
   const caseRoadmap = [
     {
       title: "Daraxonrasib / KRAS / pancreatic cancer",
-      disease: "Pancreatic cancer",
-      theme: "Oncogene-targeted therapy",
+      advance: "A KRAS-directed drug enters trials for pancreatic cancer",
+      lineage: "Oncogene discovery, protein signaling, structural biology, medicinal chemistry, translational oncology",
+      lesson: "How four decades of work on an \"undruggable\" protein became a clinical candidate",
       status: "Featured case" as const,
       href: "/case/daraxonrasib-pancreatic-cancer",
     },
     {
       title: "Gene therapy for inherited retinal disease",
-      disease: "Inherited retinal disease",
-      theme: "Gene therapy and viral vector delivery",
+      advance: "Gene therapy for inherited blindness",
+      lineage: "Disease genetics, viral vector development, retinal biology, surgical delivery",
+      lesson: "How genetic diagnosis and delivery tools turned rare-disease biology into treatment",
       status: "In development" as const,
       href: null,
     },
     {
       title: "GLP-1 therapies and metabolic disease",
-      disease: "Metabolic disease / obesity / diabetes",
-      theme: "Peptide biology and receptor pharmacology",
+      advance: "GLP-1 medicines for diabetes and obesity",
+      lineage: "Gut hormone biology, incretin signaling, peptide pharmacology, metabolic physiology",
+      lesson: "How basic hormone biology became large-scale metabolic medicine",
       status: "Planned" as const,
       href: null,
     },
     {
-      title: "Cancer immunotherapy",
-      disease: "Oncology (multiple indications)",
-      theme: "Immune checkpoint biology and T-cell engineering",
+      title: "Cancer immunotherapy / checkpoint inhibitors",
+      advance: "Immune checkpoint blockade for cancer",
+      lineage: "T-cell biology, immune tolerance, tumor immune evasion, monoclonal antibody engineering",
+      lesson: "How basic immunology changed cancer treatment",
       status: "Planned" as const,
       href: null,
     },
     {
-      title: "RNA medicine or rare-disease therapy",
-      disease: "Rare genetic disease",
-      theme: "Antisense, siRNA, or mRNA therapeutic platforms",
+      title: "RNA medicine for rare genetic disease",
+      advance: "Antisense or siRNA therapy for a previously untreatable condition",
+      lineage: "RNA biology, antisense chemistry, delivery systems, rare-disease genetics",
+      lesson: "How understanding gene expression created a new class of medicines",
       status: "Planned" as const,
       href: null,
     },
@@ -168,13 +173,17 @@ export default function HomePage() {
             {caseRoadmap.map((c) => {
               const inner = (
                 <div className="flex items-start justify-between gap-4">
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="text-base font-semibold text-stone-900">{c.title}</p>
-                    <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-sm text-stone-600">
-                      <span>{c.disease}</span>
-                      <span className="text-stone-300">|</span>
-                      <span>{c.theme}</span>
-                    </div>
+                    <p className="mt-1.5 text-sm leading-6 text-stone-700">
+                      <span className="font-medium">Medical advance:</span> {c.advance}
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-stone-600">
+                      <span className="font-medium text-stone-700">Lineage:</span> {c.lineage}
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-stone-500 italic">
+                      {c.lesson}
+                    </p>
                   </div>
                   <span className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyle[c.status]}`}>
                     {c.status}

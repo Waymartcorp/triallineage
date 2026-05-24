@@ -11,24 +11,28 @@ const publishedCases = [
 
 const upcomingCases = [
   {
-    title: "OCU400 in inherited retinal disease",
-    subtitle: "Gene therapy for retinitis pigmentosa traced through retinal biology, AAV vector development, and regulatory pathways",
-    status: "in development" as const,
+    title: "Gene therapy for inherited retinal disease",
+    advance: "Gene therapy for inherited blindness",
+    lineage: "Disease genetics, viral vector development, retinal biology, surgical delivery",
+    lesson: "How genetic diagnosis and delivery tools turned rare-disease biology into treatment",
   },
   {
-    title: "A rare disease or gene therapy case",
-    subtitle: "Gene replacement or editing approach traced through disease genetics, delivery systems, and clinical translation",
-    status: "in development" as const,
+    title: "GLP-1 therapies and metabolic disease",
+    advance: "GLP-1 medicines for diabetes and obesity",
+    lineage: "Gut hormone biology, incretin signaling, peptide pharmacology, metabolic physiology",
+    lesson: "How basic hormone biology became large-scale metabolic medicine",
   },
   {
-    title: "A cancer immunology or targeted oncology case",
-    subtitle: "Immune checkpoint, CAR-T, or precision oncology program traced through tumor immunology and clinical development",
-    status: "in development" as const,
+    title: "Cancer immunotherapy / checkpoint inhibitors",
+    advance: "Immune checkpoint blockade for cancer",
+    lineage: "T-cell biology, immune tolerance, tumor immune evasion, monoclonal antibody engineering",
+    lesson: "How basic immunology changed cancer treatment",
   },
   {
-    title: "A neuroscience, metabolic, or cardiovascular case",
-    subtitle: "A non-oncology breakthrough traced through disease biology, target validation, and human trials",
-    status: "in development" as const,
+    title: "RNA medicine for rare genetic disease",
+    advance: "Antisense or siRNA therapy for a previously untreatable condition",
+    lineage: "RNA biology, antisense chemistry, delivery systems, rare-disease genetics",
+    lesson: "How understanding gene expression created a new class of medicines",
   },
 ];
 
@@ -107,9 +111,17 @@ export default function CasesPage() {
                 className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-6 py-5"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="text-base font-medium text-stone-700">{c.title}</p>
-                    <p className="mt-1.5 text-sm leading-7 text-stone-500">{c.subtitle}</p>
+                    <p className="mt-1.5 text-sm leading-6 text-stone-600">
+                      <span className="font-medium text-stone-700">Medical advance:</span> {c.advance}
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-stone-500">
+                      <span className="font-medium text-stone-600">Lineage:</span> {c.lineage}
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-stone-500 italic">
+                      {c.lesson}
+                    </p>
                   </div>
                   <span className="shrink-0 rounded-full border border-stone-300 px-2.5 py-0.5 text-xs font-medium text-stone-500">
                     In development
