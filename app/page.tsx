@@ -27,7 +27,7 @@ export default function HomePage() {
       lineage: "Disease genetics, viral vector development, retinal biology, surgical delivery",
       lesson: "How genetic diagnosis and delivery tools turned rare-disease biology into treatment",
       status: "In development" as const,
-      href: null,
+      href: "/case/gene-therapy-inherited-retinal-disease",
     },
     {
       title: "GLP-1 therapies and metabolic disease",

@@ -7,15 +7,15 @@ const publishedCases = [
     subtitle: "KRAS-directed therapy traced through oncogene discovery, structural biology, medicinal chemistry, and translational oncology",
     status: "published" as const,
   },
+  {
+    slug: "gene-therapy-inherited-retinal-disease",
+    title: "Gene therapy for inherited retinal disease",
+    subtitle: "Gene therapy for inherited blindness traced through retinal biology, disease genetics, AAV vector engineering, and surgical delivery",
+    status: "draft" as const,
+  },
 ];
 
 const upcomingCases = [
-  {
-    title: "Gene therapy for inherited retinal disease",
-    advance: "Gene therapy for inherited blindness",
-    lineage: "Disease genetics, viral vector development, retinal biology, surgical delivery",
-    lesson: "How genetic diagnosis and delivery tools turned rare-disease biology into treatment",
-  },
   {
     title: "GLP-1 therapies and metabolic disease",
     advance: "GLP-1 medicines for diabetes and obesity",
@@ -86,8 +86,12 @@ export default function CasesPage() {
                     <p className="text-base font-semibold text-stone-900">{c.title}</p>
                     <p className="mt-1.5 text-sm leading-7 text-stone-600">{c.subtitle}</p>
                   </div>
-                  <span className="shrink-0 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
-                    Live
+                  <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                    c.status === "published"
+                      ? "bg-emerald-50 text-emerald-700"
+                      : "bg-amber-50 text-amber-700"
+                  }`}>
+                    {c.status === "published" ? "Live" : "Draft"}
                   </span>
                 </div>
               </Link>
