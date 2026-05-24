@@ -27,10 +27,10 @@ export default function DaraxonrasibCasePage() {
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-stone-700">
             This page traces a pancreatic cancer drug story backward through the
-            scientific lineage that made it possible. It is designed to be read
-            in layers: a plain-language summary for any reader, a visual map of
-            the discovery chain, a timeline of milestones and detours, and a
-            deeper explainer for those who want the fuller scientific history.
+            scientific lineage that made it possible. It unfolds in layers: a
+            plain-language summary, a visual map of the discovery chain, a
+            timeline of milestones and detours, and a deeper explainer of the
+            scientific history.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -590,7 +590,7 @@ export default function DaraxonrasibCasePage() {
                 This case shows how human disease breakthroughs often depend on
                 many layers of scientific work that do not look directly
                 therapeutic at the time they are performed. The public usually
-                sees the late-stage milestone. TrialLineage is designed to make
+                sees the late-stage milestone. TrialLineage makes
                 the earlier layers visible.
               </p>
             </div>
@@ -620,8 +620,8 @@ export default function DaraxonrasibCasePage() {
             The longer scientific lineage
           </h2>
           <p className="mt-4 max-w-3xl text-base leading-8 text-stone-700">
-            Each section below expands on one layer of the discovery chain. For
-            readers who want the fuller history behind the visual map above.
+            Each section below expands on one layer of the discovery chain,
+            providing the fuller history behind the visual map above.
           </p>
 
           <div className="mt-8 space-y-6">
@@ -704,8 +704,8 @@ export default function DaraxonrasibCasePage() {
 
           <p className="mt-4 max-w-3xl text-base leading-8 text-stone-700">
             Each concept below represents a connected background field that
-            helped make the daraxonrasib trial possible. Pages that are live
-            can be read as standalone explainers or as companions to this case.
+            helped make the daraxonrasib trial possible. Live pages function as
+            standalone explainers or as companions to this case.
           </p>
 
           <div className="mt-4">
@@ -756,13 +756,12 @@ export default function DaraxonrasibCasePage() {
             <p className="mt-4 max-w-3xl leading-8 text-stone-700">
               This is a TrialLineage case page. It traces a human-disease trial
               backward through the scientific lineage that made it possible,
-              presented in four layers: a plain-language summary for any reader,
-              a visual reverse-lineage map showing main paths and side branches,
-              a discovery timeline of milestones, branch points, detours, and
-              convergence events, and a deeper explainer for those who want the
-              fuller scientific history. The format is designed to make the
-              discovery process behind phase 1&ndash;3 trials visible and
-              understandable.
+              presented in four layers: a plain-language summary, a visual
+              reverse-lineage map showing main paths and side branches, a
+              discovery timeline of milestones, branch points, detours, and
+              convergence events, and a deeper explainer of the scientific
+              history. The format makes the discovery process behind
+              phase 1&ndash;3 trials visible and understandable.
             </p>
           </div>
         </div>

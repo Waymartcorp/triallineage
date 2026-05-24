@@ -85,7 +85,7 @@ export default function MissionPage() {
               TrialLineage is in early build. The first case page is live, concept explainers are growing, and the internal production system is reviewing clinical signals to identify the next lineage investigations.
             </p>
             <p>
-              We are building this as a public resource funded by individual supporters, not industry sponsors. If you believe in making the history of discovery visible, you can help.
+              We are building this as a public resource funded by individual supporters, not industry sponsors.
             </p>
           </div>
           <div className="mt-8">

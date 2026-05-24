@@ -105,11 +105,11 @@ export default function ConceptsIndexPage() {
               the product of many fields — genetics, cell biology, chemistry,
               pharmacology, clinical medicine — each contributing ideas, tools,
               and evidence over decades. Concept pages provide plain-language
-              background on these fields so that readers can understand the full
-              context behind a TrialLineage case, including the branch points in
-              scientific thinking, the failed approaches that still taught the
-              field something, and the ideas that had to exist before a trial
-              became possible.
+              background on these fields, covering the full context behind a
+              TrialLineage case, including the branch points in scientific
+              thinking, the failed approaches that still taught the field
+              something, and the ideas that had to exist before a trial became
+              possible.
             </p>
             <p className="mt-4 text-base leading-8 text-stone-700">
               Each concept page is written to be read independently or as a
