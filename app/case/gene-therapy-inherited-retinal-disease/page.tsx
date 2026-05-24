@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function RetinalGeneTherapyCasePage() {
   const conceptLinks = [
-    { label: "Gene therapy", href: null },
-    { label: "Viral vectors / AAV", href: null },
-    { label: "Inherited retinal disease", href: null },
-    { label: "Molecular diagnosis", href: null },
-    { label: "Retinal biology", href: null },
-    { label: "Rare disease trials", href: null },
-    { label: "Translational medicine", href: null },
+    { label: "Gene therapy", href: "/concept/gene-therapy" },
+    { label: "Viral vectors / AAV", href: "/concept/viral-vectors-aav" },
+    { label: "Inherited retinal disease", href: "/concept/inherited-retinal-disease" },
+    { label: "Molecular diagnosis", href: "/concept/molecular-diagnosis" },
+    { label: "Retinal biology", href: "/concept/retinal-biology" },
+    { label: "Rare disease trials", href: "/concept/rare-disease-trials" },
+    { label: "Translational medicine", href: "/concept/translational-medicine" },
     { label: "Clinical trial design", href: "/concept/clinical-trial-design" },
   ];
 
@@ -773,17 +773,15 @@ export default function RetinalGeneTherapyCasePage() {
       <section className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10">
           <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-            Sources and further reading
+            Source
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-            References
+            Trial record
           </h2>
-          <p className="mt-4 text-sm leading-7 text-stone-600 italic">
-            Source citations for this case are under review and will be added
-            as the page moves from draft to published status. All factual
-            claims will be traceable to primary sources including peer-reviewed
-            publications, ClinicalTrials.gov registrations, and FDA regulatory
-            documents.
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-stone-700">
+            The scientific lineage on this page draws on published research in
+            retinal biology, human genetics, virology, and clinical
+            ophthalmology.
           </p>
         </div>
       </section>
@@ -809,7 +807,7 @@ export default function RetinalGeneTherapyCasePage() {
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-6 text-xs text-stone-500">
             <Link href="/" className="hover:text-stone-900">Home</Link>
-            <Link href="/cases" className="hover:text-stone-900">Cases</Link>
+            <Link href="/cases" className="hover:text-stone-900">Lineages</Link>
             <Link href="/concepts" className="hover:text-stone-900">Concepts</Link>
             <Link href="/about" className="hover:text-stone-900">About</Link>
             <Link href="/support" className="hover:text-stone-900">Support</Link>

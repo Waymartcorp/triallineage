@@ -10,7 +10,7 @@ export default function MissionPage() {
               TrialLineage
             </Link>
             <nav className="hidden gap-6 text-sm text-stone-600 md:flex">
-              <Link href="/cases" className="transition hover:text-stone-900">Cases</Link>
+              <Link href="/cases" className="transition hover:text-stone-900">Lineages</Link>
               <Link href="/concepts" className="transition hover:text-stone-900">Concepts</Link>
               <Link href="/about" className="transition hover:text-stone-900">About</Link>
               <Link href="/support" className="transition hover:text-stone-900">Support</Link>
@@ -107,7 +107,7 @@ export default function MissionPage() {
             <Link href="/editorial-standards" className="hover:text-stone-900">Editorial Standards</Link>
             <Link href="/support" className="hover:text-stone-900">Support</Link>
             <Link href="/disclaimer" className="hover:text-stone-900">Disclaimer</Link>
-            <Link href="/cases" className="hover:text-stone-900">Cases</Link>
+            <Link href="/cases" className="hover:text-stone-900">Lineages</Link>
             <Link href="/concepts" className="hover:text-stone-900">Concepts</Link>
           </div>
           <p className="mt-4 text-xs text-stone-400">
