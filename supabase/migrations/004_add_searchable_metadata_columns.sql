@@ -3,5 +3,5 @@
 
 alter table production_signals
   add column if not exists sponsor_name text,
-  add column if not exists intervention_names text,
-  add column if not exists collaborator_names text;
+  add column if not exists intervention_names text[],
+  add column if not exists collaborator_names text[];

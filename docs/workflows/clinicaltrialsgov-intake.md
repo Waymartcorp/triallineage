@@ -132,10 +132,10 @@ Three nullable text columns were added to `production_signals` to support direct
 
 | Column | Content |
 |---|---|
-| `sponsor_name` | Lead sponsor name (e.g. "Pfizer", "National Cancer Institute") |
-| `intervention_names` | Drug/program names from the trial, semicolon-separated |
-| `collaborator_names` | Collaborating institution names, semicolon-separated |
+| `sponsor_name` | Lead sponsor name (text) — e.g. "Pfizer", "National Cancer Institute" |
+| `intervention_names` | Drug/program names from the trial (text array) |
+| `collaborator_names` | Collaborating institution names (text array) |
 
 These are queried by the Production Room search alongside `title`, `disease_area`, `editorial_note`, etc.
 
-Existing rows (inserted before this change) will have NULL in these columns. Re-running the intake script will not backfill them — only new inserts populate the new fields. A one-time backfill script can be written if needed.
+Existing rows (inserted before this change) will have NULL in these columns. Running the intake script will automatically backfill existing ClinicalTrials.gov rows by parsing sponsor, intervention, and collaborator names from the `editorial_note` field. Only rows with `source = 'ClinicalTrials.gov'` and `sponsor_name IS NULL` are backfilled.

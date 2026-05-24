@@ -161,8 +161,8 @@ interface SignalRow {
   brief_summary: string | null;
   trial_identifier: string;
   sponsor_name: string | null;
-  intervention_names: string | null;
-  collaborator_names: string | null;
+  intervention_names: string[] | null;
+  collaborator_names: string[] | null;
 }
 
 function parseDate(dateStr: string | undefined): string | null {
@@ -202,11 +202,10 @@ function mapStudyToSignal(study: StudyRecord): SignalRow | null {
     .filter(Boolean) as string[];
 
   const interventions = proto.armsInterventionsModule?.interventions ?? [];
-  const interventionNames = interventions
+  const interventionNamesList = interventions
     .map((i) => i.name)
-    .filter(Boolean)
-    .slice(0, 5)
-    .join("; ");
+    .filter(Boolean) as string[];
+  const interventionNamesDisplay = interventionNamesList.slice(0, 5).join("; ");
 
   const officialTitle = proto.identificationModule?.officialTitle ?? "";
   const briefSummaryRaw = proto.descriptionModule?.briefSummary ?? null;
@@ -231,7 +230,7 @@ function mapStudyToSignal(study: StudyRecord): SignalRow | null {
   if (sponsor) noteparts.push(`Sponsor: ${sponsor}.`);
   if (collaborators.length > 0)
     noteparts.push(`Collaborators: ${collaborators.slice(0, 3).join("; ")}.`);
-  if (interventionNames) noteparts.push(`Interventions: ${interventionNames}.`);
+  if (interventionNamesDisplay) noteparts.push(`Interventions: ${interventionNamesDisplay}.`);
 
   return {
     title,
@@ -247,8 +246,8 @@ function mapStudyToSignal(study: StudyRecord): SignalRow | null {
     brief_summary: truncatedSummary,
     trial_identifier: nctId,
     sponsor_name: sponsor || null,
-    intervention_names: interventionNames || null,
-    collaborator_names: collaborators.length > 0 ? collaborators.join("; ") : null,
+    intervention_names: interventionNamesList.length > 0 ? interventionNamesList : null,
+    collaborator_names: collaborators.length > 0 ? collaborators : null,
   };
 }
 
@@ -452,6 +451,66 @@ async function main() {
   console.log(`  Records processed:     ${totalFetched}`);
   console.log(`  New signals inserted:  ${totalInserted}`);
   console.log(`  Duplicates skipped:    ${totalSkipped}`);
+  console.log("═".repeat(60));
+
+  // ── Backfill existing rows missing metadata ──────────────────
+  console.log("");
+  console.log("Backfilling existing rows missing sponsor/intervention/collaborator metadata...");
+
+  let backfillCount = 0;
+  let backfillOffset = 0;
+  const BACKFILL_BATCH = 500;
+
+  while (true) {
+    const { data: rows, error } = await supabase
+      .from("production_signals")
+      .select("id, editorial_note")
+      .eq("source", "ClinicalTrials.gov")
+      .is("sponsor_name", null)
+      .range(backfillOffset, backfillOffset + BACKFILL_BATCH - 1);
+
+    if (error) {
+      console.error("  Backfill query error:", error.message);
+      break;
+    }
+    if (!rows || rows.length === 0) break;
+
+    for (const row of rows) {
+      const note = row.editorial_note || "";
+      const sponsorMatch = note.match(/Sponsor:\s*([^.]+)\./);
+      const interventionMatch = note.match(/Interventions:\s*([^.]+)\./);
+      const collaboratorMatch = note.match(/Collaborators:\s*([^.]+)\./);
+
+      const updates: Record<string, unknown> = {};
+      if (sponsorMatch) updates.sponsor_name = sponsorMatch[1].trim();
+      if (interventionMatch) {
+        updates.intervention_names = interventionMatch[1]
+          .split(";")
+          .map((s: string) => s.trim())
+          .filter(Boolean);
+      }
+      if (collaboratorMatch) {
+        updates.collaborator_names = collaboratorMatch[1]
+          .split(";")
+          .map((s: string) => s.trim())
+          .filter(Boolean);
+      }
+
+      if (Object.keys(updates).length > 0) {
+        const { error: updateErr } = await supabase
+          .from("production_signals")
+          .update(updates)
+          .eq("id", row.id);
+
+        if (!updateErr) backfillCount++;
+      }
+    }
+
+    if (rows.length < BACKFILL_BATCH) break;
+    backfillOffset += BACKFILL_BATCH;
+  }
+
+  console.log(`  Backfilled ${backfillCount} existing rows`);
   console.log("═".repeat(60));
 }
 

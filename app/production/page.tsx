@@ -31,8 +31,8 @@ interface Signal {
   trial_identifier: string | null;
   confidence_flag: string | null;
   sponsor_name: string | null;
-  intervention_names: string | null;
-  collaborator_names: string | null;
+  intervention_names: string[] | null;
+  collaborator_names: string[] | null;
 }
 
 const statusStyle: Record<Status, string> = {
@@ -123,7 +123,7 @@ export default function ProductionRoomPage() {
       .from("production_signals")
       .select("*")
       .or(
-        `title.ilike.${pattern},disease_area.ilike.${pattern},trial_identifier.ilike.${pattern},source.ilike.${pattern},editorial_note.ilike.${pattern},brief_summary.ilike.${pattern}`
+        `title.ilike.${pattern},disease_area.ilike.${pattern},trial_identifier.ilike.${pattern},source.ilike.${pattern},editorial_note.ilike.${pattern},brief_summary.ilike.${pattern},sponsor_name.ilike.${pattern}`
       )
       .order("date_detected", { ascending: false })
       .order("created_at", { ascending: false })
