@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 
@@ -254,18 +255,18 @@ export default function ProductionRoomPage() {
               </p>
             </div>
             <div className="hidden items-center gap-4 text-sm md:flex">
-              <a
+              <Link
                 href="/"
                 className="text-stone-500 transition hover:text-stone-900"
               >
                 Public site
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/concepts"
                 className="text-stone-500 transition hover:text-stone-900"
               >
                 Concepts
-              </a>
+              </Link>
               <span className="rounded-full bg-stone-800 px-3 py-1 text-xs font-medium text-stone-200">
                 Internal
               </span>
