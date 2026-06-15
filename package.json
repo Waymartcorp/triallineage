@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "topic-pull": "tsx scripts/fetch-clinicaltrialsgov-topic-pull.ts"
+    "topic-pull": "tsx scripts/fetch-clinicaltrialsgov-topic-pull.ts",
+    "news-trigger": "tsx scripts/news-trigger-pull.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",

@@ -10,9 +10,10 @@ type CandidateType =
   | "Update existing case"
   | "Background / supporting"
   | "Ignore"
-  | "Topic pull";
+  | "Topic pull"
+  | "Lineage candidate";
 type Status = "New" | "Reviewed" | "In progress" | "Published" | "Ignored";
-type FilterTab = "All" | "New trial signals" | "Potential new cases" | "Updates" | "Needs review" | "Topic pulls";
+type FilterTab = "All" | "New trial signals" | "Potential new cases" | "Updates" | "Needs review" | "Topic pulls" | "Lineage candidates";
 
 interface Signal {
   id: string;
@@ -57,6 +58,7 @@ const candidateTypeStyle: Record<CandidateType, string> = {
   "Background / supporting": "text-stone-500",
   Ignore: "text-stone-400",
   "Topic pull": "text-violet-600",
+  "Lineage candidate": "text-emerald-700",
 };
 
 const filterTabs: { label: string; value: FilterTab }[] = [
@@ -66,6 +68,7 @@ const filterTabs: { label: string; value: FilterTab }[] = [
   { label: "Updates", value: "Updates" },
   { label: "Needs review", value: "Needs review" },
   { label: "Topic pulls", value: "Topic pulls" },
+  { label: "Lineage candidates", value: "Lineage candidates" },
 ];
 
 function matchesFilter(signal: Signal, filter: FilterTab): boolean {
@@ -75,6 +78,7 @@ function matchesFilter(signal: Signal, filter: FilterTab): boolean {
   if (filter === "Updates") return signal.candidate_type === "Update existing case";
   if (filter === "Needs review") return signal.status === "Reviewed" || signal.status === "In progress";
   if (filter === "Topic pulls") return signal.candidate_type === "Topic pull";
+  if (filter === "Lineage candidates") return signal.candidate_type === "Lineage candidate";
   return true;
 }
 

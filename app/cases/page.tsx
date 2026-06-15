@@ -1,56 +1,109 @@
 import Link from "next/link";
 
-const publishedCases = [
+interface LineageCard {
+  slug?: string;
+  title: string;
+  endpoint_type: string;
+  endpoint_stage_or_status: string;
+  endpoint_summary: string;
+  disease_or_condition: string;
+  intervention_or_asset: string;
+  lineage_summary: string;
+  status: "published" | "under_investigation";
+  tags: string[];
+}
+
+/**
+ * TrialLineage public lineage cards must be endpoint-first. Do not create cards
+ * for broad therapy areas, modalities, domains, disease areas, or clusters.
+ * Each card should start from a verified Phase 1–3 trial, FDA approval,
+ * regulatory milestone, or similar concrete clinical/FDA-type endpoint.
+ * Scientific similarities may appear as secondary tags, related concepts,
+ * filters, or later interactive exploration, but clusters/domains are not
+ * the main library organizing structure.
+ *
+ * Schema: docs/editorial/lineage-card-schema.md
+ * Principles: docs/editorial/lineage-library-principles.md
+ */
+const lineages: LineageCard[] = [
   {
     slug: "daraxonrasib-pancreatic-cancer",
-    title: "Daraxonrasib in pancreatic cancer",
-    subtitle: "KRAS-directed therapy traced through oncogene discovery, structural biology, medicinal chemistry, and translational oncology",
-    phase: "Phase 2",
-    status: "published" as const,
-    note: null,
+    title: "Daraxonrasib for KRAS G12D-mutant pancreatic cancer",
+    endpoint_type: "Clinical trial",
+    endpoint_stage_or_status: "Phase 2",
+    endpoint_summary: "First direct KRAS G12D inhibitor to reach efficacy testing in pancreatic ductal adenocarcinoma.",
+    disease_or_condition: "Pancreatic ductal adenocarcinoma",
+    intervention_or_asset: "Daraxonrasib (KRAS G12D inhibitor)",
+    lineage_summary: "Traces backward through KRAS oncogene discovery, protein structural biology, covalent inhibitor chemistry, precursor lesion biology, and translational oncology.",
+    status: "published",
+    tags: ["KRAS", "pancreatic cancer", "targeted therapy", "structural biology", "medicinal chemistry"],
   },
   {
     slug: "gene-therapy-inherited-retinal-disease",
-    title: "Gene therapy for inherited retinal disease",
-    subtitle: "Gene therapy for inherited blindness traced through retinal biology, disease genetics, AAV vector engineering, and surgical delivery",
-    phase: "Approved (Luxturna)",
-    status: "draft" as const,
-    note: null,
+    title: "Luxturna for RPE65-mediated inherited retinal disease",
+    endpoint_type: "FDA approval",
+    endpoint_stage_or_status: "FDA Approved (2017)",
+    endpoint_summary: "FDA approval of voretigene neparvovec-rzyl for patients with confirmed biallelic RPE65 mutation-associated retinal dystrophy.",
+    disease_or_condition: "Leber congenital amaurosis type 2 (RPE65 mutation)",
+    intervention_or_asset: "Voretigene neparvovec (AAV2-RPE65)",
+    lineage_summary: "Traces backward through RPE65 biology, inherited retinal degeneration, AAV vector development, animal models, clinical translation, and subretinal delivery.",
+    status: "published",
+    tags: ["RPE65", "AAV", "inherited retinal disease", "gene therapy", "retinal biology"],
   },
   {
     slug: "rna-targeted-therapy-angelman-syndrome",
-    title: "RNA-targeted therapy for Angelman syndrome",
-    subtitle: "How UBE3A biology and antisense oligonucleotides led to a Phase 3 rare-disease trial (REVEAL / NCT06914609)",
-    phase: "Phase 3",
-    status: "draft" as const,
-    note: "Part of the broader RNA medicine for rare genetic disease platform lineage.",
-  },
-];
-
-const upcomingCases = [
-  {
-    title: "GLP-1 therapies and metabolic disease",
-    advance: "GLP-1 medicines for diabetes and obesity",
-    lineage: "Gut hormone biology, incretin signaling, peptide pharmacology, metabolic physiology",
-    lesson: "How basic hormone biology became large-scale metabolic medicine",
+    title: "ION582 for Angelman syndrome",
+    endpoint_type: "Clinical trial",
+    endpoint_stage_or_status: "Phase 3",
+    endpoint_summary: "REVEAL trial (NCT06914609) testing whether ASO-mediated UBE3A unsilencing improves developmental outcomes in children with Angelman syndrome.",
+    disease_or_condition: "Angelman syndrome",
+    intervention_or_asset: "ION582 (obudanersen), antisense oligonucleotide",
+    lineage_summary: "Traces backward through UBE3A imprinting, antisense transcript biology, ASO chemistry, intrathecal CNS delivery, and rare-disease trial design.",
+    status: "published",
+    tags: ["UBE3A", "antisense oligonucleotide", "genomic imprinting", "Angelman syndrome", "CNS delivery"],
   },
   {
-    title: "Cancer immunotherapy / checkpoint inhibitors",
-    advance: "Immune checkpoint blockade for cancer",
-    lineage: "T-cell biology, immune tolerance, tumor immune evasion, monoclonal antibody engineering",
-    lesson: "How basic immunology changed cancer treatment",
+    slug: "fibrosis-signaling-idiopathic-pulmonary-fibrosis",
+    title: "BMS-986278 for idiopathic pulmonary fibrosis",
+    endpoint_type: "Clinical trial",
+    endpoint_stage_or_status: "Phase 3",
+    endpoint_summary: "Phase 3 trial (NCT06003426) testing whether selective LPA1 receptor blockade slows FVC decline in IPF patients.",
+    disease_or_condition: "Idiopathic pulmonary fibrosis",
+    intervention_or_asset: "BMS-986278, oral LPA1 receptor antagonist",
+    lineage_summary: "Traces backward through fibrosis pathology, fibroblast biology, lysophosphatidic acid signaling, LPA1 receptor pharmacology, and antifibrotic drug development.",
+    status: "published",
+    tags: ["LPA1", "pulmonary fibrosis", "fibroblast", "lipid signaling", "antifibrotic"],
   },
-];
-
-const platformLineages = [
   {
-    title: "RNA medicine for rare genetic disease",
-    description:
-      "RNA-targeted therapies — including antisense oligonucleotides, siRNA, exon skipping, and splicing modulators — represent a platform with multiple trial-anchored lineages. The Angelman syndrome lineage above is the first published from this platform. Additional RNA medicine lineages may follow.",
+    slug: "semaglutide-cardiovascular-risk-obesity",
+    title: "Semaglutide for cardiovascular risk reduction in obesity (Wegovy / SELECT)",
+    endpoint_type: "FDA approval",
+    endpoint_stage_or_status: "FDA Approved (2024)",
+    endpoint_summary: "FDA expanded approval of semaglutide to reduce the risk of major adverse cardiovascular events in adults with established cardiovascular disease and obesity or overweight, based on the SELECT trial.",
+    disease_or_condition: "Cardiovascular disease in adults with obesity or overweight",
+    intervention_or_asset: "Semaglutide 2.4 mg (Wegovy), GLP-1 receptor agonist",
+    lineage_summary: "Traces backward through GLP-1 discovery, incretin biology, peptide pharmacology, cardiovascular-metabolic physiology, and the SELECT cardiovascular outcomes trial.",
+    status: "under_investigation",
+    tags: ["GLP-1", "semaglutide", "cardiovascular", "obesity", "incretin", "SELECT trial"],
+  },
+  {
+    slug: "pembrolizumab-msi-h-dmmr-solid-tumors",
+    title: "Pembrolizumab for MSI-H/dMMR solid tumors",
+    endpoint_type: "FDA approval",
+    endpoint_stage_or_status: "FDA tissue-agnostic approval",
+    endpoint_summary: "FDA approval of pembrolizumab for unresectable or metastatic MSI-H/dMMR solid tumors after prior treatment, a landmark tissue-agnostic cancer approval based on a shared molecular feature rather than tumor site.",
+    disease_or_condition: "MSI-H/dMMR solid tumors (tissue-agnostic)",
+    intervention_or_asset: "Pembrolizumab (anti-PD-1 monoclonal antibody)",
+    lineage_summary: "Traces backward through PD-1 biology, T-cell regulation, mismatch repair deficiency, microsatellite instability, tumor neoantigens, basket trials, and tissue-agnostic regulatory logic.",
+    status: "under_investigation",
+    tags: ["pembrolizumab", "PD-1", "MSI-H", "dMMR", "tissue-agnostic approval", "immunotherapy"],
   },
 ];
 
 export default function CasesPage() {
+  const published = lineages.filter((l) => l.status === "published");
+  const investigating = lineages.filter((l) => l.status === "under_investigation");
+
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
       <header className="border-b border-stone-200 bg-white">
@@ -75,46 +128,54 @@ export default function CasesPage() {
             Lineage library
           </p>
           <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Scientific lineages behind disease breakthroughs
+            Lineages from clinical milestones
           </h1>
           <p className="mt-6 text-base leading-8 text-stone-700">
-            Each history starts with a current clinical development and traces backward through the full scientific lineage that made it possible — the discoveries, tools, models, failures, and decisions across decades of research.
+            Each lineage starts from a verified clinical trial, FDA approval, or
+            regulatory milestone, then traces backward through the discoveries,
+            tools, failures, and branch points that made it possible.
           </p>
         </div>
       </section>
 
       <section className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10 lg:py-20">
-          <h2 className="text-xl font-semibold tracking-tight">
-            Published lineages
-          </h2>
-          <div className="mt-6 space-y-4">
-            {publishedCases.map((c) => (
+          <div className="space-y-5">
+            {published.map((l) => (
               <Link
-                key={c.slug}
-                href={`/case/${c.slug}`}
-                className="block rounded-2xl border border-stone-200 bg-white px-6 py-5 transition hover:border-stone-400 hover:shadow-sm"
+                key={l.slug}
+                href={`/case/${l.slug}`}
+                className="block rounded-2xl border border-stone-200 bg-white px-6 py-6 transition hover:border-stone-400 hover:shadow-sm"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2.5">
-                      <p className="text-base font-semibold text-stone-900">{c.title}</p>
-                      <span className="shrink-0 rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
-                        {c.phase}
-                      </span>
-                    </div>
-                    <p className="mt-1.5 text-sm leading-7 text-stone-600">{c.subtitle}</p>
-                    {c.note && (
-                      <p className="mt-1.5 text-xs leading-6 text-stone-500 italic">{c.note}</p>
-                    )}
-                  </div>
-                  <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                    c.status === "published"
-                      ? "bg-emerald-50 text-emerald-700"
-                      : "bg-amber-50 text-amber-700"
-                  }`}>
-                    {c.status === "published" ? "Live" : "Draft"}
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
+                    {l.endpoint_stage_or_status}
                   </span>
+                  <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
+                    Live
+                  </span>
+                </div>
+                <p className="mt-2.5 text-base font-semibold text-stone-900">
+                  {l.title}
+                </p>
+                <p className="mt-1 text-sm text-stone-600">
+                  {l.intervention_or_asset} · {l.disease_or_condition}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-stone-700">
+                  {l.endpoint_summary}
+                </p>
+                <p className="mt-1.5 text-sm leading-7 text-stone-500 italic">
+                  {l.lineage_summary}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {l.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-stone-200 px-2 py-0.5 text-xs text-stone-500"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </Link>
             ))}
@@ -122,81 +183,67 @@ export default function CasesPage() {
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10 lg:py-20">
-          <h2 className="text-xl font-semibold tracking-tight">
-            Lineages in development
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-stone-600">
-            These lineages are under active research and will be published as investigations are completed.
-          </p>
-          <div className="mt-6 space-y-4">
-            {upcomingCases.map((c) => (
-              <div
-                key={c.title}
-                className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-6 py-5"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="min-w-0 flex-1">
-                    <p className="text-base font-medium text-stone-700">{c.title}</p>
-                    <p className="mt-1.5 text-sm leading-6 text-stone-600">
-                      <span className="font-medium text-stone-700">Medical advance:</span> {c.advance}
-                    </p>
-                    <p className="mt-1 text-sm leading-6 text-stone-500">
-                      <span className="font-medium text-stone-600">Lineage:</span> {c.lineage}
-                    </p>
-                    <p className="mt-1 text-sm leading-6 text-stone-500 italic">
-                      {c.lesson}
-                    </p>
+      {investigating.length > 0 && (
+        <section className="bg-white">
+          <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10 lg:py-20">
+            <h2 className="text-xl font-semibold tracking-tight">
+              Under investigation
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-stone-600">
+              Anchored to specific endpoints. Published when complete.
+            </p>
+            <div className="mt-6 space-y-5">
+              {investigating.map((l) => (
+                <Link
+                  key={l.title}
+                  href={l.slug ? `/case/${l.slug}` : "#"}
+                  className="block rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-6 py-6 transition hover:border-stone-400"
+                >
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
+                      {l.endpoint_stage_or_status}
+                    </span>
+                    <span className="rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                      Draft
+                    </span>
                   </div>
-                  <span className="shrink-0 rounded-full border border-stone-300 px-2.5 py-0.5 text-xs font-medium text-stone-500">
-                    In development
-                  </span>
-                </div>
-              </div>
-            ))}
+                  <p className="mt-2.5 text-base font-medium text-stone-700">
+                    {l.title}
+                  </p>
+                  <p className="mt-1 text-sm text-stone-600">
+                    {l.intervention_or_asset} · {l.disease_or_condition}
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-stone-600">
+                    {l.endpoint_summary}
+                  </p>
+                  <p className="mt-1.5 text-sm leading-7 text-stone-500 italic">
+                    {l.lineage_summary}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {l.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-stone-200 px-2 py-0.5 text-xs text-stone-500"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="border-t border-stone-200 bg-stone-50">
-        <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10 lg:py-20">
-          <h2 className="text-xl font-semibold tracking-tight">
-            Platform lineages
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-stone-600">
-            Some scientific platforms span multiple trial-anchored lineages. These are tracked as broader platform lineages, with individual histories published separately.
-          </p>
-          <div className="mt-6 space-y-4">
-            {platformLineages.map((p) => (
-              <div
-                key={p.title}
-                className="rounded-2xl border border-stone-200 bg-white px-6 py-5"
-              >
-                <p className="text-base font-medium text-stone-700">{p.title}</p>
-                <p className="mt-2 text-sm leading-7 text-stone-600">
-                  {p.description}
-                </p>
-                <span className="mt-3 inline-block rounded-full border border-stone-300 px-2.5 py-0.5 text-xs font-medium text-stone-500">
-                  Platform lineage in development
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="border-t border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-4xl px-6 py-12 lg:px-10">
           <div className="rounded-2xl border border-stone-200 bg-white px-6 py-6 text-center">
             <p className="text-sm text-stone-700">
-              Want to suggest a disease area or scientific history for investigation?
-            </p>
-            <p className="mt-2 text-sm text-stone-500">
-              TrialLineage welcomes suggestions from patients, researchers, and the public.
+              Want to suggest a trial or milestone for investigation?
             </p>
             <p className="mt-3 text-sm font-medium text-stone-900">
-              cases@triallineage.org
+              lineages@triallineage.org
             </p>
           </div>
         </div>

@@ -18,7 +18,7 @@ export default function DaraxonrasibCasePage() {
       <section className="border-b border-stone-200 bg-white">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10 lg:py-20">
           <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-            TrialLineage Case
+            TrialLineage Lineage
           </p>
 
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -71,7 +71,7 @@ export default function DaraxonrasibCasePage() {
               In plain language
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              What is this case about?
+              The drug, the disease, and the chain of science behind both
             </h2>
             <p className="mt-5 text-base leading-8 text-stone-700">
               Daraxonrasib is a drug being tested in clinical trials for
@@ -567,17 +567,17 @@ export default function DaraxonrasibCasePage() {
         <div className="mx-auto grid max-w-6xl gap-8 px-6 py-16 lg:grid-cols-2 lg:px-10">
           <div className="rounded-[1.75rem] border border-stone-200 bg-white p-7 shadow-sm">
             <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-              Why this case matters
+              Why this lineage matters
             </p>
             <p className="mt-4 leading-8 text-stone-700">
               Daraxonrasib is important not just because it represents a new
               therapeutic effort in pancreatic cancer, but because it stands on
               decades of inquiry into how cancer genes work, how KRAS signals,
               why pancreatic tumors depend so heavily on KRAS-related biology,
-              and how chemistry gradually found ways to intervene. In public
-              language, this is not just a story about one drug. It is a story
-              about how many layers of science had to accumulate before a
-              treatment strategy could become plausible in humans.
+              and how chemistry gradually found ways to intervene. This is not
+              just a story about one drug. It is a story about how many layers
+              of science had to accumulate before a treatment strategy could
+              become plausible in humans.
             </p>
           </div>
 
@@ -587,7 +587,7 @@ export default function DaraxonrasibCasePage() {
                 Why earlier layers matter
               </p>
               <p className="mt-4 leading-8 text-stone-700">
-                This case shows how human disease breakthroughs often depend on
+                This lineage shows how human disease breakthroughs often depend on
                 many layers of scientific work that do not look directly
                 therapeutic at the time they are performed. The public usually
                 sees the late-stage milestone. TrialLineage makes
@@ -628,7 +628,7 @@ export default function DaraxonrasibCasePage() {
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
               <h3 className="text-xl font-semibold">1. Cancer had to become molecular</h3>
               <p className="mt-3 leading-8 text-stone-700">
-                One of the deepest roots of this case is the shift from thinking
+                One of the deepest roots of this lineage is the shift from thinking
                 of cancer as vague uncontrolled growth to understanding it as a
                 disease that can be driven by altered genes and signaling
                 pathways. That change created the conceptual framework for
@@ -699,13 +699,12 @@ export default function DaraxonrasibCasePage() {
             Related concept pages
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-            Offshoot explanations this case connects to
+            Connected scientific fields
           </h2>
 
           <p className="mt-4 max-w-3xl text-base leading-8 text-stone-700">
             Each concept below represents a connected background field that
-            helped make the daraxonrasib trial possible. Live pages function as
-            standalone explainers or as companions to this case.
+            helped make the daraxonrasib trial possible.
           </p>
 
           <div className="mt-4">
@@ -754,14 +753,13 @@ export default function DaraxonrasibCasePage() {
               About this page
             </p>
             <p className="mt-4 max-w-3xl leading-8 text-stone-700">
-              This is a TrialLineage case page. It traces a human-disease trial
+              This is a TrialLineage page. It traces a human-disease trial
               backward through the scientific lineage that made it possible,
               presented in four layers: a plain-language summary, a visual
               reverse-lineage map showing main paths and side branches, a
               discovery timeline of milestones, branch points, detours, and
               convergence events, and a deeper explainer of the scientific
-              history. The format makes the discovery process behind
-              phase 1&ndash;3 trials visible and understandable.
+              history.
             </p>
           </div>
         </div>

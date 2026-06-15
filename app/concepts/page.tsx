@@ -133,6 +133,54 @@ const concepts: { label: string; description: string; href?: string }[] = [
       "Strategies for getting therapeutic molecules past the blood-brain barrier and into neural tissue — a critical enabling step for neurological gene therapies.",
     href: "/concept/cns-drug-delivery",
   },
+  {
+    label: "Idiopathic pulmonary fibrosis",
+    description:
+      "A progressive lung disease characterized by irreversible scarring — the most common fatal fibrotic lung condition and the target of next-generation antifibrotic therapies.",
+    href: "/concept/idiopathic-pulmonary-fibrosis",
+  },
+  {
+    label: "Fibrosis",
+    description:
+      "The pathological process of excessive scar tissue formation — a failure of normal wound healing that impairs organ function across many diseases.",
+    href: "/concept/fibrosis",
+  },
+  {
+    label: "Fibroblasts",
+    description:
+      "The connective tissue cells that produce collagen and structural matrix. When persistently activated, they are the primary effector cells driving fibrotic diseases.",
+    href: "/concept/fibroblasts",
+  },
+  {
+    label: "Extracellular matrix",
+    description:
+      "The network of structural proteins surrounding cells — dynamically remodeled in health, excessively deposited in fibrotic disease.",
+    href: "/concept/extracellular-matrix",
+  },
+  {
+    label: "Lysophosphatidic acid signaling",
+    description:
+      "A bioactive lipid signaling system that promotes fibroblast activation and survival — a profibrotic pathway now targeted by investigational antifibrotic drugs.",
+    href: "/concept/lysophosphatidic-acid-signaling",
+  },
+  {
+    label: "LPA1 receptor",
+    description:
+      "A G protein-coupled receptor that mediates profibrotic effects of LPA in the lung — the molecular target of BMS-986278.",
+    href: "/concept/lpa1-receptor",
+  },
+  {
+    label: "Antifibrotic therapy",
+    description:
+      "Drugs designed to slow or halt pathological tissue scarring, now a validated therapeutic approach in pulmonary fibrosis.",
+    href: "/concept/antifibrotic-therapy",
+  },
+  {
+    label: "Forced vital capacity",
+    description:
+      "A lung function measurement used as the primary endpoint in IPF clinical trials — the standard metric for assessing disease progression.",
+    href: "/concept/forced-vital-capacity",
+  },
 ];
 
 export default function ConceptsIndexPage() {

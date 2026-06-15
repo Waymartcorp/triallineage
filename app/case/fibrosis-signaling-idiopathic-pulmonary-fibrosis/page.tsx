@@ -1,15 +1,16 @@
 import Link from "next/link";
 
-export default function AngelmanRnaCasePage() {
+export default function IpfFibrosisCasePage() {
   const conceptLinks = [
-    { label: "RNA biology", href: "/concept/rna-biology" },
-    { label: "Gene expression", href: "/concept/gene-expression" },
-    { label: "Antisense oligonucleotides", href: "/concept/antisense-oligonucleotides" },
-    { label: "Angelman syndrome", href: "/concept/angelman-syndrome" },
-    { label: "UBE3A", href: "/concept/ube3a" },
-    { label: "Rare genetic disease", href: "/concept/rare-genetic-disease" },
-    { label: "CNS drug delivery", href: "/concept/cns-drug-delivery" },
-    { label: "Rare disease trials", href: "/concept/rare-disease-trials" },
+    { label: "Idiopathic pulmonary fibrosis", href: "/concept/idiopathic-pulmonary-fibrosis" },
+    { label: "Fibrosis", href: "/concept/fibrosis" },
+    { label: "Fibroblasts", href: "/concept/fibroblasts" },
+    { label: "Extracellular matrix", href: "/concept/extracellular-matrix" },
+    { label: "Lysophosphatidic acid signaling", href: "/concept/lysophosphatidic-acid-signaling" },
+    { label: "LPA1 receptor", href: "/concept/lpa1-receptor" },
+    { label: "Antifibrotic therapy", href: "/concept/antifibrotic-therapy" },
+    { label: "Forced vital capacity", href: "/concept/forced-vital-capacity" },
+    { label: "Clinical trial design", href: "/concept/clinical-trial-design" },
     { label: "Translational medicine", href: "/concept/translational-medicine" },
   ];
 
@@ -28,15 +29,15 @@ export default function AngelmanRnaCasePage() {
           </div>
 
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-            RNA-targeted therapy for Angelman syndrome
+            Targeting fibrosis signaling in idiopathic pulmonary fibrosis
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-stone-700">
-            This lineage starts with a Phase 3 clinical trial of an antisense
-            oligonucleotide for Angelman syndrome, then traces backward through
-            the chain of science that made it possible: genomic imprinting,
-            UBE3A biology, antisense chemistry, CNS delivery, and rare-disease
-            trial design.
+            This lineage starts with a Phase 3 trial of an oral drug targeting
+            the LPA1 receptor in IPF, then traces backward through the chain of
+            science that made it possible: fibrosis pathology, fibroblast
+            biology, lipid signaling, receptor pharmacology, and antifibrotic
+            drug development.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -81,24 +82,26 @@ export default function AngelmanRnaCasePage() {
               The drug, the disease, and the chain of science behind both
             </h2>
             <p className="mt-5 text-base leading-8 text-stone-700">
-              Angelman syndrome is a rare genetic condition that causes severe
-              developmental delays, movement and balance problems, seizures, and
-              limited speech. It is caused by loss of function of one gene —
-              UBE3A — in the brain. The paternal copy of UBE3A is intact but
-              silenced by a natural antisense RNA.
+              Idiopathic pulmonary fibrosis (IPF) is a progressive lung disease
+              in which scar tissue gradually replaces normal lung tissue, making
+              it harder and harder to breathe. Two existing drugs can slow it
+              down. Neither stops it. Median survival is 3–5 years from
+              diagnosis.
             </p>
             <p className="mt-4 text-base leading-8 text-stone-700">
-              ION582 (obudanersen) is an investigational antisense
-              oligonucleotide designed to destroy the silencing RNA, potentially
-              reactivating the intact paternal copy. If it works, neurons would
-              regain a source of UBE3A protein.
+              BMS-986278 is an investigational oral drug designed to block the
+              LPA1 receptor — a molecular switch that activates fibroblasts,
+              the cells responsible for producing scar tissue. If blocking LPA1
+              reduces fibroblast activation, the progressive scarring that
+              destroys lung function may slow.
             </p>
             <p className="mt-4 text-base leading-8 text-stone-700">
-              But this trial did not appear out of nowhere. It exists because of
-              a long chain of earlier scientific work — from the discovery of
-              genomic imprinting to the identification of UBE3A, to decades of
-              antisense chemistry, to the proof that intrathecal ASOs can reach
-              the brain. This page traces that chain.
+              But this trial did not appear from nowhere. It exists because of
+              decades of work: pathologists who identified the disease pattern,
+              cell biologists who understood fibroblasts, biochemists who
+              discovered LPA as a signaling molecule, molecular biologists who
+              cloned LPA receptors, and medicinal chemists who designed a drug
+              to block one. This page traces that chain.
             </p>
           </div>
 
@@ -109,29 +112,29 @@ export default function AngelmanRnaCasePage() {
             <ul className="mt-5 space-y-4 text-sm leading-7 text-stone-700">
               <li>
                 <span className="font-medium text-stone-900">The drug:</span>{" "}
-                ION582 (obudanersen), an antisense oligonucleotide delivered
-                into the spinal fluid
+                BMS-986278, an oral LPA1 receptor antagonist
               </li>
               <li>
                 <span className="font-medium text-stone-900">The disease:</span>{" "}
-                Angelman syndrome — rare, severe neurodevelopmental disorder
-                affecting ~1 in 15,000 people
+                idiopathic pulmonary fibrosis — progressive, irreversible lung
+                scarring with limited treatment options
               </li>
               <li>
                 <span className="font-medium text-stone-900">The target:</span>{" "}
-                UBE3A-ATS, the antisense transcript that silences the paternal
-                UBE3A gene in neurons
+                LPA1, a receptor that drives fibroblast activation and collagen
+                production in the lung
               </li>
               <li>
                 <span className="font-medium text-stone-900">The trial:</span>{" "}
-                REVEAL (NCT06914609), Phase 3, testing whether UBE3A unsilencing
-                improves developmental outcomes
+                NCT06003426, Phase 3, measuring whether LPA1 blockade slows the
+                rate of lung function decline (FVC)
               </li>
               <li>
                 <span className="font-medium text-stone-900">Why it took decades:</span>{" "}
-                the silencing mechanism had to be discovered, ASO chemistry had
-                to become practical medicine, and intrathecal CNS delivery had to
-                be proven feasible
+                IPF was first treated as inflammation (wrong). LPA had to be
+                recognized as a signaling molecule. LPA1 had to be cloned.
+                Selective chemistry had to be designed. An endpoint had to be
+                validated.
               </li>
             </ul>
           </div>
@@ -149,18 +152,18 @@ export default function AngelmanRnaCasePage() {
           </h2>
 
           <p className="mt-5 max-w-3xl text-base leading-8 text-stone-700">
-            None of these steps alone produced a therapy. Each one built on the
+            None of these steps alone produced a drug. Each one built on the
             last, and the full chain took decades to assemble.
           </p>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {[
-              { num: "1", title: "Name the syndrome", text: "A pediatrician described a pattern of symptoms. Without clinical recognition, there was no defined disease to investigate." },
-              { num: "2", title: "Find the gene", text: "Human geneticists identified UBE3A as the causative gene and discovered that neurons silence the paternal copy through imprinting." },
-              { num: "3", title: "Discover the silencing mechanism", text: "Researchers found that UBE3A-ATS — a long antisense RNA — actively suppresses the paternal allele. A targetable molecule." },
-              { num: "4", title: "Invent the chemistry", text: "Decades of work on antisense oligonucleotide design produced stable, potent molecules that could degrade specific RNA targets." },
-              { num: "5", title: "Prove CNS delivery", text: "Nusinersen (Spinraza) for SMA proved that intrathecal ASOs could reach the brain and produce clinical benefit in humans." },
-              { num: "6", title: "Test in Angelman", text: "ION582 entered clinical trials. Earlier phases assessed safety. The REVEAL Phase 3 trial now tests whether it works." },
+              { num: "1", title: "Name the disease", text: "Pathologists described a distinct pattern of progressive lung scarring and gave it a name: usual interstitial pneumonia / IPF." },
+              { num: "2", title: "Understand fibroblasts", text: "Cell biologists identified fibroblasts as the primary effector cells of tissue scarring — not inflammation, not dead tissue." },
+              { num: "3", title: "Abandon the wrong hypothesis", text: "Anti-inflammatory treatments failed. The field recognized IPF as aberrant wound healing, not chronic inflammation." },
+              { num: "4", title: "Discover LPA signaling", text: "Biochemists found that lysophosphatidic acid is a potent bioactive lipid that drives fibroblast activation through specific receptors." },
+              { num: "5", title: "Design a selective drug", text: "Medicinal chemists built an orally available small molecule that selectively blocks LPA1 without disrupting other LPA receptors." },
+              { num: "6", title: "Validate the endpoint", text: "Pirfenidone and nintedanib trials established FVC decline rate as a regulatory-accepted measure of IPF progression." },
             ].map((step) => (
               <div
                 key={step.num}
@@ -194,8 +197,8 @@ export default function AngelmanRnaCasePage() {
           <p className="mt-4 max-w-3xl text-base leading-8 text-stone-300">
             Read from top to bottom to see the chain of scientific fields that
             built on each other. Side branches show where the path diverged,
-            where enabling methods were developed, and where prior work
-            de-risked key steps.
+            where earlier approaches failed, and where enabling work de-risked
+            key steps.
           </p>
 
           <div className="mt-12 grid gap-0 lg:grid-cols-[1fr_auto_1fr]">
@@ -204,30 +207,13 @@ export default function AngelmanRnaCasePage() {
               <div className="flex items-start justify-end gap-4">
                 <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-right" style={{ maxWidth: "16rem" }}>
                   <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
-                    Enabling method
+                    Failed approach
                   </p>
                   <p className="mt-1 text-sm font-medium text-stone-200">
-                    Nusinersen / Spinraza (SMA)
+                    Anti-inflammatory treatment
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Proved intrathecal ASOs could reach the CNS and produce clinical benefit in a neurodevelopmental disease.
-                  </p>
-                </div>
-                <div className="mt-5 h-px w-6 bg-stone-600" />
-              </div>
-
-              <div className="h-16" />
-
-              <div className="flex items-start justify-end gap-4">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-right" style={{ maxWidth: "16rem" }}>
-                  <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
-                    Branch point
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-stone-200">
-                    Prader-Willi vs. Angelman
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Same chromosomal region, different parent of origin. Maternal deletion → Angelman. Paternal → Prader-Willi. This proved imprinting.
+                    Corticosteroids and immunosuppressants were tried for decades. They failed — IPF is not primarily an inflammatory disease.
                   </p>
                 </div>
                 <div className="mt-5 h-px w-6 bg-stone-600" />
@@ -241,10 +227,27 @@ export default function AngelmanRnaCasePage() {
                     Enabling method
                   </p>
                   <p className="mt-1 text-sm font-medium text-stone-200">
-                    Modified nucleotide chemistry
+                    LPA1 knockout mice
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Decades of chemical refinement made ASOs stable, potent, and manufacturable — transforming a lab curiosity into a drug platform.
+                    Mice lacking LPA1 showed significantly reduced lung fibrosis after injury — confirming the receptor as a druggable target.
+                  </p>
+                </div>
+                <div className="mt-5 h-px w-6 bg-stone-600" />
+              </div>
+
+              <div className="h-16" />
+
+              <div className="flex items-start justify-end gap-4">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-right" style={{ maxWidth: "16rem" }}>
+                  <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
+                    Enabling method
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-stone-200">
+                    FVC as a regulatory endpoint
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-stone-400">
+                    Pirfenidone and nintedanib trials validated FVC decline rate as an accepted primary endpoint for IPF drug approval.
                   </p>
                 </div>
                 <div className="mt-5 h-px w-6 bg-stone-600" />
@@ -254,14 +257,15 @@ export default function AngelmanRnaCasePage() {
             {/* ── Central spine ── */}
             <div className="flex flex-col items-center">
               {[
-                { label: "Clinical trial", title: "REVEAL Phase 3: ION582 in Angelman", accent: true },
-                { label: "Clinical development", title: "Earlier-phase safety studies" },
-                { label: "Preclinical proof", title: "ASO unsilencing in mouse models" },
-                { label: "Therapeutic hypothesis", title: "Destroy UBE3A-ATS → reactivate paternal UBE3A" },
-                { label: "Mechanism discovery", title: "UBE3A-ATS identified as silencing agent" },
-                { label: "Disease genetics", title: "UBE3A identified as causative gene" },
-                { label: "Chromosomal mapping", title: "15q11-q13 deletion and genomic imprinting" },
-                { label: "Clinical recognition", title: "Angelman syndrome described (1965)" },
+                { label: "Clinical trial", title: "Phase 3: BMS-986278 in IPF", accent: true },
+                { label: "Phase 2 evidence", title: "Tolerability and potential efficacy signal" },
+                { label: "Drug design", title: "Oral selective LPA1 antagonist" },
+                { label: "Target validation", title: "LPA1 linked to fibrosis in lung" },
+                { label: "Receptor biology", title: "LPA receptors cloned and characterized" },
+                { label: "Lipid signaling", title: "LPA identified as bioactive signaling molecule" },
+                { label: "Conceptual shift", title: "IPF redefined as aberrant wound healing" },
+                { label: "Cell biology", title: "Fibroblasts and extracellular matrix" },
+                { label: "Pathology", title: "Lung fibrosis recognized as distinct disease" },
               ].map((node, i, arr) => (
                 <div key={node.title} className="flex flex-col items-center">
                   <div
@@ -301,30 +305,13 @@ export default function AngelmanRnaCasePage() {
                 <div className="mt-5 h-px w-6 bg-stone-600" />
                 <div className="rounded-xl border border-white/10 bg-white/5 p-4" style={{ maxWidth: "16rem" }}>
                   <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
-                    Open question
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-stone-200">
-                    Timing of intervention
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Can UBE3A restoration reverse established neurodevelopmental deficits, or must it happen early?
-                  </p>
-                </div>
-              </div>
-
-              <div className="h-12" />
-
-              <div className="flex items-start gap-4">
-                <div className="mt-5 h-px w-6 bg-stone-600" />
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4" style={{ maxWidth: "16rem" }}>
-                  <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
                     Branch point
                   </p>
                   <p className="mt-1 text-sm font-medium text-stone-200">
-                    ASO vs. gene therapy vs. gene editing
+                    Multiple antifibrotic pathways
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Multiple therapeutic modalities are being explored for Angelman. ASO unsilencing is furthest advanced.
+                    TGF-beta, PDGF, Wnt, and other pathways also drive fibrosis. LPA1 is one of several active drug targets.
                   </p>
                 </div>
               </div>
@@ -338,10 +325,27 @@ export default function AngelmanRnaCasePage() {
                     Enabling method
                   </p>
                   <p className="mt-1 text-sm font-medium text-stone-200">
-                    Angelman mouse models
+                    Pirfenidone and nintedanib (2014)
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Genetically engineered mice with UBE3A deletions provided the system for preclinical proof of concept.
+                    First-generation antifibrotics proved the concept and built the regulatory/clinical framework BMS-986278 now uses.
+                  </p>
+                </div>
+              </div>
+
+              <div className="h-12" />
+
+              <div className="flex items-start gap-4">
+                <div className="mt-5 h-px w-6 bg-stone-600" />
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4" style={{ maxWidth: "16rem" }}>
+                  <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
+                    Open question
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-stone-200">
+                    Single-pathway sufficiency
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-stone-400">
+                    Is blocking LPA1 alone enough? Or does fibrosis require combination approaches targeting redundant pathways?
                   </p>
                 </div>
               </div>
@@ -351,12 +355,12 @@ export default function AngelmanRnaCasePage() {
           {/* Mobile side-branch summary */}
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:hidden">
             {[
-              { type: "Enabling method", title: "Nusinersen / Spinraza (SMA)", text: "Proved intrathecal ASOs could reach the CNS and produce clinical benefit." },
-              { type: "Branch point", title: "Prader-Willi vs. Angelman", text: "Same chromosomal region, different parent. This proved imprinting." },
-              { type: "Enabling method", title: "Modified nucleotide chemistry", text: "Decades of chemical refinement made ASOs practical drugs." },
-              { type: "Open question", title: "Timing of intervention", text: "Can UBE3A restoration reverse established deficits?" },
-              { type: "Branch point", title: "ASO vs. gene therapy vs. gene editing", text: "Multiple modalities explored. ASO unsilencing is furthest advanced." },
-              { type: "Enabling method", title: "Angelman mouse models", text: "Genetically engineered mice provided preclinical proof of concept." },
+              { type: "Failed approach", title: "Anti-inflammatory treatment", text: "Corticosteroids failed. IPF is not primarily inflammatory." },
+              { type: "Enabling method", title: "LPA1 knockout mice", text: "Confirmed the receptor as a druggable target." },
+              { type: "Enabling method", title: "FVC as a regulatory endpoint", text: "Pirfenidone/nintedanib trials validated the primary endpoint." },
+              { type: "Branch point", title: "Multiple antifibrotic pathways", text: "LPA1 is one of several active drug targets." },
+              { type: "Enabling method", title: "Pirfenidone and nintedanib", text: "First-generation antifibrotics built the framework." },
+              { type: "Open question", title: "Single-pathway sufficiency", text: "Is blocking LPA1 alone enough?" },
             ].map((item) => (
               <div
                 key={item.title}
@@ -397,86 +401,79 @@ export default function AngelmanRnaCasePage() {
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "1950s\u20131960s",
-                title: "The central dogma and gene regulation",
-                text: "The discovery that genes encode proteins through RNA intermediates \u2014 and that RNA itself can regulate gene expression \u2014 provided the foundational biology that eventually made RNA-targeted therapy conceivable.",
+                era: "1930s\u20131960s",
+                title: "Lung fibrosis recognized as a distinct pathology",
+                text: "Pathologists described progressive lung scarring distinct from infection or cancer. By the 1960s, \u201Cusual interstitial pneumonia\u201D (UIP) was identified as the histological pattern underlying what would become IPF.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "1965",
-                title: "A pediatrician names a syndrome",
-                text: "Harry Angelman described three children with severe intellectual disability, absent speech, movement difficulties, seizures, and an unusual behavioral profile. Without clinical recognition, there would have been no defined patient population to investigate.",
+                era: "1970s\u20131980s",
+                title: "Fibroblasts and extracellular matrix become central",
+                text: "Cell biologists identified fibroblasts as the primary effector cells of tissue scarring. The concept of extracellular matrix as an active, remodeled structure changed how scientists understood fibrosis \u2014 it could be studied as a problem of cell behavior.",
               },
               {
-                type: "Milestone",
-                color: "bg-stone-900",
-                era: "1978",
-                title: "First antisense oligonucleotide experiment",
-                text: "Zamecnik and Stephenson demonstrated that a synthetic nucleotide strand complementary to an RNA sequence could block that RNA\u2019s function. This proof of principle opened an entire class of potential therapeutics, though decades of chemistry would be needed to make them practical drugs.",
-              },
-              {
-                type: "Milestone",
-                color: "bg-stone-900",
-                era: "Late 1980s",
-                title: "Chromosomal mapping and the discovery of imprinting",
-                text: "Cytogenetic studies identified deletions on chromosome 15q11-q13 in Angelman patients. Only maternal deletions caused the syndrome, while paternal deletions caused Prader-Willi. This introduced the concept of genomic imprinting \u2014 genes behaving differently depending on which parent they were inherited from.",
+                type: "Detour",
+                color: "bg-stone-400",
+                era: "1980s\u20131990s",
+                title: "Anti-inflammatory approaches fail",
+                text: "Patients received corticosteroids and immunosuppressants for decades. They were ineffective and sometimes harmful. This long failure eventually forced a conceptual shift \u2014 away from inflammation and toward aberrant wound healing.",
               },
               {
                 type: "Branch point",
                 color: "bg-stone-500",
-                era: "Late 1980s",
-                title: "Prader-Willi vs. Angelman: same region, different disease",
-                text: "The finding that maternal and paternal deletions of the same chromosomal region caused entirely different diseases proved that parent-of-origin mattered. This was one of the first demonstrations of genomic imprinting in human disease and narrowed the molecular search.",
+                era: "1990s",
+                title: "IPF redefined as aberrant wound healing",
+                text: "Researchers recognized that IPF is not chronic inflammation but disordered tissue repair \u2014 repetitive microscopic lung injury activating fibroblasts through wound-healing pathways that never resolve. This redirected the field toward profibrotic signaling.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "1997",
-                title: "UBE3A identified as the causative gene",
-                text: "Multiple research groups demonstrated that mutations in UBE3A alone were sufficient to cause Angelman syndrome, and that in neurons, only the maternal copy is active. This established the molecular target: restore UBE3A protein in neurons.",
+                era: "1990s",
+                title: "LPA identified as a bioactive signaling lipid",
+                text: "Biochemists discovered that lysophosphatidic acid is not merely a metabolic intermediate but a potent signaling molecule that activates cell proliferation, migration, and survival through specific G protein-coupled receptors.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "1990s\u20132000s",
-                title: "Making antisense chemistry work as medicine",
-                text: "Researchers developed modified nucleotide backbones that resisted degradation, improved binding affinity, reduced toxicity, and could be manufactured at scale. Much of this chemistry was pioneered at Ionis Pharmaceuticals. It transformed a laboratory curiosity into a viable drug platform.",
+                era: "1996\u20132001",
+                title: "LPA receptors cloned and characterized",
+                text: "Molecular biologists cloned LPA1, LPA2, and LPA3 and mapped their tissue distribution. LPA1 was found in fibroblasts and lung tissue. Each receptor had distinct effects, making selective targeting conceivable.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "2005\u20132012",
-                title: "Discovery of the silencing mechanism",
-                text: "Researchers identified UBE3A-ATS \u2014 a long non-coding antisense RNA originating from the SNURF-SNRPN locus \u2014 as the molecule that suppresses paternal UBE3A in neurons. The paternal gene was intact but actively silenced by a targetable RNA. A therapeutic hypothesis emerged: destroy the silencing RNA.",
+                era: "2002\u20132008",
+                title: "LPA and LPA1 linked to fibrosis in the lung",
+                text: "LPA levels were found elevated in IPF lungs. LPA1 signaling promoted fibroblast recruitment, proliferation, and collagen production. LPA1 knockout mice showed reduced fibrosis after lung injury. LPA1 became a druggable profibrotic target.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "2012\u20132015",
-                title: "Proof of concept in Angelman mouse models",
-                text: "ASOs targeting UBE3A-ATS partially restored paternal UBE3A protein expression in neurons and improved disease-related phenotypes in genetically engineered mice. First direct evidence that the therapeutic hypothesis could work in a living organism.",
+                era: "2010s",
+                title: "Small-molecule LPA1 antagonists designed",
+                text: "Medicinal chemists developed orally bioavailable molecules that selectively block LPA1. Drug design required balancing receptor selectivity, oral absorption, metabolic stability, and potency. BMS-986278 emerged from this work.",
               },
               {
                 type: "Convergence",
                 color: "bg-stone-700",
-                era: "2016",
-                title: "Intrathecal ASOs proven feasible in humans",
-                text: "Nusinersen (Spinraza) for spinal muscular atrophy proved that antisense oligonucleotides could be delivered into the spinal fluid, reach the CNS, and produce clinical benefit in a neurodevelopmental disease. This validated the delivery route ION582 would use.",
+                era: "2014",
+                title: "Pirfenidone and nintedanib establish the framework",
+                text: "These first-generation antifibrotics validated two things simultaneously: that antifibrotic drugs could slow IPF, and that FVC decline rate was an acceptable primary endpoint for regulatory approval. They built the trial framework BMS-986278 now uses.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "2020\u20132023",
-                title: "First human testing in Angelman syndrome",
-                text: "ION582 (obudanersen) entered clinical testing in children with Angelman syndrome. Earlier-phase studies assessed safety, tolerability, and biological activity following intrathecal administration.",
+                era: "2020\u20132022",
+                title: "Phase 2 clinical evidence",
+                text: "A Phase 2 trial of BMS-986278 provided initial evidence of tolerability and suggested a potential treatment effect on lung function decline. These results supported advancement to Phase 3.",
               },
               {
                 type: "Convergence",
                 color: "bg-stone-700",
-                era: "2024\u2013present",
-                title: "Phase 3: testing whether it works",
-                text: "The REVEAL trial (NCT06914609) evaluates whether ION582 produces clinically meaningful improvement in developmental outcomes. Six decades of accumulated knowledge \u2014 from the central dogma to imprinting to antisense chemistry to CNS delivery \u2014 converges into a single controlled experiment.",
+                era: "2023\u2013present",
+                title: "Phase 3: testing whether LPA1 antagonism slows IPF",
+                text: "The Phase 3 trial (NCT06003426) evaluates whether BMS-986278 produces clinically meaningful reduction in FVC decline. Decades of accumulated knowledge \u2014 from fibrosis pathology to lipid signaling to receptor pharmacology to endpoint validation \u2014 converges into a controlled experiment.",
               },
             ].map((entry, i, arr) => (
               <div key={entry.title} className="relative flex gap-6">
@@ -499,7 +496,9 @@ export default function AngelmanRnaCasePage() {
                           ? "bg-stone-900 text-white"
                           : entry.type === "Branch point"
                             ? "bg-stone-200 text-stone-700"
-                            : "bg-stone-700 text-white"
+                            : entry.type === "Detour"
+                              ? "bg-stone-100 text-stone-500"
+                              : "bg-stone-700 text-white"
                       }`}
                     >
                       {entry.type}
@@ -530,26 +529,25 @@ export default function AngelmanRnaCasePage() {
               Why this lineage matters
             </p>
             <p className="mt-4 leading-8 text-stone-700">
-              This lineage illustrates how understanding a gene-regulation
-              mechanism can lead to a therapeutic hypothesis in a rare genetic
-              disease. The logic is specific: the paternal UBE3A allele is
-              intact but silenced; the silencing mechanism is a readable
-              antisense transcript; ASO technology can target that transcript;
-              therefore ASO-mediated unsilencing is a rationally designed
-              intervention.
+              This lineage shows how pulmonary fibrosis can be approached not
+              as scar tissue already formed, but as a disease process shaped by
+              injury-repair signaling, fibroblast behavior, and molecular
+              pathways that may be therapeutically targeted. It required a major
+              conceptual shift: from treating IPF as inflammation (which failed)
+              to understanding it as aberrant wound healing.
             </p>
           </div>
 
           <div className="space-y-6">
             <div className="rounded-[1.75rem] border border-stone-200 bg-white p-7 shadow-sm">
               <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-                Platform technology made it possible
+                A wrong hypothesis had to fail first
               </p>
               <p className="mt-4 leading-8 text-stone-700">
-                ION582 exists because decades of prior work on antisense
-                chemistry, CNS delivery, and manufacturing created a mature
-                infrastructure. Nusinersen in SMA validated the intrathecal
-                approach and de-risked the delivery route.
+                Decades of anti-inflammatory treatment failed. That failure was
+                not wasted — it forced the field to rethink the disease
+                mechanism entirely. The current trial exists because the wrong
+                answer was pursued long enough to be disproven.
               </p>
             </div>
 
@@ -558,9 +556,8 @@ export default function AngelmanRnaCasePage() {
                 The question this trial answers
               </p>
               <p className="mt-4 leading-8 text-stone-700">
-                Whether a rational biological hypothesis — ASO-mediated
-                unsilencing of paternal UBE3A — translates into clinical
-                benefit for patients with Angelman syndrome. The scientific
+                Whether selective LPA1 receptor blockade translates into
+                meaningful slowing of lung function decline. The scientific
                 lineage is coherent; the clinical outcome is still unknown.
               </p>
             </div>
@@ -584,72 +581,67 @@ export default function AngelmanRnaCasePage() {
 
           <div className="mt-8 space-y-6">
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">1. Molecular biology had to understand RNA regulation</h3>
+              <h3 className="text-xl font-semibold">1. Fibrosis had to become a cell-biology problem</h3>
               <p className="mt-3 leading-8 text-stone-700">
-                Before anyone could propose targeting a specific RNA transcript
-                to treat a genetic disease, the field had to understand that
-                genes encode proteins through RNA intermediates and that RNA
-                can regulate gene expression. The central dogma — and its
-                elaborations including non-coding RNAs — provided the conceptual
-                framework.
+                Before IPF could be treated mechanistically, scientists had to
+                understand that fibrosis is driven by specific cells
+                (fibroblasts) producing specific molecules (extracellular matrix
+                proteins). The concept of fibrosis as active cellular behavior
+                — not just dead tissue — opened it to therapeutic targeting.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">2. A syndrome had to be named and a gene had to be found</h3>
+              <h3 className="text-xl font-semibold">2. The inflammation hypothesis had to fail</h3>
               <p className="mt-3 leading-8 text-stone-700">
-                Harry Angelman described the clinical pattern in 1965.
-                Cytogenetic studies in the 1980s mapped the cause to chromosome
-                15q11-q13. In 1997, UBE3A was identified as the causative
-                gene — subject to brain-specific maternal-only expression. This
-                gave the field a molecular target.
+                For decades, the default explanation was that lung scarring
+                resulted from chronic inflammation. Corticosteroids and
+                immunosuppressants were the standard. They did not work. This
+                long, costly failure eventually forced the field to ask
+                different questions about what drives fibroblast activation
+                in the absence of ongoing inflammation.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">3. The silencing mechanism had to be identified</h3>
+              <h3 className="text-xl font-semibold">3. A lipid had to be recognized as a signal</h3>
               <p className="mt-3 leading-8 text-stone-700">
-                The crucial discovery: paternal UBE3A in neurons is not deleted
-                or mutated — it is actively suppressed by a long non-coding
-                antisense RNA transcript (UBE3A-ATS). This meant the paternal
-                gene was intact and potentially reactivatable. A drug that
-                could destroy UBE3A-ATS might unsilence it. This was the
-                pivotal therapeutic hypothesis.
+                LPA was long considered a metabolic intermediate. The discovery
+                that it signals through specific cell-surface receptors to drive
+                proliferation, migration, and survival reframed it as a
+                potential disease mediator. Finding elevated LPA in fibrotic
+                lungs then connected it to IPF specifically.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">4. Antisense chemistry had to become practical medicine</h3>
+              <h3 className="text-xl font-semibold">4. A receptor had to be cloned and validated</h3>
               <p className="mt-3 leading-8 text-stone-700">
-                The original 1978 ASO experiment proved the principle. But
-                making ASOs into drugs required decades of chemical engineering:
-                modified backbones for stability, improved binding affinity,
-                reduced toxicity, scalable manufacturing. This work — much of
-                it at Ionis Pharmaceuticals — transformed a laboratory curiosity
-                into a drug platform capable of producing clinical candidates.
+                LPA signals through multiple receptors. Cloning LPA1 and showing
+                that it specifically mediates profibrotic effects — and that
+                LPA1 knockout mice are protected from lung fibrosis — provided
+                the target validation needed to justify drug development.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">5. CNS delivery had to be proven in humans</h3>
+              <h3 className="text-xl font-semibold">5. Chemistry had to produce a selective oral drug</h3>
               <p className="mt-3 leading-8 text-stone-700">
-                Even with the right chemistry and the right target, the drug
-                had to reach neurons inside the central nervous system. The
-                approval of nusinersen for SMA in 2016 proved that intrathecal
-                ASO delivery worked: the drug reached motor neurons, produced
-                clinical benefit, and was tolerable over chronic dosing. This
-                de-risked the delivery route for ION582.
+                Knowing the target is not enough. Medicinal chemists had to
+                design a molecule that selectively blocks LPA1 (not LPA2 or
+                LPA3), is orally bioavailable, metabolically stable, and potent
+                enough to produce a biological effect at tolerable doses.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">6. The full chain converges in REVEAL</h3>
+              <h3 className="text-xl font-semibold">6. The full chain converges in a Phase 3 trial</h3>
               <p className="mt-3 leading-8 text-stone-700">
-                The Phase 3 trial tests whether destroying UBE3A-ATS in
-                children with Angelman syndrome produces clinically meaningful
-                improvement. Every upstream discovery — from imprinting biology
-                to antisense chemistry to CNS delivery validation — had to
-                succeed before this experiment could be proposed.
+                The Phase 3 trial tests whether selective LPA1 blockade slows
+                the rate of lung function decline in IPF patients. Every upstream
+                step — from disease recognition to the failure of inflammation,
+                to LPA biology, to receptor pharmacology, to endpoint
+                validation — had to succeed before this experiment could exist.
               </p>
             </div>
           </div>
@@ -670,23 +662,24 @@ export default function AngelmanRnaCasePage() {
             <div className="rounded-2xl border border-stone-200 bg-white p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-emerald-700">Established</h3>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-700">
-                <li>Angelman syndrome is caused by loss of neuronal UBE3A expression</li>
-                <li>The paternal UBE3A allele is silenced in neurons by UBE3A-ATS</li>
-                <li>ASOs targeting UBE3A-ATS can restore paternal UBE3A expression in animal models</li>
-                <li>Intrathecal ASO delivery to the CNS is feasible (demonstrated with nusinersen)</li>
-                <li>ION582 has undergone earlier-phase clinical evaluation</li>
-                <li>A Phase 3 trial (REVEAL) is active</li>
+                <li>IPF is a progressive fibrotic lung disease with limited treatment options</li>
+                <li>LPA levels are elevated in fibrotic lungs</li>
+                <li>LPA1 signaling promotes fibroblast activation and collagen production</li>
+                <li>LPA1 knockout mice show reduced fibrosis after lung injury</li>
+                <li>BMS-986278 is a selective oral LPA1 receptor antagonist</li>
+                <li>Phase 2 data supported advancement to Phase 3</li>
+                <li>FVC decline rate is an accepted primary endpoint</li>
               </ul>
             </div>
             <div className="rounded-2xl border border-stone-200 bg-white p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-amber-700">Not yet known</h3>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-700">
-                <li>Whether ION582 produces clinically meaningful improvement in developmental outcomes</li>
-                <li>Whether restored UBE3A expression can reverse established neurodevelopmental deficits</li>
-                <li>The optimal timing of intervention (age at treatment initiation)</li>
-                <li>Long-term safety of chronic intrathecal ASO administration in children</li>
-                <li>Whether benefit varies by genotype (deletion vs. other mechanisms)</li>
-                <li>Whether partial UBE3A restoration translates to functional improvement</li>
+                <li>Whether BMS-986278 produces clinically meaningful slowing of FVC decline</li>
+                <li>Whether LPA1 antagonism alone is sufficient to alter IPF progression</li>
+                <li>How much of IPF fibrotic drive is LPA1-dependent vs. redundant pathways</li>
+                <li>Whether the drug provides benefit beyond existing antifibrotics</li>
+                <li>Long-term safety and tolerability</li>
+                <li>Whether combination with pirfenidone/nintedanib is more effective</li>
               </ul>
             </div>
           </div>
@@ -720,49 +713,27 @@ export default function AngelmanRnaCasePage() {
         </div>
       </section>
 
-      {/* ── Sources and confidence ── */}
+      {/* ── Sources ── */}
       <section className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10">
           <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-            Sources and confidence
+            Source
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-            Endpoint record
+            Trial record
           </h2>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-stone-700">
-            ClinicalTrials.gov — NCT06914609: REVEAL: A Phase 3 Study of ION582 in Angelman Syndrome.
+            ClinicalTrials.gov — NCT06003426: A Study of BMS-986278 in
+            Participants With Idiopathic Pulmonary Fibrosis.
           </p>
-
-          <div className="mt-6 rounded-xl border border-stone-200 bg-white p-5">
-            <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-              Confidence flag
-            </p>
-            <p className="mt-2 text-sm leading-7 text-stone-700">
-              <span className="font-medium text-emerald-700">High</span>{" "}
-              for endpoint facts (active Phase 3 trial record on
-              ClinicalTrials.gov).{" "}
-              <span className="font-medium text-emerald-700">High</span>{" "}
-              for reverse-lineage structure (UBE3A biology, imprinting
-              mechanism, ASO chemistry, and nusinersen precedent are
-              well-established in published literature).
-            </p>
-          </div>
-
-          <div className="mt-4 rounded-xl border border-stone-200 bg-white p-5">
-            <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-              Source links
-            </p>
-            <ul className="mt-2 space-y-1.5 text-sm leading-7 text-stone-700">
-              <li>ClinicalTrials.gov NCT06914609 — REVEAL Phase 3 trial record</li>
-              <li>Kishino et al., Nature Genetics 1997 — UBE3A identification</li>
-              <li>Meng et al., Human Molecular Genetics 2015 — UBE3A-ATS and paternal silencing</li>
-              <li>Finkel et al., NEJM 2017 — nusinersen for SMA (intrathecal ASO precedent)</li>
-            </ul>
-          </div>
-
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-stone-600">
+            The scientific lineage on this page draws on published research in
+            pulmonary medicine, fibrosis biology, lipid biochemistry, and
+            receptor pharmacology.
+          </p>
           <div className="mt-4">
             <a
-              href="https://clinicaltrials.gov/study/NCT06914609"
+              href="https://clinicaltrials.gov/study/NCT06003426"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-stone-700 transition hover:text-stone-900"

@@ -16,21 +16,27 @@ export default function RetinalGeneTherapyCasePage() {
     <main className="min-h-screen bg-stone-50 text-stone-900">
       {/* ── Hero ── */}
       <section className="border-b border-stone-200 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10 lg:py-20">
-          <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-            TrialLineage Case
-          </p>
+        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10 lg:py-24">
+          <div className="flex items-center gap-3">
+            <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
+              TrialLineage Lineage
+            </p>
+            <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+              FDA Approved · 2017
+            </span>
+          </div>
 
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
             Gene therapy for inherited retinal disease
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-stone-700">
-            This page starts with a gene therapy story for inherited vision
-            loss, then traces backward through the scientific lineage that made
-            it possible. It unfolds in layers: a plain-language summary, a
-            visual map of the discovery chain, a timeline of milestones and
-            detours, and a deeper account of the scientific history.
+            In December 2017, the FDA approved voretigene neparvovec (Luxturna)
+            — the first gene therapy for a genetic disease in the United States.
+            This lineage traces backward from that approval through the chain of
+            science that made it possible: retinal cell biology, disease
+            genetics, viral vector engineering, microsurgery, animal models,
+            safety crises, and rare-disease trial design.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -71,33 +77,32 @@ export default function RetinalGeneTherapyCasePage() {
               In plain language
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              What is this case about?
+              The drug, the disease, and the chain of science behind both
             </h2>
             <p className="mt-5 text-base leading-8 text-stone-700">
-              Inherited retinal diseases are conditions where changes in a
-              person&rsquo;s genes damage the cells needed for vision. Some
-              cause progressive vision loss beginning in childhood. Others lead
-              to near-total blindness. For most of these conditions, there was
-              historically no treatment at all.
+              Inherited retinal diseases are conditions where mutations in
+              specific genes damage the cells needed for vision. Some cause
+              progressive blindness beginning in childhood. For most of these
+              conditions, there was historically no treatment at all.
             </p>
             <p className="mt-4 text-base leading-8 text-stone-700">
-              Gene therapy attempts to address the root cause: delivering a
-              working copy of a gene — or otherwise restoring a missing
-              biological function — directly to the cells of the eye. The eye
-              became one of the first organs where gene therapy could
-              demonstrate clear clinical promise, because it is small,
-              accessible to specialized surgery, relatively contained from the
-              immune system, and directly measurable through vision testing and
-              retinal imaging.
+              Luxturna delivers a working copy of the RPE65 gene directly into
+              cells of the retina using a modified virus (AAV2) as a carrier.
+              RPE65 encodes an enzyme critical to the visual cycle — without it,
+              photoreceptors cannot regenerate the molecules they need to detect
+              light. The therapy is delivered through subretinal injection during
+              a surgical procedure.
             </p>
             <p className="mt-4 text-base leading-8 text-stone-700">
-              But gene therapy for vision loss did not appear suddenly. It
-              depended on decades of foundational work: identifying disease
-              genes, understanding retinal cell biology, engineering viral
-              vectors that could safely carry genetic material into target
-              cells, developing surgical methods to reach the retina, and
-              designing clinical trials for rare conditions with small patient
-              populations.
+              This did not happen quickly or cleanly. It took decades of work
+              across labs that often did not know they were building toward the
+              same endpoint. Retinal biologists mapped the cells. Geneticists
+              found the gene. Virologists built a delivery vehicle. Surgeons
+              learned to reach the target. A dog went blind from the same
+              mutation and was treated successfully. Then the entire gene therapy
+              field was stopped by a patient death in an unrelated trial. It
+              restarted years later with harder safety constraints. The path was
+              long, interrupted, and non-obvious.
             </p>
           </div>
 
@@ -107,29 +112,31 @@ export default function RetinalGeneTherapyCasePage() {
             </p>
             <ul className="mt-5 space-y-4 text-sm leading-7 text-stone-700">
               <li>
-                <span className="font-medium text-stone-900">The treatment:</span>{" "}
-                gene therapy delivered to retinal cells to restore or preserve vision
+                <span className="font-medium text-stone-900">The milestone:</span>{" "}
+                FDA approval of voretigene neparvovec (Luxturna), December 2017
+                — first gene therapy for a genetic disease in the US
               </li>
               <li>
                 <span className="font-medium text-stone-900">The disease:</span>{" "}
-                inherited retinal dystrophies — genetic conditions that damage
-                photoreceptors or retinal pigment epithelium
+                Leber congenital amaurosis type 2 (LCA2) — inherited blindness
+                caused by biallelic RPE65 mutations
               </li>
               <li>
                 <span className="font-medium text-stone-900">The mechanism:</span>{" "}
-                delivering a functional gene to compensate for a mutated or
-                missing one
+                AAV2 vector delivers a functional RPE65 gene to retinal pigment
+                epithelium cells via subretinal injection
               </li>
               <li>
-                <span className="font-medium text-stone-900">The timeline:</span>{" "}
-                disease genes were identified from the late 1980s onward; the
-                first approved retinal gene therapy came in 2017
+                <span className="font-medium text-stone-900">Key labs:</span>{" "}
+                University of Pennsylvania (Bennett, Maguire), University of
+                Florida (Hauswirth, Aguirre), UCL (Ali, Bainbridge), NEI/NIH
+                (Redmond)
               </li>
               <li>
-                <span className="font-medium text-stone-900">Why it took so long:</span>{" "}
-                safe delivery, vector engineering, surgical access, small patient
-                populations, and measuring meaningful visual change all required
-                their own chains of development
+                <span className="font-medium text-stone-900">Why it took 40+ years:</span>{" "}
+                the gene had to be found, a safe vector had to be engineered,
+                the field had to survive a safety crisis, surgery had to be
+                invented, and rare-disease trials had to be designed from scratch
               </li>
             </ul>
           </div>
@@ -143,22 +150,24 @@ export default function RetinalGeneTherapyCasePage() {
             What had to happen first?
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-            Six steps that made retinal gene therapy possible
+            Seven things that had to succeed before this could exist
           </h2>
 
           <p className="mt-5 max-w-3xl text-base leading-8 text-stone-700">
-            None of these steps alone produced a treatment. Each one built on
-            the last, and the full chain took decades to assemble.
+            Each step was performed by different people, in different labs,
+            often decades apart. Most did not know they were contributing to
+            a future therapy.
           </p>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-7">
             {[
-              { num: "1", title: "Understand the retina", text: "Scientists mapped how photoreceptors and retinal pigment epithelium convert light into neural signals — and what happens when those cells fail." },
-              { num: "2", title: "Find the genes", text: "Human geneticists identified specific genes whose mutations cause inherited retinal diseases, starting with RPE65 and expanding to hundreds of others." },
-              { num: "3", title: "Build a delivery vehicle", text: "Virologists and molecular biologists engineered adeno-associated virus (AAV) into a safe vector capable of carrying genes into cells without causing disease." },
-              { num: "4", title: "Reach the target cells", text: "Ophthalmic surgeons developed subretinal injection techniques to deliver vectors beneath the retina, directly to the cells that need them." },
-              { num: "5", title: "Test in animal models", text: "Researchers used naturally occurring and engineered animal models of retinal disease to show that gene delivery could restore visual function." },
-              { num: "6", title: "Design human trials", text: "Clinical teams built trials for rare diseases: small populations, careful patient selection, sensitive endpoints, and long-term follow-up." },
+              { num: "1", title: "Map the retina", text: "Cell biologists described how photoreceptors and RPE cells work together. Without understanding which cells fail, there was nothing to fix." },
+              { num: "2", title: "Find RPE65", text: "Geneticists identified the gene, linked it to inherited blindness, and showed what its protein does in the visual cycle." },
+              { num: "3", title: "Engineer a safe vector", text: "Virologists gutted AAV of its own genes and replaced them with a therapeutic payload. Took 20+ years to make stable, non-toxic, and manufacturable." },
+              { num: "4", title: "Invent subretinal surgery", text: "Ophthalmic surgeons developed a technique to inject fluid under the retina without destroying it — reaching target cells directly." },
+              { num: "5", title: "Prove it in a blind dog", text: "A Briard dog with the same RPE65 mutation was treated. It could see again. This was the proof that moved the field to humans." },
+              { num: "6", title: "Survive the safety crisis", text: "A patient died in an unrelated gene therapy trial (1999). The entire field froze for years. Retinal gene therapy had to wait." },
+              { num: "7", title: "Design a rare-disease trial", text: "Small patient populations, variable progression, no standard vision endpoint. Clinical teams had to invent new ways to measure benefit." },
             ].map((step) => (
               <div
                 key={step.num}
@@ -187,13 +196,12 @@ export default function RetinalGeneTherapyCasePage() {
             Reverse-lineage map
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
-            How retinal gene therapy traces back through science
+            How this approval traces back through science
           </h2>
           <p className="mt-4 max-w-3xl text-base leading-8 text-stone-300">
-            Read from top to bottom to see the chain of scientific fields that
-            built on each other. Side branches show where the path diverged,
-            where early attempts struggled, and where enabling methods made
-            later steps possible.
+            Read from top to bottom to follow the chain. Side branches show
+            detours, competing approaches, and enabling work that made later
+            steps possible.
           </p>
 
           <div className="mt-12 grid gap-0 lg:grid-cols-[1fr_auto_1fr]">
@@ -205,10 +213,10 @@ export default function RetinalGeneTherapyCasePage() {
                     Detour
                   </p>
                   <p className="mt-1 text-sm font-medium text-stone-200">
-                    Early gene therapy safety crises
+                    Jesse Gelsinger (1999)
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    The death of Jesse Gelsinger (1999) and leukemia cases in SCID trials forced the entire field to rebuild its safety framework.
+                    A patient died in a liver-directed adenovirus trial at Penn. Gene therapy froze globally. Retinal programs waited years to reach humans.
                   </p>
                 </div>
                 <div className="mt-5 h-px w-6 bg-stone-600" />
@@ -225,7 +233,7 @@ export default function RetinalGeneTherapyCasePage() {
                     Which vector? Adenovirus vs. AAV vs. lentivirus
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Multiple viral platforms competed. AAV emerged as safest for the eye due to low immunogenicity and stable expression.
+                    Multiple viral platforms competed. AAV won for the eye — low immunogenicity, stable expression, no genome integration.
                   </p>
                 </div>
                 <div className="mt-5 h-px w-6 bg-stone-600" />
@@ -236,13 +244,13 @@ export default function RetinalGeneTherapyCasePage() {
               <div className="flex items-start justify-end gap-4">
                 <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-right" style={{ maxWidth: "16rem" }}>
                   <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
-                    Detour
+                    Enabling work
                   </p>
                   <p className="mt-1 text-sm font-medium text-stone-200">
-                    Immune responses to viral vectors
+                    Retinal imaging (OCT, autofluorescence)
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Pre-existing immunity to AAV and inflammatory responses required careful dose selection and immunosuppression protocols.
+                    Non-invasive imaging let clinicians see retinal structure before and after treatment — essential for measuring effect and selecting patients.
                   </p>
                 </div>
                 <div className="mt-5 h-px w-6 bg-stone-600" />
@@ -252,14 +260,15 @@ export default function RetinalGeneTherapyCasePage() {
             {/* ── Central spine ── */}
             <div className="flex flex-col items-center">
               {[
-                { label: "Clinical outcome", title: "Gene therapy for inherited vision loss", accent: true },
-                { label: "Clinical translation", title: "Human trials and regulatory approval" },
-                { label: "Surgical delivery", title: "Subretinal injection" },
-                { label: "Vector engineering", title: "AAV vector design and production" },
-                { label: "Animal models", title: "Proof of concept in inherited retinal disease models" },
-                { label: "Disease genetics", title: "Molecular diagnosis of retinal dystrophies" },
-                { label: "Cell biology", title: "Retinal photoreceptor and RPE biology" },
-                { label: "Basic science", title: "Human genetics and gene function" },
+                { label: "FDA approval", title: "Luxturna approved (Dec 2017)", accent: true },
+                { label: "Phase 3 trial", title: "Spark Therapeutics randomized trial" },
+                { label: "Phase 1 / proof in humans", title: "Three independent groups test AAV-RPE65" },
+                { label: "Preclinical proof", title: "Briard dog sees again (Bennett/Maguire/Hauswirth)" },
+                { label: "Surgical method", title: "Subretinal injection technique developed" },
+                { label: "Vector engineering", title: "AAV2 adapted for ocular gene delivery" },
+                { label: "Disease genetics", title: "RPE65 identified and linked to LCA (Redmond, NIH)" },
+                { label: "Cell biology", title: "Retinal photoreceptor and RPE function mapped" },
+                { label: "Basic science", title: "The visual cycle described biochemically" },
               ].map((node, i, arr) => (
                 <div key={node.title} className="flex flex-col items-center">
                   <div
@@ -299,13 +308,13 @@ export default function RetinalGeneTherapyCasePage() {
                 <div className="mt-5 h-px w-6 bg-stone-600" />
                 <div className="rounded-xl border border-white/10 bg-white/5 p-4" style={{ maxWidth: "16rem" }}>
                   <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
-                    Enabling method
+                    Enabling work
                   </p>
                   <p className="mt-1 text-sm font-medium text-stone-200">
-                    Retinal imaging (OCT, fundus autofluorescence)
+                    Briard dog colony (Aguirre, U. of Florida)
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Non-invasive imaging allowed monitoring of retinal structure before and after treatment.
+                    Gustavo Aguirre maintained a colony of naturally blind dogs with RPE65 mutations — the animal model that made everything possible.
                   </p>
                 </div>
               </div>
@@ -316,13 +325,13 @@ export default function RetinalGeneTherapyCasePage() {
                 <div className="mt-5 h-px w-6 bg-stone-600" />
                 <div className="rounded-xl border border-white/10 bg-white/5 p-4" style={{ maxWidth: "16rem" }}>
                   <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
-                    Enabling method
+                    Detour
                   </p>
                   <p className="mt-1 text-sm font-medium text-stone-200">
-                    Genetic sequencing and molecular diagnosis
+                    Immune responses to AAV capsids
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Identifying the exact genetic cause in each patient became essential for selecting who could benefit.
+                    Pre-existing antibodies and inflammation forced dose adjustments, immunosuppression protocols, and patient exclusion criteria.
                   </p>
                 </div>
               </div>
@@ -339,24 +348,7 @@ export default function RetinalGeneTherapyCasePage() {
                     Gene replacement vs. gene editing vs. optogenetics
                   </p>
                   <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Multiple strategies emerged for different stages and types of retinal disease. Gene replacement succeeded first.
-                  </p>
-                </div>
-              </div>
-
-              <div className="h-12" />
-
-              <div className="flex items-start gap-4">
-                <div className="mt-5 h-px w-6 bg-stone-600" />
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4" style={{ maxWidth: "16rem" }}>
-                  <p className="text-xs uppercase tracking-[0.14em] text-stone-400">
-                    Enabling method
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-stone-200">
-                    Natural animal models (Briard dog, rd mice)
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-stone-400">
-                    Naturally blind animals with matching genetic mutations provided critical proof-of-concept before human trials.
+                    Multiple strategies emerged for different stages of retinal disease. Gene replacement via AAV reached the clinic first.
                   </p>
                 </div>
               </div>
@@ -366,13 +358,12 @@ export default function RetinalGeneTherapyCasePage() {
           {/* Mobile side-branch summary */}
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:hidden">
             {[
-              { type: "Detour", title: "Early gene therapy safety crises", text: "The death of Jesse Gelsinger (1999) and leukemia cases in SCID trials forced the entire field to rebuild its safety framework." },
-              { type: "Branch point", title: "Which vector? Adenovirus vs. AAV vs. lentivirus", text: "Multiple viral platforms competed. AAV emerged as safest for the eye." },
-              { type: "Detour", title: "Immune responses to viral vectors", text: "Pre-existing immunity and inflammation required careful dose selection." },
-              { type: "Enabling method", title: "Retinal imaging (OCT, fundus autofluorescence)", text: "Non-invasive imaging allowed monitoring of retinal structure." },
-              { type: "Enabling method", title: "Genetic sequencing and molecular diagnosis", text: "Identifying the exact genetic cause became essential for patient selection." },
-              { type: "Branch point", title: "Gene replacement vs. gene editing vs. optogenetics", text: "Multiple strategies for different stages of disease. Gene replacement succeeded first." },
-              { type: "Enabling method", title: "Natural animal models (Briard dog, rd mice)", text: "Naturally blind animals provided critical proof-of-concept." },
+              { type: "Detour", title: "Jesse Gelsinger (1999)", text: "A patient death froze gene therapy globally. Retinal programs waited years." },
+              { type: "Branch point", title: "Which vector?", text: "Multiple viral platforms competed. AAV won for the eye." },
+              { type: "Enabling work", title: "Retinal imaging", text: "OCT and autofluorescence let clinicians see structure before and after." },
+              { type: "Enabling work", title: "Briard dog colony", text: "Naturally blind dogs with RPE65 mutations made preclinical proof possible." },
+              { type: "Detour", title: "Immune responses", text: "Pre-existing antibodies forced dose adjustments and exclusion criteria." },
+              { type: "Branch point", title: "Gene replacement vs. editing vs. optogenetics", text: "Multiple strategies; gene replacement reached the clinic first." },
             ].map((item) => (
               <div
                 key={item.title}
@@ -401,12 +392,11 @@ export default function RetinalGeneTherapyCasePage() {
             Discovery timeline
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-            Key moments in the path to retinal gene therapy
+            Key moments in the path to Luxturna
           </h2>
           <p className="mt-4 max-w-3xl text-base leading-8 text-stone-700">
-            This timeline traces milestones, branch points, detours, and
-            convergence events across the scientific fields that eventually
-            produced gene therapies for inherited blindness.
+            Each step below made the next step possible. The people and labs
+            involved usually did not know where their work would lead.
           </p>
 
           <div className="mt-12 space-y-0">
@@ -415,78 +405,85 @@ export default function RetinalGeneTherapyCasePage() {
                 type: "Milestone",
                 color: "bg-stone-900",
                 era: "1960s\u20131970s",
-                title: "Retinal cell biology is mapped in detail",
-                text: "Researchers including John Dowling (Harvard) and others characterized the layered architecture of the retina, establishing how rod and cone photoreceptors, bipolar cells, and retinal pigment epithelium (RPE) work together to support vision. This foundational biology later explained why specific gene defects cause specific patterns of vision loss.",
+                title: "The retina is mapped at the cellular level",
+                text: "John Dowling (Harvard) and others described the layered architecture of the retina \u2014 how photoreceptors convert light into neural signals, and how the retinal pigment epithelium (RPE) supports them by recycling visual pigment. This foundational work explained why specific gene defects produce specific patterns of blindness. Without it, there was no target for therapy.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "1980s",
-                title: "Human disease genetics identifies retinal disease genes",
-                text: "The molecular genetics revolution enabled mapping of inherited retinal diseases to specific chromosomal locations. The gene for retinitis pigmentosa linked to rhodopsin mutations was identified in 1990 by groups including those of Thaddeus Dryja (Harvard/Mass Eye and Ear). RPE65, later central to the first approved gene therapy, was identified in the 1990s by Michael Redmond (NEI/NIH) and others.",
+                era: "1970s\u20131980s",
+                title: "The visual cycle is described biochemically",
+                text: "Researchers worked out how retinal (a form of vitamin A) is recycled between photoreceptors and RPE cells to regenerate rhodopsin after each photon is absorbed. RPE65 would later be identified as a critical enzyme in this cycle \u2014 but first the cycle itself had to be understood.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
                 era: "1980s\u20131990s",
-                title: "Adeno-associated virus is developed as a gene delivery tool",
-                text: "AAV was initially discovered as a contaminant in adenovirus preparations. Researchers including Nicholas Bhatt and Barrie Carter, followed by work from groups at the University of Florida and the University of Pennsylvania, gradually engineered AAV into a non-pathogenic vector capable of delivering genes to non-dividing cells with long-term expression and limited immune activation.",
+                title: "Disease genetics identifies retinal disease genes",
+                text: "The molecular genetics revolution \u2014 linkage analysis, positional cloning, and eventually sequencing \u2014 allowed researchers to connect inherited blindness to specific genes. Thaddeus Dryja (Harvard/Mass Eye and Ear) linked retinitis pigmentosa to rhodopsin mutations in 1990. Michael Redmond (NEI/NIH) identified RPE65 and connected it to a severe form of childhood blindness.",
+              },
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "1980s\u20131990s",
+                title: "AAV is developed as a gene delivery tool",
+                text: "Adeno-associated virus was discovered as a harmless contaminant of adenovirus preparations. Over two decades, molecular biologists at the University of Florida, University of Pennsylvania, and elsewhere gutted its genome and replaced it with therapeutic cargo. AAV2 proved effective at transducing photoreceptors and RPE without integrating into the host genome \u2014 meaning stable expression with lower cancer risk.",
               },
               {
                 type: "Branch point",
                 color: "bg-stone-500",
                 era: "1990s",
                 title: "Which vector for the eye?",
-                text: "Multiple viral delivery systems were tested for ocular gene transfer: adenovirus, lentivirus, and AAV. Adenovirus provoked strong immune responses. Lentivirus integrated into the genome (raising safety concerns). AAV, particularly serotype 2, showed stable transduction of photoreceptors and RPE with minimal inflammation, making it the lead candidate for retinal applications.",
+                text: "Adenovirus provoked immune responses. Lentivirus integrated into the genome (raising safety concerns for cancer). AAV \u2014 particularly serotype 2 \u2014 showed stable expression with minimal inflammation. The choice of AAV was not obvious at the start; it won because of accumulating empirical evidence in animal models.",
+              },
+              {
+                type: "Milestone",
+                color: "bg-stone-900",
+                era: "1990s",
+                title: "Subretinal injection is developed",
+                text: "Vitreoretinal surgeons developed a microsurgical technique to inject fluid beneath the retina, creating a temporary detachment (\u201Cbleb\u201D) that allows vector to contact target cells directly. The technique required custom instrumentation, specific volumes, precise anatomic targeting, and tolerance for temporarily lifting the retina off its support layer.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
                 era: "1998\u20132001",
-                title: "Proof of concept in the Briard dog",
-                text: "A naturally occurring strain of Briard dog carries a mutation in RPE65, causing a condition closely resembling human Leber congenital amaurosis (LCA). Jean Bennett and Albert Maguire (University of Pennsylvania), along with collaborators including Gustavo Aguirre and William Hauswirth (University of Florida), demonstrated that subretinal injection of AAV-RPE65 could restore visual function in these dogs. The dramatic results \u2014 treated dogs navigating obstacle courses in dim light \u2014 became a landmark proof of concept.",
+                title: "A blind dog sees again",
+                text: "Gustavo Aguirre (University of Florida, later Penn) maintained a colony of Briard dogs carrying a natural RPE65 mutation. Jean Bennett and Albert Maguire (University of Pennsylvania), with William Hauswirth (University of Florida), injected AAV-RPE65 beneath the retinas of these dogs. Treated animals navigated obstacle courses in dim light. Untreated eyes remained blind. This was the proof that moved the field from theory to clinical possibility.",
               },
               {
                 type: "Detour",
                 color: "bg-stone-400",
-                era: "1999\u20132000s",
-                title: "Gene therapy safety crises halt the field",
-                text: "The death of Jesse Gelsinger in a liver-directed adenovirus trial (1999) and subsequent leukemia cases in X-SCID gene therapy trials in Paris triggered regulatory freezes, institutional reviews, and widespread public concern. The entire gene therapy field contracted. Retinal gene therapy, already in development, had to wait for the field\u2019s safety framework to be rebuilt before advancing to human trials.",
+                era: "1999\u20132003",
+                title: "Gene therapy\u2019s safety crisis",
+                text: "Jesse Gelsinger, an 18-year-old with a metabolic condition, died in a liver-directed adenovirus trial at the University of Pennsylvania in September 1999. The FDA halted trials. Public confidence collapsed. Separately, children treated for X-SCID in Paris developed leukemia from retroviral integration. The entire field contracted. Retinal gene therapy programs \u2014 already preparing for human trials \u2014 had to wait while the field rebuilt its safety framework, oversight systems, and manufacturing standards.",
               },
               {
                 type: "Detour",
                 color: "bg-stone-400",
                 era: "2000s",
-                title: "Immune responses and dose-finding challenges",
-                text: "Even with AAV\u2019s relatively favorable safety profile, researchers encountered challenges: some patients had pre-existing antibodies to AAV capsids, others developed inflammation after injection. Dose selection, immunosuppression protocols, and timing of intervention all required careful optimization that could only be resolved through iterative clinical study.",
+                title: "Immune problems and dose-finding",
+                text: "Even with AAV\u2019s favorable profile, researchers encountered pre-existing antibodies to AAV capsids in some patients, inflammatory responses after injection, and uncertainty about optimal dose. These problems were only resolvable through iterative clinical study \u2014 there was no shortcut.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
                 era: "2007\u20132008",
-                title: "First human trials for RPE65-associated LCA",
-                text: "Three independent groups \u2014 at the University of Pennsylvania (Bennett/Maguire), University College London (Robin Ali and James Bainbridge), and the University of Naples \u2014 initiated phase I trials of AAV2-RPE65 subretinal injection in patients with LCA due to RPE65 mutations. Early results showed improvements in light sensitivity and navigational vision in treated eyes, with acceptable safety profiles.",
-              },
-              {
-                type: "Branch point",
-                color: "bg-stone-500",
-                era: "2010s",
-                title: "Gene replacement vs. mutation-independent approaches",
-                text: "RPE65 gene replacement worked for one specific gene. But hundreds of retinal disease genes exist. Researchers diverged into multiple strategies: gene-specific replacement for other genes, gene editing (CRISPR), antisense oligonucleotides for splicing defects, and optogenetics for late-stage disease where photoreceptors are already lost. Each addresses a different slice of the problem.",
+                title: "Three groups independently test in humans",
+                text: "Jean Bennett and Albert Maguire (Penn), Robin Ali and James Bainbridge (University College London), and a group at the University of Naples each initiated Phase 1 trials of AAV2-RPE65 in patients with RPE65-associated Leber congenital amaurosis. Early results showed improvements in light sensitivity and navigational vision in treated eyes, with acceptable safety. Three independent confirmations strengthened the evidence base enormously.",
               },
               {
                 type: "Milestone",
                 color: "bg-stone-900",
-                era: "2017",
-                title: "FDA approves voretigene neparvovec (Luxturna)",
-                text: "Spark Therapeutics\u2019 voretigene neparvovec became the first FDA-approved gene therapy for a genetic disease in the United States. It delivers a functional RPE65 gene via AAV2 to the retinal pigment epithelium of patients with confirmed biallelic RPE65 mutations. Approval was based on a randomized trial showing meaningful improvement in navigational ability under low light conditions.",
+                era: "2012\u20132015",
+                title: "A Phase 3 trial with a novel endpoint",
+                text: "Spark Therapeutics (a Penn spinoff) conducted a randomized trial using multi-luminance mobility testing \u2014 patients navigating a course under varying light conditions. This endpoint captured functional vision improvement in a way standard eye charts could not. The trial design itself was a scientific contribution: proving that gene therapy efficacy could be measured rigorously in a rare disease.",
               },
               {
                 type: "Convergence",
                 color: "bg-stone-700",
-                era: "2017\u2013present",
-                title: "Retinal gene therapy becomes a platform",
-                text: "Following RPE65, multiple programs advanced gene therapies targeting other retinal genes: RPGR for X-linked retinitis pigmentosa, CNGA3 and CNGB3 for achromatopsia, RS1 for retinoschisis, and others. The surgical, manufacturing, and regulatory infrastructure established for Luxturna now supports a broader pipeline. The question shifted from \u201Ccan gene therapy work in the eye?\u201D to \u201Cwhich conditions, which genes, and which patients?\u201D",
+                era: "December 2017",
+                title: "FDA approves Luxturna",
+                text: "Voretigene neparvovec became the first FDA-approved gene therapy for a genetic disease in the United States. Retinal biology, disease genetics, vector engineering, microsurgery, animal models, safety crisis recovery, and rare-disease trial design \u2014 work spanning 40+ years across dozens of labs \u2014 converged into a single approved medicine.",
               },
             ].map((entry, i, arr) => (
               <div key={entry.title} className="relative flex gap-6">
@@ -539,44 +536,42 @@ export default function RetinalGeneTherapyCasePage() {
         <div className="mx-auto grid max-w-6xl gap-8 px-6 py-16 lg:grid-cols-2 lg:px-10">
           <div className="rounded-[1.75rem] border border-stone-200 bg-white p-7 shadow-sm">
             <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-              Why this case matters
+              Why this lineage matters
             </p>
             <p className="mt-4 leading-8 text-stone-700">
-              Retinal gene therapy matters not only because it treats a
-              previously untreatable condition, but because it demonstrates a
-              broader principle: that understanding the genetic basis of a
-              disease, combined with a safe delivery method and careful clinical
-              development, can produce a fundamentally new kind of medicine.
-              The eye served as a proving ground for concepts now being extended
-              across genetic medicine.
+              This lineage shows how a therapy can emerge from basic science
+              that had no therapeutic intent at the time. Retinal cell biology
+              was mapped to understand vision, not to treat blindness. AAV was
+              studied as a virology curiosity, not as a drug delivery vehicle.
+              The convergence was not planned — it was recognized, retrospectively,
+              by people who could see that the pieces fit.
             </p>
           </div>
 
           <div className="space-y-6">
             <div className="rounded-[1.75rem] border border-stone-200 bg-white p-7 shadow-sm">
               <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-                Why earlier layers matter
+                Setbacks shaped the outcome
               </p>
               <p className="mt-4 leading-8 text-stone-700">
-                Without retinal cell biology, there would be no understanding
-                of which cells to target. Without disease genetics, no way to
-                know which gene to deliver. Without vector engineering, no safe
-                vehicle. Without surgical technique, no way to reach the cells.
-                Each layer was necessary — and none looked like a treatment
-                when it was first performed.
+                Gene therapy&rsquo;s safety crisis did not destroy the field — it
+                forced it to become more careful. The vectors, doses, delivery
+                methods, and monitoring protocols that eventually produced
+                Luxturna were developed in direct response to earlier failures.
+                The delay was not wasted time.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-white p-7 shadow-sm">
               <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-                Setbacks shaped the path
+                The eye as a proving ground
               </p>
               <p className="mt-4 leading-8 text-stone-700">
-                Gene therapy&rsquo;s safety crises in the late 1990s and early
-                2000s did not destroy the field — they forced it to become more
-                careful. The vectors, doses, delivery methods, and monitoring
-                protocols that eventually succeeded were developed in direct
-                response to earlier failures.
+                The eye is small, surgically accessible, relatively immune-privileged,
+                and directly measurable. It became the first organ where gene therapy
+                proved itself — and the infrastructure it built (manufacturing, regulatory
+                precedent, trial design) now supports gene therapy efforts across
+                other organs and diseases.
               </p>
             </div>
           </div>
@@ -594,8 +589,7 @@ export default function RetinalGeneTherapyCasePage() {
             The longer scientific lineage
           </h2>
           <p className="mt-4 max-w-3xl text-base leading-8 text-stone-700">
-            Each section below expands on one layer of the discovery chain,
-            providing the fuller history behind the visual map above.
+            Each section below expands on one layer of the discovery chain.
           </p>
 
           <div className="mt-8 space-y-6">
@@ -610,107 +604,135 @@ export default function RetinalGeneTherapyCasePage() {
                 which recycles visual pigment and maintains photoreceptor
                 health. Understanding these relationships explained why
                 mutations in specific genes produce specific patterns of
-                degeneration.
+                degeneration — and identified which cells a therapy would need
+                to reach.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">2. Disease genes had to be identified</h3>
+              <h3 className="text-xl font-semibold">2. The gene had to be found and understood</h3>
               <p className="mt-3 leading-8 text-stone-700">
                 The era of positional cloning and linkage analysis — followed
                 by next-generation sequencing — allowed researchers to identify
                 hundreds of genes responsible for inherited retinal
                 dystrophies. RPE65, encoding an enzyme critical to the visual
                 cycle, became one of the first therapeutic targets because its
-                biology was well understood, its disease phenotype was clear,
-                and animal models existed. Identifying the gene was necessary
-                but not sufficient: a delivery mechanism was still needed.
+                biology was well understood, its disease phenotype was severe
+                but well-defined, and animal models existed. Michael Redmond
+                at the NIH identified the gene; its connection to a specific
+                form of Leber congenital amaurosis made it actionable.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">3. A safe vector had to be engineered</h3>
+              <h3 className="text-xl font-semibold">3. A safe delivery vehicle had to be engineered</h3>
               <p className="mt-3 leading-8 text-stone-700">
                 Adeno-associated virus was discovered in the 1960s as a
                 non-pathogenic satellite of adenovirus. Over decades, molecular
-                biologists removed its disease-associated sequences, replacing
-                them with therapeutic genes while retaining its ability to
-                enter cells. AAV serotype 2 proved particularly effective at
+                biologists removed its replication machinery and replaced it
+                with therapeutic genes while retaining its ability to enter
+                cells. AAV serotype 2 proved particularly effective at
                 transducing photoreceptors and RPE cells. The vector needed to
                 express the gene stably without integrating into the host
-                genome (reducing cancer risk) and without provoking strong
-                immune responses.
+                genome and without provoking strong immune responses. This took
+                20+ years of iterative engineering.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">4. Surgical access to the retina had to be developed</h3>
+              <h3 className="text-xl font-semibold">4. A surgical approach had to be invented</h3>
               <p className="mt-3 leading-8 text-stone-700">
                 Delivering a vector to retinal cells requires subretinal
                 injection: a microsurgical procedure where fluid is placed
-                beneath the retina, creating a temporary detachment (a
-                &ldquo;bleb&rdquo;) that allows the vector to contact target
-                cells directly. Vitreoretinal surgeons refined these techniques
-                over years, optimizing volume, location, and instrumentation
-                to minimize damage while maximizing vector distribution.
+                beneath the retina, creating a temporary detachment that
+                allows the vector to contact target cells directly. Vitreoretinal
+                surgeons refined these techniques over years, optimizing volume,
+                injection location, and instrumentation to minimize damage while
+                maximizing vector distribution. The surgery itself was a
+                scientific contribution — not just a delivery step.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">5. Animal models provided proof of concept</h3>
+              <h3 className="text-xl font-semibold">5. An animal model provided the critical proof</h3>
               <p className="mt-3 leading-8 text-stone-700">
-                The Briard dog model — carrying a natural RPE65 mutation — was
-                pivotal. Treated dogs showed measurable restoration of visual
-                behavior, providing the evidence needed to justify human
-                trials. Mouse models of other retinal diseases (rd1, rd10,
-                and others) allowed testing of vectors, promoters, and doses
-                at scale. Without these models, the step from laboratory to
-                clinic would have been far more uncertain.
+                The Briard dog model — carrying a naturally occurring RPE65
+                mutation — was pivotal. These dogs are born with severe vision
+                impairment matching human LCA. When treated with subretinal
+                AAV-RPE65, they showed measurable restoration of visual
+                behavior. The images of treated dogs navigating obstacle courses
+                in dim light became some of the most compelling evidence in gene
+                therapy. Without this colony (maintained for years by Gustavo
+                Aguirre), the jump to humans would have been far harder to
+                justify.
               </p>
             </div>
 
             <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
-              <h3 className="text-xl font-semibold">6. Clinical translation required new trial designs</h3>
+              <h3 className="text-xl font-semibold">6. The field had to survive its worst moment</h3>
+              <p className="mt-3 leading-8 text-stone-700">
+                Jesse Gelsinger&rsquo;s death in 1999 and the subsequent leukemia
+                cases in SCID trials did not just pause gene therapy — they
+                forced a complete overhaul of vector safety testing, dose
+                escalation protocols, informed consent, manufacturing quality,
+                and regulatory oversight. The retinal gene therapy teams were
+                ready to move to humans in the early 2000s but could not
+                proceed until the infrastructure was rebuilt. The delay was
+                painful but ultimately produced a safer, more rigorous field.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-stone-200 bg-stone-50 p-7">
+              <h3 className="text-xl font-semibold">7. Rare-disease trials had to be reinvented</h3>
               <p className="mt-3 leading-8 text-stone-700">
                 Inherited retinal diseases are individually rare. Patient
                 populations are small, progression varies, and vision is
                 difficult to measure in standardized ways. Clinical teams
                 developed novel endpoints — including multi-luminance mobility
-                testing, full-field stimulus testing, and retinal imaging
-                biomarkers — to capture meaningful visual improvement. Trial
+                testing (patients navigating a course under different light
+                levels) — to capture meaningful visual improvement. Trial
                 design for rare genetic diseases became a discipline in its
-                own right, balancing statistical rigor against the reality of
-                small numbers.
+                own right. The endpoint Spark used for approval did not exist
+                when the program started.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── What this story teaches ── */}
+      {/* ── Known vs unknown ── */}
       <section className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10">
-          <div className="mx-auto max-w-3xl">
-            <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-              What this story teaches
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              Convergence across fields
-            </h2>
-            <p className="mt-5 text-base leading-8 text-stone-700">
-              Gene therapy for inherited retinal disease shows how basic
-              genetics, cell biology, vector engineering, surgical technique,
-              and clinical measurement can converge into a new kind of
-              medicine. No single field produced the treatment. The result
-              required decades of parallel and sequential work — much of it
-              not obviously therapeutic at the time — before the pieces could
-              be assembled into something that helps patients.
-            </p>
-            <p className="mt-4 text-base leading-8 text-stone-700">
-              It also demonstrates that the eye, because of its accessibility
-              and measurability, can serve as a proving ground for therapeutic
-              concepts that later extend to other organs and other diseases.
-            </p>
+          <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
+            Known vs. unknown
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight">
+            What the evidence says and what remains open
+          </h2>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-stone-200 bg-white p-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-emerald-700">Established</h3>
+              <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-700">
+                <li>AAV2-RPE65 can restore light sensitivity in patients with biallelic RPE65 mutations</li>
+                <li>Subretinal delivery reaches the target cells effectively</li>
+                <li>Functional vision (navigational ability) improves after treatment</li>
+                <li>The therapy has an acceptable safety profile</li>
+                <li>The regulatory and manufacturing framework for retinal gene therapy works</li>
+                <li>The approach has been replicated across multiple independent groups</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-stone-200 bg-white p-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-amber-700">Not yet known</h3>
+              <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-700">
+                <li>How long the therapeutic effect lasts (some patients show decline over years)</li>
+                <li>Whether re-dosing is possible or necessary</li>
+                <li>Whether the approach extends to other retinal genes with equal efficacy</li>
+                <li>Whether treatment timing (earlier vs. later in disease) determines long-term outcome</li>
+                <li>Whether next-generation vectors or approaches will improve on Luxturna&rsquo;s results</li>
+                <li>How to make gene therapy accessible and affordable at scale</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -725,63 +747,65 @@ export default function RetinalGeneTherapyCasePage() {
             Connected scientific fields
           </h2>
 
-          <p className="mt-4 max-w-3xl text-base leading-8 text-stone-700">
-            Each concept below represents a connected background field that
-            contributed to retinal gene therapy. Live pages function as
-            standalone explainers or as companions to this case.
-          </p>
-
-          <div className="mt-4">
-            <Link
-              href="/concepts"
-              className="text-sm font-medium text-stone-600 transition hover:text-stone-900"
-            >
-              Browse all concept pages →
-            </Link>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {conceptLinks.map((concept) =>
-              concept.href ? (
-                <Link
-                  key={concept.label}
-                  href={concept.href}
-                  className="rounded-[1.25rem] border border-stone-200 bg-stone-50 px-5 py-4 text-sm font-medium text-stone-800 shadow-sm transition hover:border-stone-400 hover:bg-white hover:text-stone-900"
-                >
-                  {concept.label}
-                  <span className="mt-1.5 block text-xs font-normal text-stone-500">
-                    Read explainer →
-                  </span>
-                </Link>
-              ) : (
-                <div
-                  key={concept.label}
-                  className="rounded-[1.25rem] border border-stone-200 bg-stone-50 px-5 py-4 text-sm font-medium text-stone-800 shadow-sm"
-                >
-                  {concept.label}
-                  <span className="mt-1.5 block text-xs font-normal text-stone-400">
-                    Coming soon
-                  </span>
-                </div>
-              )
-            )}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {conceptLinks.map((concept) => (
+              <Link
+                key={concept.label}
+                href={concept.href}
+                className="rounded-[1.25rem] border border-stone-200 bg-stone-50 px-5 py-4 text-sm font-medium text-stone-800 shadow-sm transition hover:border-stone-400 hover:bg-white hover:text-stone-900"
+              >
+                {concept.label}
+                <span className="mt-1.5 block text-xs font-normal text-stone-500">
+                  Read explainer →
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Sources ── */}
+      {/* ── Sources and confidence ── */}
       <section className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10">
           <p className="text-sm uppercase tracking-[0.18em] text-stone-500">
-            Source
+            Sources and confidence
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-            Trial record
+            Endpoint record
           </h2>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-stone-700">
+            FDA approval of voretigene neparvovec-rzyl (Luxturna), December 19,
+            2017. BLA 761036. Indication: confirmed biallelic RPE65
+            mutation-associated retinal dystrophy.
+          </p>
+
+          <div className="mt-6 rounded-xl border border-stone-200 bg-white p-5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+              Confidence flag
+            </p>
+            <p className="mt-2 text-sm leading-7 text-stone-700">
+              <span className="font-medium text-emerald-700">High.</span>{" "}
+              Endpoint is a completed FDA approval with public BLA record,
+              published Phase 3 trial data, and established post-approval
+              clinical use.
+            </p>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-stone-200 bg-white p-5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+              Source links
+            </p>
+            <ul className="mt-2 space-y-1.5 text-sm leading-7 text-stone-700">
+              <li>FDA BLA 761036 — approval letter and review documents</li>
+              <li>ClinicalTrials.gov NCT00999609 — Phase 3 trial record</li>
+              <li>Russell et al., Lancet 2017 — pivotal trial publication</li>
+            </ul>
+          </div>
+
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-stone-600">
             The scientific lineage on this page draws on published research in
-            retinal biology, human genetics, virology, and clinical
-            ophthalmology.
+            retinal biology, human genetics, virology, ophthalmology, and
+            clinical trial methodology.
           </p>
         </div>
       </section>
@@ -794,15 +818,9 @@ export default function RetinalGeneTherapyCasePage() {
               About this page
             </p>
             <p className="mt-4 max-w-3xl leading-8 text-stone-700">
-              This is a TrialLineage case page. It starts with a gene therapy
-              for inherited vision loss, then traces backward through the
-              scientific lineage that made it possible. The format presents
-              the discovery process in layers: a plain-language summary, a
-              visual lineage map, a timeline of key events, and a deeper
-              account of the scientific history.
-            </p>
-            <p className="mt-4 text-sm text-stone-500 italic">
-              Status: Draft — in development. Content is subject to review and revision.
+              This is a TrialLineage page. It traces a specific therapeutic
+              milestone backward through the scientific lineage that made it
+              possible.
             </p>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-6 text-xs text-stone-500">
