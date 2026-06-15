@@ -8,4 +8,20 @@ export default function HomePage() {
   // exploration, but clusters/domains are not the main library organizing structure.
   const lineages = [
     {
-      title: "
+      title: "Daraxonrasib in pancreatic cancer",
+      endpoint: "Phase 2 trial",
+      subtitle:
+        "KRAS-directed therapy traced through oncogene discovery, structural biology, and medicinal chemistry.",
+      status: "Live" as const,
+      href: "/case/daraxonrasib-pancreatic-cancer",
+    },
+    {
+      title: "Gene therapy for inherited retinal disease",
+      endpoint: "Approved (Luxturna)",
+      subtitle:
+        "Gene therapy for inherited blindness traced through retinal biology, disease genetics, AAV vector engineering, and surgical delivery.",
+      status: "Live" as const,
+      href: "/case/gene-therapy-inherited-retinal-disease",
+    },
+    {
+      title: "RNA
